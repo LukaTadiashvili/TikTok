@@ -34,7 +34,7 @@ OUT = ROOT / "output"
 CACHE = OUT / "cache"
 W, H, FPS = 1080, 1920, 30
 TBILISI = dt.timezone(dt.timedelta(hours=4))
-EDGE_VOICES = ["ka-GE-EkaNeural", "ka-GE-GiorgiNeural"]
+EDGE_VOICES = ["ka-GE-EkaNeural"]  # female
 TAG = re.compile(r"\[[^\]]*\]")
 
 
@@ -177,7 +177,7 @@ def eleven_voice(key, path, text_with_tags):
     return f"ElevenLabs/{model}", words
 
 
-GEMINI_VOICES = ["Puck", "Kore", "Fenrir", "Aoede"]
+GEMINI_VOICES = ["Zephyr", "Kore", "Leda", "Aoede"]  # female voices
 
 
 def gemini_voice(key, path, beats, targets):
@@ -186,10 +186,12 @@ def gemini_voice(key, path, beats, targets):
     model = os.getenv("GEMINI_TTS_MODEL") or "gemini-2.5-flash-preview-tts"
     voice = os.getenv("GEMINI_VOICE") or random.choice(GEMINI_VOICES)
     lines = "\n".join((f"[{b['tone']}] " if b.get("tone") else "") + plain(b["say"]) for b in beats)
-    prompt = ("Read this Georgian TikTok voiceover aloud like a charismatic, energetic native Georgian narrator. "
-              "Hook the listener from the first word, vary your intonation, speed up on exciting parts, "
-              "and make a short clear pause after each line. The words in [brackets] are tone directions: "
-              "follow them but never read them aloud.\n\n" + lines)
+    prompt = ("You are a young Georgian woman, a hugely popular TikTok storyteller. Perform this voiceover in "
+              "Georgian with BIG, genuine emotion, like you are telling a friend the most surprising thing you "
+              "just learned: gasp, smile, lower your voice for secrets, rise with excitement, punch the key words, "
+              "never sound like you are reading. Start the first line with intense energy so nobody scrolls away. "
+              "Keep a fast, lively TikTok pace and make a short clear pause after each line. The words in "
+              "[brackets] are emotion directions: act them out but never read them aloud.\n\n" + lines)
     r = requests.post(
         f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
         headers={"x-goog-api-key": key, "Content-Type": "application/json"},
