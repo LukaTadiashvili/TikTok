@@ -11,5 +11,18 @@
     "shots": 11,
     "real_footage": 1,
     "sent": true
+  },
+  {
+    "id": "V002",
+    "date": "2026-11-15",
+    "script_id": "M003",
+    "niche": "mystery",
+    "hook_type": "shock",
+    "voice": "Gemini/Zephyr",
+    "title": "Wow! სიგნალი",
+    "seconds": 27.1,
+    "shots": 11,
+    "real_footage": 11,
+    "sent": true
   }
 ]
