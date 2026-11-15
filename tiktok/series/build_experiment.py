@@ -42,7 +42,7 @@ def fill(text):
     return re.sub(r"\{([A-Z]+)\}", sub, text)
 
 
-NARRATOR = "a deep, calm male narrator voice-over"
+NARRATOR = "a deep, calm male narrator voice-over (not on screen)"
 
 
 def clip(shots, lines, light="cold blue tones", amb="wind, creaking wood", pops=None):
@@ -56,7 +56,7 @@ def clip(shots, lines, light="cold blue tones", amb="wind, creaking wood", pops=
         idx = max(i for i, (a, b) in enumerate(times) if a <= line["at"] + 0.01)
         a, b = times[idx]
         text = line["text"].replace("*", "")
-        shots[idx] = shots[idx].replace("No dialogue.", "").rstrip() + f' {NARRATOR.capitalize()} says in Georgian: "{text}"'
+        shots[idx] = shots[idx].replace("No dialogue.", "").rstrip() + f' {NARRATOR.capitalize()} says slowly in Georgian: "{text}"'
         out.append({"who": "veo", "from": a + 0.2, "to": b - 0.1, "text": line["text"]})
     lines = out
     body = "\n".join(f"Shot {i + 1} ({a}-{b}s): {fill(s)}" for i, ((a, b), s) in enumerate(zip(times, shots)))
