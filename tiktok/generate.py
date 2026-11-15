@@ -1,14 +1,14 @@
 """Daily Georgian TikTok video generator (free stack).
 
 Script (from scripts/bank.json, or Claude API if ANTHROPIC_API_KEY is set)
- -> Azure Georgian voice per scene
+ -> Georgian voice per scene (Azure if keyed, else free edge-tts)
  -> free stock footage (Pixabay or Pexels): 2-3 fast cuts per scene, different angles
  -> word-by-word pop-up captions, hook title, zoom punches, whoosh sounds
  -> 1080x1920 MP4 -> Telegram
 
 Every service is optional so the run never fully fails:
   no PIXABAY_API_KEY / PEXELS_API_KEY -> animated gradient backgrounds
-  no AZURE_SPEECH_KEY  -> silent video, captions timed to reading speed
+  no AZURE_SPEECH_KEY  -> free edge-tts voice; if that fails, silent video
   no TELEGRAM_*        -> video only saved to output/ (and the GitHub run)
 
 Usage: python generate.py [--script S005] [--niche facts] [--no-send]
@@ -102,9 +102,10 @@ def clean(text):
 
 
 def tts(text, voice, path):
+    """Azure if a key is set, otherwise the free Edge 'Read aloud' voices (same Eka/Giorgi)."""
     key = os.getenv("AZURE_SPEECH_KEY")
     if not key:
-        return False
+        return edge_tts_voice(text, voice, path)
     region = os.getenv("AZURE_SPEECH_REGION") or "westeurope"
     safe = clean(text).replace("&", "და").replace("<", "").replace(">", "")
     ssml = (f"<speak version='1.0' xml:lang='ka-GE'><voice name='{voice}'>"
@@ -118,6 +119,18 @@ def tts(text, voice, path):
     r.raise_for_status()
     path.write_bytes(r.content)
     return True
+
+
+def edge_tts_voice(text, voice, path):
+    if os.getenv("DISABLE_EDGE_TTS"):
+        return False
+    try:
+        import edge_tts
+        edge_tts.Communicate(clean(text), voice, rate="+12%").save_sync(str(path))
+        return path.exists() and path.stat().st_size > 1000
+    except Exception as e:  # unofficial service: never let it break the run
+        log(f"edge-tts failed: {e}")
+        return False
 
 
 def duration(path):
@@ -469,7 +482,7 @@ def main():
             f"თემა: {script['niche']} | ჰუკი: {script['hook_type']} | "
             f"ხმა: {voice.split('-')[2].replace('Neural', '')}\n"
             f"„{script['title']}“ · {total:.0f} წმ · {len(clips)} კადრი\n"
-            + ("" if has_voice else "🔇 ხმის გარეშე (Azure გასაღები არ არის)\n")
+            + ("" if has_voice else "🔇 ხმის გარეშე - ხმის სერვისი ვერ დაუკავშირდა\n")
             + ("" if real else "🎨 ვიდეო-კადრები ვერ მოიძებნა (Pixabay გასაღები?) - ფონები გრადიენტია\n")
             + f"📚 დარჩენილი სცენარები: {left}\n"
             + f"📊 2 დღეში ჩაწერე ნახვები data/results.csv-ში (ID: {vid})")

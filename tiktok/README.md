@@ -5,11 +5,11 @@ Every morning around **07:20 Tbilisi time**, GitHub Actions makes one 20-30 seco
 **What each video contains**
 - **Hook:** a yellow title box at the top plus a zoom hit and bass sound in the first second
 - **Real stock footage from Pixabay** (or Pexels): a new shot every 1.5-2 seconds (12-15 shots per video), each with a different camera move (punch-in, push, pull, pan)
-- **Georgian voiceover** (Azure, alternating the Eka and Giorgi voices)
+- **Georgian voiceover** (Microsoft Eka and Giorgi voices, alternating; free through edge-tts with no account, or Azure if you add a key)
 - **Word-by-word pop-up captions** with the key words in yellow
 - **Whoosh sounds** on scene changes, plus optional music from `assets/music/`
 
-Everything here is free: GitHub Actions, the Pixabay API, the Azure Speech free tier and the Telegram bot.
+Everything here is free: GitHub Actions, the Pixabay API, the free edge-tts voice and the Telegram bot.
 
 ## Scripts
 `scripts/bank.json` holds ready-made Georgian scripts, written by Claude in chat. The job uses one per day and picks the topic with the fewest videos so far. When 5 or fewer are left, the bot warns you in Telegram. Then ask Claude: *"write 30 more scripts for the TikTok bank"*.
@@ -36,9 +36,7 @@ Go to GitHub repo **Settings, then Secrets and variables, then Actions, then New
 | `TELEGRAM_BOT_TOKEN` | In Telegram, message **@BotFather**, send `/newbot`, and copy the token |
 | `TELEGRAM_CHAT_ID` | Send "hi" to your new bot, then open `https://api.telegram.org/bot<TOKEN>/getUpdates` and copy the number in `"chat":{"id":...}` |
 | `PIXABAY_API_KEY` | Sign up at pixabay.com, then open pixabay.com/api/docs and copy the green key shown under **Parameters** next to `key` |
-| `AZURE_SPEECH_KEY` | portal.azure.com, then create a resource, then **Speech**, then pricing tier **Free F0**, then Keys and Endpoint, then Key 1 |
-
-Then add a **Variable** (the Variables tab, next to Secrets): `AZURE_SPEECH_REGION` = the region you picked for the Speech resource, such as `westeurope`.
+| `AZURE_SPEECH_KEY` | *Optional.* Without it the free edge-tts voice is used. With a key: portal.azure.com, then Speech, then Free F0, then Keys and Endpoint, then Key 1, plus the variable `AZURE_SPEECH_REGION` |
 
 The workflow file must be on the repo's **default branch** for the daily schedule to run.
 
