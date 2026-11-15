@@ -1,1 +1,15 @@
-[]
+[
+  {
+    "id": "V001",
+    "date": "2026-11-15",
+    "script_id": "P001",
+    "niche": "psychology",
+    "hook_type": "mistake",
+    "voice": "Gemini/Kore",
+    "title": "პროჟექტორის ეფექტი",
+    "seconds": 25.1,
+    "shots": 11,
+    "real_footage": 1,
+    "sent": true
+  }
+]
