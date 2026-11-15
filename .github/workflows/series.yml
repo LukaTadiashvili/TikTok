@@ -39,8 +39,10 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Read Telegram (quick)
+      - name: Listen to Telegram (up to ~13 min, answers within seconds)
         id: check
+        env:
+          LISTEN_SECONDS: "780"
         run: |
           pip install -q requests pillow
           if [ "${{ inputs.action }}" = "prompts" ]; then python series.py prompts; else python series.py check; fi

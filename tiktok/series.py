@@ -210,9 +210,9 @@ def send_prompts(season, n, state):
     state["prompts_sent_for"] = n
 
 
-def collect(season, state, do_render=True):
+def collect(season, state, do_render=True, wait=0):
     chat = str(os.environ["TELEGRAM_CHAT_ID"])
-    updates = tg("getUpdates", offset=state["last_update_id"] + 1, timeout=0,
+    updates = tg("getUpdates", offset=state["last_update_id"] + 1, timeout=wait,
                  allowed_updates=json.dumps(["message"]))
     for u in updates:
         state["last_update_id"] = u["update_id"]
@@ -287,7 +287,16 @@ def main():
         else:
             if state.get("prompts_sent_for") != state["next_episode"]:
                 send_prompts(season, state["next_episode"], state)
-            collect(season, state, do_render=(cmd != "check"))
+            if cmd == "check":
+                # listen for a while (long polling) so the bot answers within seconds
+                import time
+                end = time.time() + int(os.getenv("LISTEN_SECONDS", "0"))
+                while not collect(season, state, do_render=False, wait=25 if time.time() < end else 0):
+                    STATE.write_text(json.dumps(state, ensure_ascii=False, indent=1) + "\n")
+                    if time.time() >= end:
+                        break
+            else:
+                collect(season, state)
     finally:  # never lose the Telegram offset / received clips
         STATE.write_text(json.dumps(state, ensure_ascii=False, indent=1) + "\n")
 
