@@ -104,11 +104,35 @@ def eleven_model(key):
     return ka[0] if ka else "eleven_v3"
 
 
+def eleven_auto_voices(key):
+    """No voices configured: take the most-used Georgian voices from the ElevenLabs library."""
+    hdr = {"xi-api-key": key}
+    mine = requests.get("https://api.elevenlabs.io/v1/voices", headers=hdr, timeout=30).json().get("voices", [])
+    ka_mine = [v["voice_id"] for v in mine if (v.get("labels") or {}).get("language") == "ka"
+               or "georgian" in (v.get("name", "") + json.dumps(v.get("labels") or {})).lower()]
+    if ka_mine:
+        return ka_mine[:2]
+    r = requests.get("https://api.elevenlabs.io/v1/shared-voices", headers=hdr, timeout=30,
+                     params={"language": "ka", "page_size": 10, "sort": "usage_character_count_1y"})
+    r.raise_for_status()
+    picked = []
+    for v in r.json().get("voices", [])[:2]:
+        add = requests.post(f"https://api.elevenlabs.io/v1/voices/add/{v['public_owner_id']}/{v['voice_id']}",
+                            headers=hdr, json={"new_name": f"georgian - {v.get('name', 'voice')}"}, timeout=30)
+        if add.ok:
+            picked.append(add.json().get("voice_id", v["voice_id"]))
+            log(f"Added Georgian library voice: {v.get('name')}")
+    return picked
+
+
 def eleven_voice(key, path, text_with_tags):
     voices = [v for v in (os.getenv("ELEVENLABS_VOICES") or "").split(",") if v.strip()]
     if not voices:
         voices = json.loads((ROOT / "voices.json").read_text()).get("elevenlabs", [])
     if not voices:
+        voices = eleven_auto_voices(key)
+    if not voices:
+        log("No Georgian ElevenLabs voice found - set ELEVENLABS_VOICES")
         return None
     voice = random.choice(voices).strip()
     model = eleven_model(key)
