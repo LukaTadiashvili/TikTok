@@ -24,5 +24,18 @@
     "shots": 11,
     "real_footage": 11,
     "sent": true
+  },
+  {
+    "id": "V003",
+    "date": "2026-11-15",
+    "script_id": "X001",
+    "niche": "manipulation",
+    "hook_type": "mistake",
+    "voice": "Gemini/Aoede",
+    "title": "გაზლაითინგი",
+    "seconds": 28.2,
+    "shots": 13,
+    "real_footage": 13,
+    "sent": true
   }
 ]
