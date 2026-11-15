@@ -1,7 +1,9 @@
 {
  "series": "experiment",
  "next_episode": 1,
- "received": [],
- "last_update_id": 182690414,
+ "received": [
+  "BQACAgIAAxkBAAMiavm8MC4VzBxBryzfrftR_iOveDkAAlW4AAIB89FLwHhUaGnwPqU9BA"
+ ],
+ "last_update_id": 182690415,
  "prompts_sent_for": 1
 }
