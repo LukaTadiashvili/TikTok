@@ -58,6 +58,7 @@ export type VideoProps = {
   overlayTop?: number;
   cinema?: boolean; // series mode: clean film subtitles, no progress bar, freeze-frame end card
   subs?: {text: string; start: number; end: number}[];
+  cards?: {text: string; start: number; end: number}[];
 };
 
 const YELLOW = '#FFE600';
@@ -512,6 +513,28 @@ const Subs: React.FC<{subs: {text: string; start: number; end: number}[]}> = ({s
   );
 };
 
+// Trailer-style text cards in the middle of the screen
+const Cards: React.FC<{cards: {text: string; start: number; end: number}[]}> = ({cards}) => {
+  const f = useCurrentFrame();
+  const {fps} = useVideoConfig();
+  const t = f / fps;
+  const cur = cards.find((x) => t >= x.start && t < x.end);
+  if (!cur) return null;
+  const k = (t - cur.start) * fps;
+  const kOut = (cur.end - t) * fps;
+  const o = Math.min(1, k / 6, kOut / 5);
+  const sc = interpolate(k, [0, 40], [1.06, 1.0], {extrapolateRight: 'clamp'});
+  return (
+    <AbsoluteFill style={{alignItems: 'center', justifyContent: 'center', background: `rgba(0,0,0,${0.25 * o})`}}>
+      <div style={{opacity: o, transform: `scale(${sc})`, fontFamily: FONT, fontSize: 84, color: 'white',
+        letterSpacing: 4, textAlign: 'center', maxWidth: 940, lineHeight: 1.3,
+        textShadow: '0 4px 30px rgba(0,0,0,0.95)'}}>
+        {cur.text}
+      </div>
+    </AbsoluteFill>
+  );
+};
+
 // Freeze the last frame, darken it, show the teaser
 const CinemaEnd: React.FC<{start: number; text: string; sub: string; still: string | null}> = ({start, text, sub, still}) => {
   const f = useCurrentFrame();
@@ -555,6 +578,7 @@ export const Main: React.FC<VideoProps> = (p) => {
       <Overlays overlays={p.overlays} top={p.overlayTop ?? 700} />
       {p.hook.text ? <Hook text={p.hook.text} end={p.hook.end} /> : null}
       {p.title ? <SeriesTitle {...p.title} /> : null}
+      {p.cinema ? <Cards cards={p.cards ?? []} /> : null}
       {p.cinema ? <Subs subs={p.subs ?? []} /> : <Captions words={p.words} top={p.captionTop ?? 1140} />}
       {p.cinema ? null : <Progress />}
       {p.endCard && p.cinema ? <CinemaEnd {...p.endCard} still={(p as any).endStill ?? null} /> : null}

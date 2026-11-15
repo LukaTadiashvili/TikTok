@@ -12,9 +12,22 @@
      "prompt": "15-second fast-paced cinematic sequence, vertical 9:16, realistic, 35mm film look, film grain, cold blue tones, quick cuts, no dead time.\nShot 1 (0-4s): Aerial drone shot at dusk: an isolated modern-rustic two-story wooden cabin in a foggy pine forest, a black minivan driving away. No dialogue.\nShot 2 (4-8s): Six attractive, stylish young Georgian people with lean bodies walk toward the cabin with designer backpacks. A charming lean Georgian man with curly auburn hair in a mustard knit sweater smirks and says in Georgian: \"ორმოცდაათი ათასი შვიდ დღეში? საეჭვოდ კარგია.\"\nShot 3 (8-11s): Night, inside a stylish rustic living room with warm lamps, the six sit on sofas. A black speaker on the wall crackles, and a calm, deep, slightly distorted male voice from the speaker says in Georgian: \"კეთილი იყოს თქვენი მობრძანება.\"\nShot 4 (11-15s): The speaker voice continues in Georgian: \"თქვენ შორის ერთი ჩვენთვის მუშაობს.\" Quick cuts across the six shocked faces as they slowly look at each other with suspicion. The last cut lands on a handsome lean young Georgian man with styled dark wavy hair and stubble in a black leather jacket, staring at a beautiful young woman with long light-brown waves and gold hoops.\nCharacters are fashionable and good-looking. Natural lip movement. Ambient: wind, static crackle. No subtitles, no text on screen.",
      "lines": [
       {
-       "who": "narrator",
-       "at": 0.4,
-       "text": "ექვსი უცნობი. შვიდი დღე. *ორმოცდაათი ათასი ლარი*."
+       "who": "card",
+       "from": 0.3,
+       "to": 1.5,
+       "text": "ექვსი უცნობი."
+      },
+      {
+       "who": "card",
+       "from": 1.6,
+       "to": 2.8,
+       "text": "შვიდი დღე."
+      },
+      {
+       "who": "card",
+       "from": 2.9,
+       "to": 4.4,
+       "text": "50 000 ლარი."
       },
       {
        "who": "veo",
@@ -49,9 +62,22 @@
      "prompt": "15-second fast-paced cinematic sequence, vertical 9:16, realistic, 35mm film look, film grain, cold blue moonlight, quick cuts.\nShot 1 (0-5s): Night, the six stylish young Georgian people argue silently in the living room, pointing at each other, close-ups of suspicious eyes. No dialogue.\nShot 2 (5-8s): Dark cabin hallway. A handsome lean young Georgian man with styled dark wavy hair and stubble in a black leather jacket yanks the front door handle — locked. A pretty petite Georgian woman with a sleek black bob and thin gold round glasses in an olive blazer holds an empty basket and says in Georgian with panic: \"ტელეფონები გაქრა!\"\nShot 3 (8-11s): Quick close-ups, no dialogue: a fit Georgian man with a short faded haircut in a black hoodie clenches his jaw; a beautiful woman with light-brown waves glances nervously over her shoulder.\nShot 4 (11-15s): Dim bedroom. A striking Georgian woman with sharp features and dark hair in a sleek tight bun, charcoal hoodie, sits on a bed, looks straight into the camera with a faint cold smile and says quietly in Georgian: \"მოღალატეს ვერასდროს იპოვიან.\" Hard cut to black.\nCharacters are fashionable and good-looking. Natural lip movement. Ambient: lock clicking, wind, creaking wood. No subtitles, no text on screen.",
      "lines": [
       {
-       "who": "narrator",
-       "at": 0.3,
-       "text": "ყოველ ღამე კენჭისყრა. იპოვი *მოღალატეს*, ფულს ყველა გაიყოფთ. შეცდები და ერთი *სახლს ტოვებს*."
+       "who": "card",
+       "from": 0.2,
+       "to": 1.8,
+       "text": "ყოველ ღამე — კენჭისყრა."
+      },
+      {
+       "who": "card",
+       "from": 1.9,
+       "to": 3.5,
+       "text": "იპოვი მოღალატეს — ფულს ყველა გაიყოფთ."
+      },
+      {
+       "who": "card",
+       "from": 3.6,
+       "to": 5.0,
+       "text": "შეცდები — ერთი სახლს ტოვებს."
       },
       {
        "who": "veo",

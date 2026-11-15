@@ -153,11 +153,10 @@ def speech_spans(path):
 
 def fit_window(spans, a, b):
     """Snap a subtitle window to the speech actually heard around it."""
-    near = [(x, y) for x, y in spans if y > a - 0.6 and x < b + 0.6]
-    if not near:
-        return a, b
-    s0 = max(a - 0.6, near[0][0])
-    s1 = min(b + 0.6, near[-1][1])
+    starts = [x for x, _ in spans if a - 0.6 <= x <= a + 1.0]
+    ends = [y for _, y in spans if b - 1.0 <= y <= b + 0.6]
+    s0 = starts[0] if starts else a
+    s1 = ends[-1] if ends else b
     return (s0, s1) if s1 - s0 > 0.6 else (a, b)
 
 
@@ -169,7 +168,7 @@ def render_episode(season, ep, clip_files, final):
     (work / "clips").mkdir(parents=True)
     g.CACHE.mkdir(parents=True, exist_ok=True)
 
-    clips, subs, sfx, duck, t0 = [], [], [], [], 0.0
+    clips, subs, cards, sfx, duck, t0 = [], [], [], [], [], 0.0
     for i, (spec, src) in enumerate(zip(ep["clips"], clip_files)):
         name = f"clips/c{i}{Path(src).suffix or '.mp4'}"
         shutil.copy(src, work / name)
@@ -180,6 +179,9 @@ def render_episode(season, ep, clip_files, final):
         clips.append({"src": name, "start": round(t0, 3), "end": round(t0 + dur, 3), "move": "none", "withAudio": True})
         for j, line in enumerate(spec.get("lines", [])):
             text = g.plain(line["text"])
+            if line["who"] == "card":  # on-screen trailer text, no voice
+                cards.append({"text": text, "start": round(t0 + line["from"] * k, 3), "end": round(t0 + line["to"] * k, 3)})
+                continue
             if line["who"] == "narrator":  # narrator added in the edit (older episodes)
                 a = t0 + line["at"] * k
                 audio = work / f"narr_{i}_{j}.mp3"
@@ -222,7 +224,7 @@ def render_episode(season, ep, clip_files, final):
         "title": {"series": season["title"], "episode": f"სერია {ep['n']}", "end": 2.4},
         "endCard": {"start": round(t0, 3), "text": ep.get("next", "გაგრძელება იქნება..."), "sub": "გამოიწერე, რომ არ გამოგრჩეს"},
         "endStill": "end.jpg",
-        "clips": clips, "words": [], "subs": subs, "overlays": [], "sfx": sfx,
+        "clips": clips, "words": [], "subs": subs, "cards": cards, "overlays": [], "sfx": sfx,
         "flashes": [], "glitches": [], "shakes": [], "mood": "bright", "duck": duck, "cinema": True,
         "_total": total,
     }
