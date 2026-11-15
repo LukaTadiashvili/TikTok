@@ -177,10 +177,21 @@ def render_episode(season, ep, clip_files, final):
 # ----------------------------------------------------------------- telegram
 
 def tg(method, **data):
+    """Telegram call with retries (connections from CI runners sometimes get reset)."""
+    import time
     token = os.environ["TELEGRAM_BOT_TOKEN"]
-    r = requests.post(f"https://api.telegram.org/bot{token}/{method}", data=data, timeout=120)
-    r.raise_for_status()
-    return r.json()["result"]
+    for attempt in range(5):
+        try:
+            r = requests.post(f"https://api.telegram.org/bot{token}/{method}", data=data, timeout=120)
+            if r.status_code == 429:
+                time.sleep(int(r.json().get("parameters", {}).get("retry_after", 5)) + 1)
+                continue
+            r.raise_for_status()
+            return r.json()["result"]
+        except requests.ConnectionError as e:
+            g.log(f"Telegram {method} attempt {attempt + 1} failed: {e}")
+            time.sleep(2 ** attempt)
+    raise RuntimeError(f"Telegram {method} failed after retries")
 
 
 def send_text(text):
@@ -270,13 +281,15 @@ def main():
         total = render_episode(season, episode(season, n), files, final)
         g.log(f"Episode ready: {final} ({total:.1f}s)")
         return
-    if cmd == "prompts":
-        send_prompts(season, state["next_episode"], state)
-    else:
-        if state.get("prompts_sent_for") != state["next_episode"]:
+    try:
+        if cmd == "prompts":
             send_prompts(season, state["next_episode"], state)
-        collect(season, state, do_render=(cmd != "check"))
-    STATE.write_text(json.dumps(state, ensure_ascii=False, indent=1) + "\n")
+        else:
+            if state.get("prompts_sent_for") != state["next_episode"]:
+                send_prompts(season, state["next_episode"], state)
+            collect(season, state, do_render=(cmd != "check"))
+    finally:  # never lose the Telegram offset / received clips
+        STATE.write_text(json.dumps(state, ensure_ascii=False, indent=1) + "\n")
 
 
 if __name__ == "__main__":
