@@ -26,5 +26,32 @@
       "videoplasty"
     ],
     "sent": true
+  },
+  {
+    "id": "V002",
+    "date": "2026-11-15",
+    "script_id": "S005",
+    "niche": "business",
+    "hook_type": "mistake",
+    "voice": "ka-GE-EkaNeural",
+    "title": "ფასის შემდეგ გაჩუმდი",
+    "seconds": 20.3,
+    "shots": 13,
+    "real_footage": 13,
+    "credits": [
+      "DistillVideos",
+      "Life-Of-Vids",
+      "Mohamed_hassan",
+      "Samidurrakzai",
+      "Vimeo-Free-Videos",
+      "aframeinmotion",
+      "chayka1270",
+      "geralt",
+      "julientromeur",
+      "u_n92ynpt32e",
+      "u_xhp5h45w73",
+      "videoplasty"
+    ],
+    "sent": true
   }
 ]
