@@ -1,0 +1,78 @@
+name: Series episodes
+
+on:
+  schedule:
+    # every 15 minutes: quick check whether you sent the Veo clips to the bot
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+    inputs:
+      action:
+        description: "check = look for clips and edit if all arrived, prompts = resend the episode's Veo prompts"
+        default: check
+        type: choice
+        options: [check, prompts]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: series
+  cancel-in-progress: false
+
+jobs:
+  episode:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    defaults:
+      run:
+        working-directory: tiktok
+    env:
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+      ELEVENLABS_NARRATOR_VOICE: ${{ vars.ELEVENLABS_NARRATOR_VOICE }}
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Read Telegram (quick)
+        id: check
+        run: |
+          pip install -q requests pillow
+          if [ "${{ inputs.action }}" = "prompts" ]; then python series.py prompts; else python series.py check; fi
+
+      - uses: actions/setup-node@v4
+        if: steps.check.outputs.ready == 'true'
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: tiktok/render/package-lock.json
+
+      - name: Edit and send the episode
+        if: steps.check.outputs.ready == 'true'
+        run: |
+          sudo apt-get update -q && sudo apt-get install -y -q ffmpeg fonts-noto-color-emoji
+          pip install -q -r requirements.txt
+          (cd render && npm ci && npx remotion browser ensure)
+          python series.py collect
+
+      - name: Keep a copy of the episode
+        if: steps.check.outputs.ready == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: episode
+          path: tiktok/output/*_ep*.mp4
+          retention-days: 30
+
+      - name: Save series state
+        if: always()
+        run: |
+          git config user.name "tiktok-bot"
+          git config user.email "tiktok-bot@users.noreply.github.com"
+          git add series/state.json
+          git commit -m "Update series state" || exit 0
+          git pull --rebase -q && git push

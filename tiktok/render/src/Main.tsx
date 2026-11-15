@@ -17,7 +17,14 @@ import {
 
 // ----------------------------------------------------------------- types
 
-export type Clip = {src: string; start: number; end: number; move: 'punch' | 'push' | 'pull' | 'drift'};
+export type Clip = {
+  src: string;
+  start: number;
+  end: number;
+  move: 'punch' | 'push' | 'pull' | 'drift' | 'none';
+  withAudio?: boolean; // play the clip's own sound (Veo dialogue/ambience)
+  trimFrom?: number; // seconds into the source file
+};
 export type Word = {text: string; start: number; end: number; emph: boolean; page: number};
 export type Overlay = {
   type: 'emoji' | 'number' | 'card' | 'check' | 'cross';
@@ -44,6 +51,11 @@ export type VideoProps = {
   glitches?: number[];
   shakes?: [number, number][];
   mood?: 'dark' | 'bright';
+  duck?: [number, number][]; // lower clip audio while the narrator speaks
+  title?: {series: string; episode: string; end: number} | null;
+  endCard?: {start: number; text: string; sub: string} | null;
+  captionTop?: number;
+  overlayTop?: number;
 };
 
 const YELLOW = '#FFE600';
@@ -68,13 +80,19 @@ const useFont = () => {
 
 // ----------------------------------------------------------------- clips
 
-const ClipView: React.FC<{clip: Clip; frames: number}> = ({clip, frames}) => {
+const ClipView: React.FC<{clip: Clip; frames: number; duck: [number, number][]}> = ({clip, frames, duck}) => {
   const f = useCurrentFrame();
   const {fps} = useVideoConfig();
+  const volume = (vf: number) => {
+    const t = clip.start + vf / fps;
+    return duck.some(([a, b]) => t >= a - 0.15 && t < b + 0.15) ? 0.3 : 1;
+  };
   const p = Math.min(1, f / Math.max(1, frames));
   let scale = 1;
   let x = 0;
-  if (clip.move === 'punch') {
+  if (clip.move === 'none') {
+    scale = 1;
+  } else if (clip.move === 'punch') {
     const hit = spring({frame: f, fps, config: {damping: 14, stiffness: 180}});
     scale = interpolate(hit, [0, 1], [1.3, 1.0]) + p * 0.05;
   } else if (clip.move === 'push') {
@@ -96,13 +114,19 @@ const ClipView: React.FC<{clip: Clip; frames: number}> = ({clip, frames}) => {
       {clip.src.endsWith('.png') || clip.src.endsWith('.jpg') ? (
         <Img src={staticFile(clip.src)} style={style} />
       ) : (
-        <OffthreadVideo src={staticFile(clip.src)} muted style={style} />
+        <OffthreadVideo
+          src={staticFile(clip.src)}
+          muted={!clip.withAudio}
+          volume={clip.withAudio ? volume : 0}
+          startFrom={Math.round((clip.trimFrom ?? 0) * fps)}
+          style={style}
+        />
       )}
     </AbsoluteFill>
   );
 };
 
-const Clips: React.FC<{clips: Clip[]}> = ({clips}) => {
+const Clips: React.FC<{clips: Clip[]; duck: [number, number][]}> = ({clips, duck}) => {
   const {fps} = useVideoConfig();
   return (
     <>
@@ -111,7 +135,7 @@ const Clips: React.FC<{clips: Clip[]}> = ({clips}) => {
         const frames = Math.max(1, Math.round(c.end * fps) - from);
         return (
           <Sequence key={i} from={from} durationInFrames={frames} layout="none">
-            <ClipView clip={c} frames={frames} />
+            <ClipView clip={c} frames={frames} duck={duck} />
           </Sequence>
         );
       })}
@@ -207,6 +231,46 @@ const useShake = (windows: [number, number][]) => {
   return `translate(${Math.sin(f * 3.1) * amp}px, ${Math.cos(f * 2.3) * amp}px) rotate(${Math.sin(f * 1.7) * left * 1.2}deg)`;
 };
 
+// Series title: small branded label at the start of each episode
+const SeriesTitle: React.FC<{series: string; episode: string; end: number}> = ({series, episode, end}) => {
+  const f = useCurrentFrame();
+  const {fps} = useVideoConfig();
+  const endF = Math.round(end * fps);
+  if (f > endF) return null;
+  const s = spring({frame: f, fps, config: {damping: 14, stiffness: 120}});
+  const out = interpolate(f, [endF - 8, endF], [1, 0], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+  return (
+    <AbsoluteFill style={{alignItems: 'center', top: 170, opacity: out}}>
+      <div style={{transform: `translateY(${interpolate(s, [0, 1], [-40, 0])}px)`, textAlign: 'center', opacity: s}}>
+        <div style={{fontFamily: FONT, fontSize: 92, color: 'white', letterSpacing: 6,
+          textShadow: '0 0 30px rgba(255,40,60,0.8), 0 6px 20px rgba(0,0,0,0.9)'}}>{series}</div>
+        <div style={{fontFamily: FONT, fontSize: 44, color: YELLOW, marginTop: 6, letterSpacing: 4,
+          textShadow: '0 4px 14px rgba(0,0,0,0.9)'}}>{episode}</div>
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+// End card: black screen with "next episode" teaser
+const EndCard: React.FC<{start: number; text: string; sub: string}> = ({start, text, sub}) => {
+  const f = useCurrentFrame();
+  const {fps} = useVideoConfig();
+  const s0 = Math.round(start * fps);
+  if (f < s0) return null;
+  const k = f - s0;
+  const fade = interpolate(k, [0, 8], [0, 1], {extrapolateRight: 'clamp'});
+  const pop = spring({frame: k - 6, fps, config: {damping: 10, stiffness: 140}});
+  return (
+    <AbsoluteFill style={{backgroundColor: `rgba(0,0,0,${fade})`, alignItems: 'center', justifyContent: 'center'}}>
+      <div style={{transform: `scale(${pop})`, textAlign: 'center'}}>
+        <div style={{fontFamily: FONT, fontSize: 84, color: 'white', lineHeight: 1.3,
+          textShadow: '0 0 40px rgba(255,40,60,0.7)'}}>{text}</div>
+        <div style={{fontFamily: FONT, fontSize: 52, color: YELLOW, marginTop: 30}}>{sub}</div>
+      </div>
+    </AbsoluteFill>
+  );
+};
+
 // ------------------------------------------------------------------ hook
 
 const Hook: React.FC<{text: string; end: number}> = ({text, end}) => {
@@ -242,7 +306,7 @@ const Hook: React.FC<{text: string; end: number}> = ({text, end}) => {
 
 // -------------------------------------------------------------- captions
 
-const Captions: React.FC<{words: Word[]}> = ({words}) => {
+const Captions: React.FC<{words: Word[]; top: number}> = ({words, top}) => {
   const f = useCurrentFrame();
   const {fps} = useVideoConfig();
   const t = f / fps;
@@ -257,7 +321,7 @@ const Captions: React.FC<{words: Word[]}> = ({words}) => {
   const pageStart = Math.round(pageWords[0].start * fps);
   const pop = spring({frame: f - pageStart, fps, config: {damping: 12, stiffness: 220}});
   return (
-    <AbsoluteFill style={{top: 1140, alignItems: 'center'}}>
+    <AbsoluteFill style={{top, alignItems: 'center'}}>
       <div
         style={{
           display: 'flex',
@@ -304,7 +368,7 @@ const Captions: React.FC<{words: Word[]}> = ({words}) => {
 
 const fmt = (n: number) => (n < 0 ? '−' : '') + Math.round(Math.abs(n)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 
-const OverlayView: React.FC<{o: Overlay; frames: number}> = ({o, frames}) => {
+const OverlayView: React.FC<{o: Overlay; frames: number; top: number}> = ({o, frames, top}) => {
   const f = useCurrentFrame();
   const {fps} = useVideoConfig();
   const inS = spring({frame: f, fps, config: {damping: 8, stiffness: 170}});
@@ -313,7 +377,7 @@ const OverlayView: React.FC<{o: Overlay; frames: number}> = ({o, frames}) => {
   const left = o.slot % 3 === 0 ? '50%' : o.slot % 3 === 1 ? '27%' : '73%';
   const base: React.CSSProperties = {
     position: 'absolute',
-    top: 700,
+    top,
     left,
     transform: `translate(-50%, ${bob}px) scale(${inS * outS}) rotate(${interpolate(inS, [0, 1], [-18, 0])}deg)`,
   };
@@ -355,7 +419,7 @@ const OverlayView: React.FC<{o: Overlay; frames: number}> = ({o, frames}) => {
     <div
       style={{
         position: 'absolute',
-        top: 700,
+        top,
         left: '50%',
         width: 'max-content',
         transform: `translate(calc(-50% + ${slide}px), ${bob}px) scale(${outS}) rotate(${o.slot % 2 ? 3 : -3}deg)`,
@@ -376,7 +440,7 @@ const OverlayView: React.FC<{o: Overlay; frames: number}> = ({o, frames}) => {
   );
 };
 
-const Overlays: React.FC<{overlays: Overlay[]}> = ({overlays}) => {
+const Overlays: React.FC<{overlays: Overlay[]; top: number}> = ({overlays, top}) => {
   const {fps} = useVideoConfig();
   return (
     <>
@@ -385,7 +449,7 @@ const Overlays: React.FC<{overlays: Overlay[]}> = ({overlays}) => {
         const frames = Math.max(8, Math.round(o.end * fps) - from);
         return (
           <Sequence key={i} from={from} durationInFrames={frames} layout="none">
-            <OverlayView o={o} frames={frames} />
+            <OverlayView o={o} frames={frames} top={top} />
           </Sequence>
         );
       })}
@@ -423,17 +487,19 @@ export const Main: React.FC<VideoProps> = (p) => {
   return (
     <AbsoluteFill style={{backgroundColor: 'black'}}>
       <AbsoluteFill style={{transform: shake ? `${shake} scale(1.06)` : undefined}}>
-        <Clips clips={p.clips} />
+        <Clips clips={p.clips} duck={p.duck ?? []} />
         {dark ? <Grade /> : null}
         <Grain strength={dark ? 0.32 : 0.14} />
         <Glitch times={p.glitches ?? []} />
       </AbsoluteFill>
       <Shade />
       <Flashes times={p.flashes} />
-      <Overlays overlays={p.overlays} />
-      <Hook text={p.hook.text} end={p.hook.end} />
-      <Captions words={p.words} />
+      <Overlays overlays={p.overlays} top={p.overlayTop ?? 700} />
+      {p.hook.text ? <Hook text={p.hook.text} end={p.hook.end} /> : null}
+      {p.title ? <SeriesTitle {...p.title} /> : null}
+      <Captions words={p.words} top={p.captionTop ?? 1140} />
       <Progress />
+      {p.endCard ? <EndCard {...p.endCard} /> : null}
       {p.audio ? <Audio src={staticFile(p.audio)} /> : null}
       {p.music ? <Audio src={staticFile(p.music)} volume={0.08} loop /> : null}
       {p.sfx.map((s, i) => (

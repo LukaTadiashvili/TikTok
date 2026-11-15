@@ -61,3 +61,12 @@ python generate.py --script S001 --no-send --no-log
 ```
 
 Footage: Pixabay / Pexels (free licenses). Optional `PEXELS_API_KEY` works too if you have one. Font: Noto Sans and Noto Sans Georgian (SIL OFL, `assets/fonts/OFL.txt`).
+
+## Mini-series mode (`series.py`, workflow "Series episodes")
+Each season (for example `series/experiment.json`) has 15 episodes. Each episode is made from 2 Veo clips of 15 seconds that you generate by hand in Google Flow.
+1. The bot sends you the Veo prompts for the next episode.
+2. Generate the clips in Flow (9:16) and send them to the bot **as files** (📎 → File keeps full quality), clip 1 first.
+3. Within about 15 minutes the workflow edits the episode and sends it back to Telegram, followed by the prompts for the next episode. The edit adds the narrator, Georgian subtitles, the series title, pop-ups, sound effects and the "next episode" card.
+
+Bot commands: `/prompts` resends the prompts, `/reset` forgets the clips received so far.
+Narrator voice: ElevenLabs (`ELEVENLABS_API_KEY`, optional variable `ELEVENLABS_NARRATOR_VOICE`), otherwise Gemini.
