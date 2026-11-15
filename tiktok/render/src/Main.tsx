@@ -41,6 +41,9 @@ export type VideoProps = {
   overlays: Overlay[];
   sfx: Sfx[];
   flashes: number[];
+  glitches?: number[];
+  shakes?: [number, number][];
+  mood?: 'dark' | 'bright';
 };
 
 const YELLOW = '#FFE600';
@@ -138,6 +141,72 @@ const Flashes: React.FC<{times: number[]}> = ({times}) => {
   return o > 0 ? <AbsoluteFill style={{backgroundColor: 'white', opacity: o}} /> : null;
 };
 
+// Animated film grain (SVG noise with a new seed every 2 frames)
+const Grain: React.FC<{strength: number}> = ({strength}) => {
+  const f = useCurrentFrame();
+  const seed = Math.floor(f / 2);
+  return (
+    <AbsoluteFill style={{opacity: strength, mixBlendMode: 'overlay', pointerEvents: 'none'}}>
+      <svg width="100%" height="100%">
+        <filter id={`g${seed}`}>
+          <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves={2} seed={seed} stitchTiles="stitch" />
+          <feColorMatrix type="saturate" values="0" />
+        </filter>
+        <rect width="100%" height="100%" filter={`url(#g${seed})`} />
+      </svg>
+    </AbsoluteFill>
+  );
+};
+
+// Dark mood: cold teal grade, crushed blacks, heavy vignette
+const Grade: React.FC = () => (
+  <>
+    <AbsoluteFill style={{background: 'rgba(0,40,55,0.35)', mixBlendMode: 'multiply'}} />
+    <AbsoluteFill style={{boxShadow: 'inset 0 0 360px 60px rgba(0,0,0,0.85)'}} />
+  </>
+);
+
+// Glitch hit: RGB-split tint, horizontal tear bars, jitter (6 frames)
+const Glitch: React.FC<{times: number[]}> = ({times}) => {
+  const f = useCurrentFrame();
+  const {fps} = useVideoConfig();
+  const hit = times.find((t) => f >= Math.round(t * fps) && f < Math.round(t * fps) + 6);
+  if (hit === undefined) return null;
+  const k = f - Math.round(hit * fps);
+  const rnd = (i: number) => Math.abs(Math.sin((f + 1) * 12.9898 + i * 78.233)) % 1;
+  return (
+    <AbsoluteFill style={{pointerEvents: 'none'}}>
+      <AbsoluteFill style={{background: 'rgba(255,0,60,0.18)', transform: `translateX(${18 - k * 3}px)`, mixBlendMode: 'screen'}} />
+      <AbsoluteFill style={{background: 'rgba(0,220,255,0.18)', transform: `translateX(${-18 + k * 3}px)`, mixBlendMode: 'screen'}} />
+      {[0, 1, 2, 3, 4].map((i) => (
+        <div
+          key={i}
+          style={{
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            top: `${rnd(i) * 100}%`,
+            height: 8 + rnd(i + 9) * 60,
+            background: i % 2 ? 'rgba(255,255,255,0.55)' : 'rgba(0,0,0,0.7)',
+            transform: `translateX(${(rnd(i + 3) - 0.5) * 160}px)`,
+          }}
+        />
+      ))}
+    </AbsoluteFill>
+  );
+};
+
+const useShake = (windows: [number, number][]) => {
+  const f = useCurrentFrame();
+  const {fps} = useVideoConfig();
+  const t = f / fps;
+  const w = windows.find(([a, b]) => t >= a && t < b);
+  if (!w) return '';
+  const left = (w[1] - t) / (w[1] - w[0]);
+  const amp = 22 * left;
+  return `translate(${Math.sin(f * 3.1) * amp}px, ${Math.cos(f * 2.3) * amp}px) rotate(${Math.sin(f * 1.7) * left * 1.2}deg)`;
+};
+
 // ------------------------------------------------------------------ hook
 
 const Hook: React.FC<{text: string; end: number}> = ({text, end}) => {
@@ -233,7 +302,7 @@ const Captions: React.FC<{words: Word[]}> = ({words}) => {
 
 // -------------------------------------------------------------- overlays
 
-const fmt = (n: number) => Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+const fmt = (n: number) => (n < 0 ? '−' : '') + Math.round(Math.abs(n)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 
 const OverlayView: React.FC<{o: Overlay; frames: number}> = ({o, frames}) => {
   const f = useCurrentFrame();
@@ -255,7 +324,10 @@ const OverlayView: React.FC<{o: Overlay; frames: number}> = ({o, frames}) => {
   if (o.type === 'number') {
     const target = Number(o.value ?? 0);
     const prog = interpolate(f, [0, 22], [0, 1], {extrapolateRight: 'clamp', easing: Easing.out(Easing.cubic)});
-    const shown = Number.isInteger(target) ? fmt(target * prog) : (target * prog).toFixed(1);
+    const isYear = Number.isInteger(target) && target >= 1000 && target <= 2100 && !o.suffix && !o.prefix;
+    const from = isYear ? target - 40 : 0;
+    const cur = from + (target - from) * prog;
+    const shown = isYear ? String(Math.round(cur)) : Number.isInteger(target) ? fmt(cur) : cur.toFixed(1);
     return (
       <div
         style={{
@@ -288,13 +360,13 @@ const OverlayView: React.FC<{o: Overlay; frames: number}> = ({o, frames}) => {
         width: 'max-content',
         transform: `translate(calc(-50% + ${slide}px), ${bob}px) scale(${outS}) rotate(${o.slot % 2 ? 3 : -3}deg)`,
         fontFamily: FONT,
-        fontSize: 82,
+        fontSize: 72,
         color: 'white',
         background: 'rgba(20,20,30,0.88)',
         border: `6px solid ${YELLOW}`,
         padding: '18px 40px 26px',
         borderRadius: 30,
-        maxWidth: 900,
+        maxWidth: 980,
         textAlign: 'center',
         boxShadow: '0 20px 60px rgba(0,0,0,0.6)',
       }}
@@ -346,9 +418,16 @@ const Progress: React.FC = () => {
 export const Main: React.FC<VideoProps> = (p) => {
   useFont();
   const {fps} = useVideoConfig();
+  const shake = useShake(p.shakes ?? []);
+  const dark = p.mood === 'dark';
   return (
     <AbsoluteFill style={{backgroundColor: 'black'}}>
-      <Clips clips={p.clips} />
+      <AbsoluteFill style={{transform: shake ? `${shake} scale(1.06)` : undefined}}>
+        <Clips clips={p.clips} />
+        {dark ? <Grade /> : null}
+        <Grain strength={dark ? 0.32 : 0.14} />
+        <Glitch times={p.glitches ?? []} />
+      </AbsoluteFill>
       <Shade />
       <Flashes times={p.flashes} />
       <Overlays overlays={p.overlays} />

@@ -407,6 +407,52 @@ def stock_video(query, used, min_len):
     return None
 
 
+IMAGE_STYLE = ("cinematic film still, dramatic moody lighting, high contrast, deep shadows, "
+               "teal and orange color grade, 35mm photo, film grain, ultra detailed, photorealistic, "
+               "vertical composition, no text, no letters, no watermark")
+
+
+def ai_image(prompt, path, seed):
+    """Pollinations: with POLLINATIONS_API_KEY full-size images on a free/cheap model,
+    otherwise the anonymous endpoint (smaller image with a small logo)."""
+    from urllib.parse import quote
+    import hashlib
+    tier = "key" if os.getenv("POLLINATIONS_API_KEY") else "anon"
+    cached = CACHE / f"img_{hashlib.md5(f'{prompt}|{seed}|{tier}'.encode()).hexdigest()}.jpg"
+    if cached.exists():
+        shutil.copy(cached, path)
+        return True
+    full = quote(f"{prompt}, {IMAGE_STYLE}", safe="")
+    key = os.getenv("POLLINATIONS_API_KEY")
+    if key:
+        model = os.getenv("POLLINATIONS_MODEL") or "zimage"
+        url = f"https://gen.pollinations.ai/image/{full}"
+        params = {"model": model, "width": 1080, "height": 1920, "seed": seed, "nologo": "true"}
+        headers = {"Authorization": f"Bearer {key}"}
+    else:
+        url = f"https://image.pollinations.ai/prompt/{full}"
+        params = {"width": 1080, "height": 1920, "seed": seed, "nologo": "true", "model": "flux"}
+        headers = {}
+    for attempt in range(3):
+        try:
+            r = requests.get(url, params=params, headers=headers, timeout=180)
+            if r.ok and r.headers.get("content-type", "").startswith("image"):
+                tmp = path.with_suffix(".src")
+                tmp.write_bytes(r.content)
+                # normalize to exact 1080x1920 (cover) as JPEG
+                img = Image.open(tmp).convert("RGB")
+                scale = max(W / img.width, H / img.height)
+                img = img.resize((round(img.width * scale), round(img.height * scale)), Image.LANCZOS)
+                left, top = (img.width - W) // 2, (img.height - H) // 2
+                img.crop((left, top, left + W, top + H)).save(path, quality=92)
+                shutil.copy(path, cached)
+                return True
+            log(f"image attempt {attempt + 1}: HTTP {r.status_code}")
+        except (requests.RequestException, OSError) as e:
+            log(f"image attempt {attempt + 1} failed: {e}")
+    return False
+
+
 PALETTES = [((255, 61, 104), (255, 179, 71)), ((58, 123, 213), (0, 210, 255)),
             ((131, 58, 180), (253, 29, 29)), ((17, 153, 142), (56, 239, 125))]
 
@@ -435,14 +481,25 @@ SFX = {
     "hit": "sine=f=50:d=0.7,afade=t=out:st=0.02:d=0.65,volume=3.5",
     "ding": "sine=f=1320:d=0.5,afade=t=out:st=0.02:d=0.45,volume=0.45",
     "tick": "sine=f=2400:d=0.03,volume=0.25",
+    "riser": "anoisesrc=d=1.6:c=white:a=0.5,highpass=f=300,lowpass=f=8000,afade=t=in:d=1.5:curve=exp,afade=t=out:st=1.5:d=0.1,volume=0.6",
+    "boom": "sine=f=38:d=1.6,afade=t=out:st=0.05:d=1.5,volume=5,acompressor",
+    "heartbeat": "sine=f=48:d=0.16,afade=t=out:st=0.02:d=0.14,volume=4,apad=pad_dur=0.12,aloop=loop=1:size=13000,apad=pad_dur=0.55,aloop=loop=2:size=40000",
+    "glitch": "anoisesrc=d=0.25:c=white:a=0.7,tremolo=f=40:d=1,highpass=f=1000,volume=0.5",
 }
 
 
-def make_sfx(work):
+def make_sfx(work, total):
     d = work / "sfx"
     d.mkdir(exist_ok=True)
     for name, f in SFX.items():
         run(["ffmpeg", "-y", "-loglevel", "error", "-f", "lavfi", "-i", f, "-ar", "44100", "-ac", "2", d / f"{name}.wav"])
+    # dark ambient bed: low drone + filtered noise, slowly pulsing
+    run(["ffmpeg", "-y", "-loglevel", "error", "-f", "lavfi", "-i",
+         f"sine=f=55:d={total:.2f}", "-f", "lavfi", "-i", f"sine=f=82.4:d={total:.2f}",
+         "-f", "lavfi", "-i", f"anoisesrc=d={total:.2f}:c=brown:a=0.3",
+         "-filter_complex", "[0][1][2]amix=inputs=3:normalize=0,lowpass=f=400,tremolo=f=0.25:d=0.5,"
+         f"afade=t=in:d=1.5,afade=t=out:st={max(0, total - 1.5):.2f}:d=1.5,volume=0.8",
+         "-ar", "44100", "-ac", "2", d / "drone.wav"])
 
 
 # ---------------------------------------------------------------------- plan
@@ -471,23 +528,36 @@ def build(script, work, history):
     used, clips, real = set(), [], 0
     moves = ["push", "drift", "pull", "push", "drift"]
     (work / "clips").mkdir(exist_ok=True)
+    jobs = []  # (beat, part, a, z, name)
     for b, beat in enumerate(beats):
         st, en = b_start[b], b_end[b]
-        parts = 2 if en - st > 2.8 else 1
-        queries = beat["shot"] if isinstance(beat["shot"], list) else [beat["shot"]]
+        parts = 2 if en - st > 3.2 else 1
         for j in range(parts):
-            a = st + (en - st) * j / parts
-            z = st + (en - st) * (j + 1) / parts
-            name = f"clips/b{b}_{j}"
+            jobs.append((b, j, st + (en - st) * j / parts, st + (en - st) * (j + 1) / parts, f"clips/b{b}_{j}"))
+
+    def visual(job):
+        b, j, a, z, name = job
+        beat = beats[b]
+        if beat.get("image"):
+            prompt = beat["image"] if j == 0 else beat.get("image2") or f"extreme close-up detail, {beat['image']}"
+            if ai_image(prompt, work / f"{name}.jpg", seed=(b * 31 + j * 7 + sum(map(ord, script["id"]))) % 100000):
+                return f"{name}.jpg", True
+        if beat.get("shot"):
+            queries = beat["shot"] if isinstance(beat["shot"], list) else [beat["shot"]]
             got = stock_video(queries[j % len(queries)], used, z - a + 0.8)
             if got:
                 prep_clip(got[0], got[1], z - a, work / f"{name}.mp4")
-                src, real = f"{name}.mp4", real + 1
-            else:
-                gradient(work / f"{name}.png", b * 2 + j + len(history))
-                src = f"{name}.png"
-            clips.append({"src": src, "start": round(a, 3), "end": round(z, 3),
-                          "move": "punch" if j == 0 else moves[(b + j) % len(moves)]})
+                return f"{name}.mp4", True
+        gradient(work / f"{name}.png", b * 2 + j + len(history))
+        return f"{name}.png", False
+
+    from concurrent.futures import ThreadPoolExecutor
+    with ThreadPoolExecutor(max_workers=4) as pool:
+        results = list(pool.map(visual, jobs))
+    for (b, j, a, z, _), (src, ok) in zip(jobs, results):
+        real += ok
+        clips.append({"src": src, "start": round(a, 3), "end": round(z, 3),
+                      "move": "punch" if j == 0 else moves[(b + j) % len(moves)]})
     log(f"Footage: {len(clips)} shots, {real} real")
 
     # pop-ups + sound effects
@@ -506,7 +576,28 @@ def build(script, work, history):
     for w in words:
         if w["emph"]:
             sfx.append({"src": "sfx/tick.wav", "start": w["start"], "volume": 0.5})
-    flashes = [b_start[b] for b in range(1, n) if b % 2 == 0]
+    flashes, glitches, shakes = [], [], []
+    for b, beat in enumerate(beats):
+        st, en = b_start[b], b_end[b]
+        fx = beat.get("fx", [])
+        if "riser" in fx:
+            sfx.append({"src": "sfx/riser.wav", "start": max(0, st - 1.6), "volume": 0.6})
+        if "boom" in fx:
+            sfx.append({"src": "sfx/boom.wav", "start": st, "volume": 0.9})
+            flashes.append(st)
+            shakes.append([st, st + 0.5])
+        if "heartbeat" in fx:
+            sfx.append({"src": "sfx/heartbeat.wav", "start": st, "volume": 0.8})
+        if "glitch" in fx:
+            sfx.append({"src": "sfx/glitch.wav", "start": st, "volume": 0.6})
+            glitches.append(st)
+        if "shake" in fx:
+            shakes.append([st, min(en, st + 0.8)])
+    if not any(beat.get("fx") for beat in beats):
+        flashes = [b_start[b] for b in range(1, n) if b % 2 == 0]
+    mood = script.get("mood", "bright")
+    if mood == "dark":
+        sfx.append({"src": "sfx/drone.wav", "start": 0, "volume": 0.35})
 
     music = sorted((ROOT / "assets/music").glob("*.mp3"))
     music_src = None
@@ -518,17 +609,19 @@ def build(script, work, history):
         "fps": FPS, "durationInFrames": int(total * FPS), "audio": "voice.mp3" if audio else None,
         "music": music_src, "hook": {"text": script["hook_text"], "end": round(max(hook_end, 1.8), 3)},
         "clips": clips, "words": words, "overlays": overlays, "sfx": sfx, "flashes": flashes,
+        "glitches": glitches, "shakes": shakes, "mood": mood,
     }
+    props["_total"] = total
     return props, label, total, len(clips), real
 
 
 def render(props, work, final):
     shutil.copy(ROOT / "assets/fonts/TikTokGeo.ttf", work / "TikTokGeo.ttf")
-    make_sfx(work)
+    make_sfx(work, props.pop("_total"))
     (work / "props.json").write_text(json.dumps(props, ensure_ascii=False))
     cmd = ["npx", "remotion", "render", "src/index.ts", "Main", str(final),
            f"--props={(work / 'props.json').resolve()}", f"--public-dir={work.resolve()}",
-           "--codec=h264", "--crf=18", "--log=error"]
+           "--codec=h264", "--crf=21", "--log=error"]
     if os.getenv("REMOTION_BROWSER"):
         cmd.append(f"--browser-executable={os.getenv('REMOTION_BROWSER')}")
     if os.getenv("REMOTION_CONCURRENCY"):

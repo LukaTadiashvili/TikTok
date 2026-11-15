@@ -1,15 +1,1 @@
-[
-  {
-    "id": "V001",
-    "date": "2026-11-15",
-    "script_id": "S008",
-    "niche": "business",
-    "hook_type": "mistake",
-    "voice": "Gemini/Fenrir",
-    "title": "ხალხი შედეგს ყიდულობს",
-    "seconds": 19.8,
-    "shots": 10,
-    "real_footage": 10,
-    "sent": true
-  }
-]
+[]

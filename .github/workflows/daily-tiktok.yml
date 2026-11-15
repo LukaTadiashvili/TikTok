@@ -54,6 +54,7 @@ jobs:
           GEMINI_VOICE: ${{ vars.GEMINI_VOICE }}
           ELEVENLABS_VOICES: ${{ vars.ELEVENLABS_VOICES }}
           ELEVENLABS_MODEL: ${{ vars.ELEVENLABS_MODEL }}
+          POLLINATIONS_API_KEY: ${{ secrets.POLLINATIONS_API_KEY }}
           PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}

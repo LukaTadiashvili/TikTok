@@ -4,7 +4,8 @@ Every morning around **07:20 Tbilisi time**, GitHub Actions makes one 20-30 seco
 
 **What each video contains** (rendered with [Remotion](https://remotion.dev) in `render/`)
 - **Hook:** a yellow title box with a shake, a zoom hit and a bass sound in the first second
-- **Footage that follows the words:** each spoken phrase gets its own stock clip (Pixabay or Pexels), with camera moves and flash cuts
+- **Visuals that follow the words:** each spoken phrase gets its own AI-generated cinematic image (Pollinations), animated with camera moves; stock video is used only as a fallback
+- **Suspense:** dark color grade, film grain, glitch hits, camera shake, booms, risers, heartbeat and an ambient drone
 - **Pop-ups synced to the voice:** emojis, counting numbers (`700 000 ₾`), keyword cards and ✅/❌ marks, each with a pop sound
 - **Captions:** word-by-word with exact timing; the spoken word is highlighted and key words sit on yellow boxes
 - **Progress bar** at the top, plus whoosh sounds and optional music from `assets/music/`
@@ -38,6 +39,7 @@ Go to GitHub repo **Settings, then Secrets and variables, then Actions, then New
 | `TELEGRAM_BOT_TOKEN` | In Telegram, message **@BotFather**, send `/newbot`, and copy the token |
 | `TELEGRAM_CHAT_ID` | Send "hi" to your new bot, then open `https://api.telegram.org/bot<TOKEN>/getUpdates` and copy the number in `"chat":{"id":...}` |
 | `PIXABAY_API_KEY` | Sign up at pixabay.com, then open pixabay.com/api/docs and copy the green key shown under **Parameters** next to `key` |
+| `POLLINATIONS_API_KEY` | enter.pollinations.ai, then sign in, then Keys, then create a secret key (costs about $0.02-0.04 per video in Pollen) |
 | `GEMINI_API_KEY` | *Free.* aistudio.google.com, then Get API key, then Create API key |
 | `ELEVENLABS_API_KEY` | *Optional, paid.* elevenlabs.io, then the Starter plan, then Profile, then API Keys, then Create (Text to Speech and Voices read access) |
 
