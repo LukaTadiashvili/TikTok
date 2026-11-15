@@ -42,8 +42,23 @@ def fill(text):
     return re.sub(r"\{([A-Z]+)\}", sub, text)
 
 
+NARRATOR = "a deep, calm male narrator voice-over"
+
+
 def clip(shots, lines, light="cold blue tones", amb="wind, creaking wood", pops=None):
     times = [(0, 4), (4, 8), (8, 11), (11, 15)] if len(shots) == 4 else [(0, 5), (5, 10), (10, 15)]
+    # Veo speaks the narrator itself (in sync, same mix); put each line into the shot it belongs to
+    shots, out = list(shots), []
+    for line in lines:
+        if line["who"] != "narrator":
+            out.append(line)
+            continue
+        idx = max(i for i, (a, b) in enumerate(times) if a <= line["at"] + 0.01)
+        a, b = times[idx]
+        text = line["text"].replace("*", "")
+        shots[idx] = shots[idx].replace("No dialogue.", "").rstrip() + f' {NARRATOR.capitalize()} says in Georgian: "{text}"'
+        out.append({"who": "veo", "from": a + 0.2, "to": b - 0.1, "text": line["text"]})
+    lines = out
     body = "\n".join(f"Shot {i + 1} ({a}-{b}s): {fill(s)}" for i, ((a, b), s) in enumerate(zip(times, shots)))
     prompt = HEAD.format(light=light) + "\n" + body + "\n" + FOOT.format(amb=amb)
     return {"prompt": prompt, "lines": lines, "pops": pops or []}
@@ -68,10 +83,10 @@ EP.append({"n": 2, "title": "პირველი კენჭისყრა",
            "caption": "გუგა უდანაშაულო იყო... მაშ, ვინ? 👇", "clips": [
     clip(["Morning in the cabin kitchen, the six eat breakfast in tense silence, side glances. No dialogue.",
           f"{{DATO}} slams his mug on the table and points across it. " + say("DATO", "შენ საიდან იცოდი ჩემი სახელი?", "angrily"),
-          f"{{SALOME}} raises an eyebrow, calm and sarcastic. " + say("SALOME", "შენ ყველამ გიცნობს, დათო."),
+          f"{{SALOME}} raises an eyebrow, calm and sarcastic. " + say("SALOME", "შენ ყველა გიცნობს, დათო."),
           "Evening, living room, six small wooden boxes on the table; each person drops a folded paper vote into a glass bowl, close-ups of hands. No dialogue."],
          [N(0.3, "პირველი დილა. და *პირველი ეჭვი*."), V(4.3, 7.8, "შენ საიდან იცოდი *ჩემი სახელი*?"),
-          V(8.2, 10.8, "შენ ყველამ გიცნობს, დათო."), N(11.2, "საღამოს — *პირველი კენჭისყრა*.")]),
+          V(8.2, 10.8, "შენ ყველა გიცნობს, დათო."), N(11.2, "საღამოს — *პირველი კენჭისყრა*.")]),
     clip([f"The wall speaker crackles; everyone stares up. {{SPEAKER}} says in Georgian: \"გუგა. თქვენ შეცდით.\"",
           f"{{GUGA}} stands up, forcing a smile, and walks down a dark hallway toward a door glowing deep red. He looks back once.",
           "The red door shuts with a heavy thud. The others flinch. No dialogue.",

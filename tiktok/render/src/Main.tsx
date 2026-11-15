@@ -56,6 +56,8 @@ export type VideoProps = {
   endCard?: {start: number; text: string; sub: string} | null;
   captionTop?: number;
   overlayTop?: number;
+  cinema?: boolean; // series mode: clean film subtitles, no progress bar, freeze-frame end card
+  subs?: {text: string; start: number; end: number}[];
 };
 
 const YELLOW = '#FFE600';
@@ -242,9 +244,9 @@ const SeriesTitle: React.FC<{series: string; episode: string; end: number}> = ({
   return (
     <AbsoluteFill style={{alignItems: 'center', top: 170, opacity: out}}>
       <div style={{transform: `translateY(${interpolate(s, [0, 1], [-40, 0])}px)`, textAlign: 'center', opacity: s}}>
-        <div style={{fontFamily: FONT, fontSize: 92, color: 'white', letterSpacing: 6,
-          textShadow: '0 0 30px rgba(255,40,60,0.8), 0 6px 20px rgba(0,0,0,0.9)'}}>{series}</div>
-        <div style={{fontFamily: FONT, fontSize: 44, color: YELLOW, marginTop: 6, letterSpacing: 4,
+        <div style={{fontFamily: FONT, fontSize: 64, color: 'white', letterSpacing: 10,
+          textShadow: '0 4px 24px rgba(0,0,0,0.9)'}}>{series}</div>
+        <div style={{fontFamily: FONT, fontSize: 34, color: 'rgba(255,255,255,0.8)', marginTop: 8, letterSpacing: 6,
           textShadow: '0 4px 14px rgba(0,0,0,0.9)'}}>{episode}</div>
       </div>
     </AbsoluteFill>
@@ -477,6 +479,62 @@ const Progress: React.FC = () => {
   );
 };
 
+// Film-style subtitles: one clean white line at the bottom
+const Subs: React.FC<{subs: {text: string; start: number; end: number}[]}> = ({subs}) => {
+  const f = useCurrentFrame();
+  const {fps} = useVideoConfig();
+  const t = f / fps;
+  const cur = subs.find((x) => t >= x.start && t < x.end);
+  if (!cur) return null;
+  const k = (t - cur.start) * fps;
+  const kOut = (cur.end - t) * fps;
+  const o = Math.min(1, k / 4, kOut / 4);
+  return (
+    <AbsoluteFill style={{justifyContent: 'flex-end', alignItems: 'center', paddingBottom: 300}}>
+      <div
+        style={{
+          opacity: o,
+          fontFamily: FONT,
+          fontSize: 54,
+          lineHeight: 1.35,
+          color: 'white',
+          textAlign: 'center',
+          maxWidth: 920,
+          padding: '10px 26px 14px',
+          background: 'rgba(0,0,0,0.45)',
+          borderRadius: 14,
+          textShadow: '0 2px 8px rgba(0,0,0,0.9)',
+        }}
+      >
+        {cur.text}
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+// Freeze the last frame, darken it, show the teaser
+const CinemaEnd: React.FC<{start: number; text: string; sub: string; still: string | null}> = ({start, text, sub, still}) => {
+  const f = useCurrentFrame();
+  const {fps} = useVideoConfig();
+  const s0 = Math.round(start * fps);
+  if (f < s0) return null;
+  const k = f - s0;
+  const dark = interpolate(k, [0, 14], [0, 0.72], {extrapolateRight: 'clamp'});
+  const txt = interpolate(k, [8, 20], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+  return (
+    <AbsoluteFill>
+      {still ? <Img src={staticFile(still)} style={{width: '100%', height: '100%', objectFit: 'cover', filter: 'blur(2px)'}} /> : null}
+      <AbsoluteFill style={{backgroundColor: `rgba(0,0,0,${dark})`, alignItems: 'center', justifyContent: 'center'}}>
+        <div style={{opacity: txt, textAlign: 'center', transform: `translateY(${(1 - txt) * 20}px)`}}>
+          <div style={{fontFamily: FONT, fontSize: 70, color: 'white', letterSpacing: 2,
+            textShadow: '0 0 30px rgba(0,0,0,0.9)'}}>{text}</div>
+          <div style={{fontFamily: FONT, fontSize: 40, color: 'rgba(255,255,255,0.8)', marginTop: 24}}>{sub}</div>
+        </div>
+      </AbsoluteFill>
+    </AbsoluteFill>
+  );
+};
+
 // ----------------------------------------------------------------- main
 
 export const Main: React.FC<VideoProps> = (p) => {
@@ -489,17 +547,18 @@ export const Main: React.FC<VideoProps> = (p) => {
       <AbsoluteFill style={{transform: shake ? `${shake} scale(1.06)` : undefined}}>
         <Clips clips={p.clips} duck={p.duck ?? []} />
         {dark ? <Grade /> : null}
-        <Grain strength={dark ? 0.32 : 0.14} />
+        {p.cinema ? null : <Grain strength={dark ? 0.32 : 0.14} />}
         <Glitch times={p.glitches ?? []} />
       </AbsoluteFill>
-      <Shade />
+      {p.cinema ? null : <Shade />}
       <Flashes times={p.flashes} />
       <Overlays overlays={p.overlays} top={p.overlayTop ?? 700} />
       {p.hook.text ? <Hook text={p.hook.text} end={p.hook.end} /> : null}
       {p.title ? <SeriesTitle {...p.title} /> : null}
-      <Captions words={p.words} top={p.captionTop ?? 1140} />
-      <Progress />
-      {p.endCard ? <EndCard {...p.endCard} /> : null}
+      {p.cinema ? <Subs subs={p.subs ?? []} /> : <Captions words={p.words} top={p.captionTop ?? 1140} />}
+      {p.cinema ? null : <Progress />}
+      {p.endCard && p.cinema ? <CinemaEnd {...p.endCard} still={(p as any).endStill ?? null} /> : null}
+      {p.endCard && !p.cinema ? <EndCard {...p.endCard} /> : null}
       {p.audio ? <Audio src={staticFile(p.audio)} /> : null}
       {p.music ? <Audio src={staticFile(p.music)} volume={0.08} loop /> : null}
       {p.sfx.map((s, i) => (

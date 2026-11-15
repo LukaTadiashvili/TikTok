@@ -15,6 +15,7 @@ Telegram commands you can send the bot:  /prompts  (resend prompts)   /reset  (f
 import json
 import os
 import random
+import re
 import shutil
 import sys
 from pathlib import Path
@@ -26,7 +27,7 @@ import generate as g
 ROOT = Path(__file__).parent
 STATE = ROOT / "series/state.json"
 OUT = ROOT / "output"
-END_CARD = 2.6  # seconds
+END_CARD = 2.4  # seconds
 
 
 def load_season(sid):
@@ -131,57 +132,100 @@ def words_for(text, a, z, page0):
     return out, page + 1
 
 
+def speech_spans(path):
+    """Voiced intervals [(a, b)] in a clip's audio (non-silent parts)."""
+    import re
+    import subprocess
+    out = subprocess.run(["ffmpeg", "-i", str(path), "-af", "highpass=f=150,lowpass=f=4000,silencedetect=noise=-32dB:d=0.25",
+                          "-f", "null", "-"], capture_output=True, text=True).stderr
+    total = g.duration(path)
+    starts = [float(x) for x in re.findall(r"silence_start: ([\d.]+)", out)]
+    ends = [float(x) for x in re.findall(r"silence_end: ([\d.]+)", out)]
+    spans, t = [], 0.0
+    for a, b in zip(starts, ends + [total] * (len(starts) - len(ends))):
+        if a > t:
+            spans.append((t, a))
+        t = b
+    if t < total:
+        spans.append((t, total))
+    return spans
+
+
+def fit_window(spans, a, b):
+    """Snap a subtitle window to the speech actually heard around it."""
+    near = [(x, y) for x, y in spans if y > a - 0.6 and x < b + 0.6]
+    if not near:
+        return a, b
+    s0 = max(a - 0.6, near[0][0])
+    s1 = min(b + 0.6, near[-1][1])
+    return (s0, s1) if s1 - s0 > 0.6 else (a, b)
+
+
 def render_episode(season, ep, clip_files, final):
+    """Cinematic edit: Veo sound untouched, film subtitles, title, freeze-frame end card."""
     work = OUT / f"{season['id']}_ep{ep['n']:02d}"
     if work.exists():
         shutil.rmtree(work)
     (work / "clips").mkdir(parents=True)
     g.CACHE.mkdir(parents=True, exist_ok=True)
 
-    clips, words, overlays, sfx, duck, page, t0 = [], [], [], [], [], 0, 0.0
-    sfx.append({"src": "sfx/hit.wav", "start": 0.0, "volume": 0.8})
+    clips, subs, sfx, duck, t0 = [], [], [], [], 0.0
     for i, (spec, src) in enumerate(zip(ep["clips"], clip_files)):
         name = f"clips/c{i}{Path(src).suffix or '.mp4'}"
         shutil.copy(src, work / name)
         dur = g.duration(work / name)
+        spans = speech_spans(work / name)
+        planned = max([l.get("to", l.get("at", 0)) for l in spec.get("lines", [])] + [15.0])
+        k = min(1.0, dur / planned) if dur < planned - 0.5 else 1.0  # clip shorter than planned: scale times
         clips.append({"src": name, "start": round(t0, 3), "end": round(t0 + dur, 3), "move": "none", "withAudio": True})
-        if i:
-            sfx.append({"src": "sfx/whoosh.wav", "start": max(0, t0 - 0.15), "volume": 0.5})
-        for j, line in enumerate(sorted(spec.get("lines", []), key=lambda l: l.get("at", l.get("from", 0)))):
-            if line["who"] == "narrator":
-                a = t0 + line["at"]
+        for j, line in enumerate(spec.get("lines", [])):
+            text = g.plain(line["text"])
+            if line["who"] == "narrator":  # narrator added in the edit (older episodes)
+                a = t0 + line["at"] * k
                 audio = work / f"narr_{i}_{j}.mp3"
                 d = narrate(line["text"], audio)
                 if d:
                     sfx.append({"src": audio.name, "start": a, "volume": 1.0})
+                    duck.append([round(a, 3), round(a + d, 3)])
                 else:
-                    d = len(g.plain(line["text"]).split()) * 0.42
-                duck.append([round(a, 3), round(a + d, 3)])
-                w, page = words_for(line["text"], a, a + d, page)
-            else:
-                w, page = words_for(line["text"], t0 + line["from"], t0 + line["to"], page)
-            words += w
-        for k, p in enumerate(spec.get("pops", [])):
-            at = t0 + p["at"]
-            o = {k2: v for k2, v in p.items() if k2 not in ("at", "dur")}
-            overlays.append({**o, "start": round(at, 3), "end": round(at + p.get("dur", 1.6), 3), "slot": k})
-            sfx.append({"src": "sfx/ding.wav" if p["type"] == "number" else "sfx/pop.wav", "start": at, "volume": 0.6})
+                    d = len(text.split()) * 0.42
+                subs.append({"text": text, "start": round(a, 3), "end": round(a + d + 0.2, 3)})
+            else:  # spoken inside the Veo clip
+                a, b = fit_window(spans, line["from"] * k, line["to"] * k)
+                subs.append({"text": text, "start": round(t0 + a, 3), "end": round(t0 + min(b, dur), 3)})
         t0 += dur
+    # long lines -> one sentence per subtitle, time split by length
+    split = []
+    for x in subs:
+        parts = [p.strip() for p in re.split(r"(?<=[.!?…])\s+", x["text"]) if p.strip()]
+        if len(x["text"]) <= 45 or len(parts) < 2:
+            split.append(x)
+            continue
+        t, span = x["start"], x["end"] - x["start"]
+        for p in parts:
+            d = span * len(p) / sum(len(q) for q in parts)
+            split.append({"text": p, "start": round(t, 3), "end": round(t + d, 3)})
+            t += d
+    subs = sorted(split, key=lambda x: x["start"])
+    for n in range(len(subs) - 1):  # never overlap two subtitles
+        subs[n]["end"] = min(subs[n]["end"], subs[n + 1]["start"] - 0.05)
+    subs = [x for x in subs if x["end"] - x["start"] >= 0.4]
+
+    # last frame for the freeze-frame end card
+    last = work / "clips" / f"c{len(clips) - 1}{Path(clip_files[-1]).suffix or '.mp4'}"
+    g.run(["ffmpeg", "-y", "-loglevel", "error", "-sseof", "-0.1", "-i", last, "-frames:v", "1", "-q:v", "2", work / "end.jpg"])
 
     total = t0 + END_CARD
-    sfx.append({"src": "sfx/riser.wav", "start": max(0, t0 - 1.6), "volume": 0.5})
-    sfx.append({"src": "sfx/boom.wav", "start": t0, "volume": 0.9})
     props = {
         "fps": g.FPS, "durationInFrames": int(total * g.FPS), "audio": None, "music": None,
         "hook": {"text": "", "end": 0},
-        "title": {"series": season["title"], "episode": f"სერია {ep['n']} / {season['episodes_total']}", "end": 2.6},
-        "endCard": {"start": round(t0, 3), "text": ep.get("next", "გაგრძელება იქნება..."), "sub": "გამოიწერე, რომ არ გამოგრჩეს 🔔"},
-        "clips": clips, "words": words, "overlays": overlays, "sfx": sfx,
-        "flashes": [], "glitches": [], "shakes": [], "mood": "bright", "duck": duck,
-        "captionTop": 1440, "overlayTop": 400,
+        "title": {"series": season["title"], "episode": f"სერია {ep['n']}", "end": 2.4},
+        "endCard": {"start": round(t0, 3), "text": ep.get("next", "გაგრძელება იქნება..."), "sub": "გამოიწერე, რომ არ გამოგრჩეს"},
+        "endStill": "end.jpg",
+        "clips": clips, "words": [], "subs": subs, "overlays": [], "sfx": sfx,
+        "flashes": [], "glitches": [], "shakes": [], "mood": "bright", "duck": duck, "cinema": True,
         "_total": total,
     }
-    # narrator audio files live in the work dir root; sfx paths are relative to it
     g.render(props, work, final)
     return total
 
