@@ -1,10 +1,8 @@
 name: Daily TikTok video
 
 on:
-  schedule:
-    # 03:17 UTC = 07:17 Tbilisi (UTC+4). Generation takes ~5-10 min, so the
-    # video is in Telegram before 08:00. GitHub can delay scheduled runs a bit.
-    - cron: "17 3 * * *"
+  # Daily schedule turned off: the channel now runs the mini-series only (series.yml).
+  # To turn it back on, restore:  schedule: - cron: "17 3 * * *"
   workflow_dispatch:
     inputs:
       niche:
