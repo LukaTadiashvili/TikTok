@@ -2,22 +2,24 @@
 
 Every morning around **07:20 Tbilisi time**, GitHub Actions makes one 20-30 second vertical video and sends it to your **Telegram** before 08:00. You post it to TikTok yourself.
 
-**What each video contains**
-- **Hook:** a yellow title box at the top plus a zoom hit and bass sound in the first second
-- **Real stock footage from Pixabay** (or Pexels): a new shot every 1.5-2 seconds (12-15 shots per video), each with a different camera move (punch-in, push, pull, pan)
-- **Georgian voiceover** (Microsoft Eka and Giorgi voices, alternating; free through edge-tts with no account, or Azure if you add a key)
-- **Word-by-word pop-up captions** with the key words in yellow
-- **Whoosh sounds** on scene changes, plus optional music from `assets/music/`
+**What each video contains** (rendered with [Remotion](https://remotion.dev) in `render/`)
+- **Hook:** a yellow title box with a shake, a zoom hit and a bass sound in the first second
+- **Footage that follows the words:** each spoken phrase gets its own stock clip (Pixabay or Pexels), with camera moves and flash cuts
+- **Pop-ups synced to the voice:** emojis, counting numbers (`700 000 ₾`), keyword cards and ✅/❌ marks, each with a pop sound
+- **Captions:** word-by-word with exact timing; the spoken word is highlighted and key words sit on yellow boxes
+- **Progress bar** at the top, plus whoosh sounds and optional music from `assets/music/`
+- **Voice:** ElevenLabs (realistic, with emotion tags such as `[excited]` and `[whispers]`). If it isn't set up, the free edge-tts voice is used instead.
 
-Everything here is free: GitHub Actions, the Pixabay API, the free edge-tts voice and the Telegram bot.
+Cost: ElevenLabs Starter is about $6 per month. Everything else is free.
 
 ## Scripts
 `scripts/bank.json` holds ready-made Georgian scripts, written by Claude in chat. The job uses one per day and picks the topic with the fewest videos so far. When 5 or fewer are left, the bot warns you in Telegram. Then ask Claude: *"write 30 more scripts for the TikTok bank"*.
 
-Format of one script:
+Format of one script: each beat is one spoken phrase.
 ```json
 {"id": "S025", "niche": "facts", "hook_type": "shock", "title": "...", "hook_text": "on-screen hook",
- "scenes": [{"narration": "Georgian text, *key words* in asterisks", "shots": ["english stock-video query", "another angle"]}],
+ "beats": [{"say": "Georgian phrase, *key words* in asterisks", "tone": "excited", "shot": "english stock-video query",
+            "pop": {"type": "emoji|number|card|check|cross", "value": "🍯 or 700000", "suffix": " ₾", "text": "card text"}}],
  "caption": "...", "hashtags": ["#..."]}
 ```
 
@@ -36,7 +38,9 @@ Go to GitHub repo **Settings, then Secrets and variables, then Actions, then New
 | `TELEGRAM_BOT_TOKEN` | In Telegram, message **@BotFather**, send `/newbot`, and copy the token |
 | `TELEGRAM_CHAT_ID` | Send "hi" to your new bot, then open `https://api.telegram.org/bot<TOKEN>/getUpdates` and copy the number in `"chat":{"id":...}` |
 | `PIXABAY_API_KEY` | Sign up at pixabay.com, then open pixabay.com/api/docs and copy the green key shown under **Parameters** next to `key` |
-| `AZURE_SPEECH_KEY` | *Optional.* Without it the free edge-tts voice is used. With a key: portal.azure.com, then Speech, then Free F0, then Keys and Endpoint, then Key 1, plus the variable `AZURE_SPEECH_REGION` |
+| `ELEVENLABS_API_KEY` | elevenlabs.io, then the Starter plan, then Profile, then API Keys, then Create (Text to Speech and Voices read access) |
+
+Variables (the Variables tab): `ELEVENLABS_VOICES` = comma-separated voice IDs to rotate (otherwise `voices.json` is used). Optionally `ELEVENLABS_MODEL` to force a model.
 
 The workflow file must be on the repo's **default branch** for the daily schedule to run.
 
@@ -49,8 +53,8 @@ The workflow file must be on the repo's **default branch** for the daily schedul
 
 ## Run locally
 ```bash
-pip install -r requirements.txt     # needs ffmpeg
-python generate.py --script S001 --no-send
+pip install -r requirements.txt && (cd render && npm ci)   # needs ffmpeg + Node 22
+python generate.py --script S001 --no-send --no-log
 ```
 
 Footage: Pixabay / Pexels (free licenses). Optional `PEXELS_API_KEY` works too if you have one. Font: Noto Sans and Noto Sans Georgian (SIL OFL, `assets/fonts/OFL.txt`).

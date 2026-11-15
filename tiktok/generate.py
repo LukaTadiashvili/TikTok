@@ -1,25 +1,24 @@
-"""Daily Georgian TikTok video generator (free stack).
+"""Daily Georgian TikTok video generator.
 
-Script (from scripts/bank.json, or Claude API if ANTHROPIC_API_KEY is set)
- -> Georgian voice per scene (Azure if keyed, else free edge-tts)
- -> free stock footage (Pixabay or Pexels): 2-3 fast cuts per scene, different angles
- -> word-by-word pop-up captions, hook title, zoom punches, whoosh sounds
- -> 1080x1920 MP4 -> Telegram
-
-Every service is optional so the run never fully fails:
-  no PIXABAY_API_KEY / PEXELS_API_KEY -> animated gradient backgrounds
-  no AZURE_SPEECH_KEY  -> free edge-tts voice; if that fails, silent video
-  no TELEGRAM_*        -> video only saved to output/ (and the GitHub run)
+script (scripts/bank.json)
+ -> voice: ElevenLabs (realistic, emotional) with exact word timings
+           fallback: free edge-tts, then silent
+ -> footage: one stock clip per spoken phrase (Pixabay / Pexels)
+ -> render (Remotion, render/): camera moves, word-by-word captions, hook title,
+    emoji / number / keyword pop-ups, progress bar, flashes, sound effects
+ -> Telegram
 
 Usage: python generate.py [--script S005] [--niche facts] [--no-send]
 """
 
 import argparse
+import base64
 import datetime as dt
 import json
 import os
 import random
 import re
+import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -28,15 +27,15 @@ import requests
 from PIL import Image, ImageFilter
 
 ROOT = Path(__file__).parent
-FONTS = ROOT / "assets/fonts"
-FONT_NAME = "TikTokGeo"
-BANK = ROOT / "scripts/bank.json"
+RENDER = ROOT / "render"
+BANK = Path(os.getenv("TIKTOK_BANK") or ROOT / "scripts/bank.json")
 HISTORY = ROOT / "data/history.json"
 OUT = ROOT / "output"
 CACHE = OUT / "cache"
 W, H, FPS = 1080, 1920, 30
 TBILISI = dt.timezone(dt.timedelta(hours=4))
-VOICES = ["ka-GE-EkaNeural", "ka-GE-GiorgiNeural"]
+EDGE_VOICES = ["ka-GE-EkaNeural", "ka-GE-GiorgiNeural"]
+TAG = re.compile(r"\[[^\]]*\]")
 
 
 def log(msg):
@@ -45,6 +44,12 @@ def log(msg):
 
 def run(cmd, cwd=None):
     subprocess.run([str(c) for c in cmd], check=True, cwd=cwd)
+
+
+def duration(path):
+    out = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration",
+                          "-of", "csv=p=0", str(path)], capture_output=True, text=True, check=True)
+    return float(out.stdout.strip())
 
 
 # -------------------------------------------------------------------- script
@@ -66,77 +71,178 @@ def pick_script(history, script_id=None, niche=None):
     return random.choice([s for s in fresh if count.get(s["niche"], 0) == low]), bank
 
 
-def claude_script(niche, history):
-    """Optional: only used when ANTHROPIC_API_KEY is set and the bank is empty."""
-    import anthropic
-    example = json.loads(BANK.read_text())[0]
-    recent = [h["title"] for h in history[-60:]]
-    prompt = (
-        "Write one new Georgian TikTok script as JSON in exactly the same format as this example:\n"
-        f"{json.dumps(example, ensure_ascii=False)}\n\n"
-        f"niche: {niche}. Rules: natural spoken Georgian, 45-65 words total, 5 scenes, scene 1 is a scroll-stopping hook, "
-        "mark 1-2 key words per scene with *asterisks*, 'shots' are 2 short English Pexels stock-video search queries "
-        "for generic filmable things, true facts only, end with a question or call to action. Output only the JSON.\n"
-        f"Do not repeat: {json.dumps(recent, ensure_ascii=False)}"
-    )
-    client = anthropic.Anthropic()
-    resp = client.beta.messages.create(
-        model="claude-opus-5-5", max_tokens=16000,
-        betas=["server-side-fallback-2026-07-01"], fallbacks="default",
-        output_config={"effort": "high"},
-        messages=[{"role": "user", "content": prompt}],
-    )
-    if resp.stop_reason == "refusal":
-        raise RuntimeError("Claude declined the request")
-    text = next(b.text for b in resp.content if b.type == "text")
-    data = json.loads(text[text.find("{"): text.rfind("}") + 1])
-    data["id"] = f"C{len(history) + 1:03d}"
-    data["niche"] = niche
-    return data
+def plain(text):
+    """Text as shown/spoken: no *emphasis* marks, no [audio tags]."""
+    return " ".join(TAG.sub("", text).replace("*", "").split())
+
+
+def caption_words(beats):
+    """[(word, emph, beat_index)] in speaking order."""
+    out = []
+    for b, beat in enumerate(beats):
+        for i, part in enumerate(TAG.sub("", beat["say"]).split("*")):
+            for w in part.split():
+                out.append((w, i % 2 == 1, b))
+    return out
 
 
 # --------------------------------------------------------------------- voice
 
-def clean(text):
-    return text.replace("*", "")
-
-
-def tts(text, voice, path):
-    """Azure if a key is set, otherwise the free Edge 'Read aloud' voices (same Eka/Giorgi)."""
-    key = os.getenv("AZURE_SPEECH_KEY")
-    if not key:
-        return edge_tts_voice(text, voice, path)
-    region = os.getenv("AZURE_SPEECH_REGION") or "westeurope"
-    safe = clean(text).replace("&", "და").replace("<", "").replace(">", "")
-    ssml = (f"<speak version='1.0' xml:lang='ka-GE'><voice name='{voice}'>"
-            f"<prosody rate='+12%'>{safe}</prosody></voice></speak>")
-    r = requests.post(
-        f"https://{region}.tts.speech.microsoft.com/cognitiveservices/v1",
-        headers={"Ocp-Apim-Subscription-Key": key, "Content-Type": "application/ssml+xml",
-                 "X-Microsoft-OutputFormat": "audio-24khz-96kbitrate-mono-mp3",
-                 "User-Agent": "tiktok-generator"},
-        data=ssml.encode("utf-8"), timeout=60)
+def eleven_model(key):
+    """Most expressive ElevenLabs model that lists Georgian (ka)."""
+    forced = os.getenv("ELEVENLABS_MODEL")
+    if forced:
+        return forced
+    r = requests.get("https://api.elevenlabs.io/v1/models", headers={"xi-api-key": key}, timeout=30)
     r.raise_for_status()
-    path.write_bytes(r.content)
-    return True
+    ka = [m["model_id"] for m in r.json()
+          if m.get("can_do_text_to_speech") and any(l.get("language_id") == "ka" for l in m.get("languages", []))]
+    for pref in ("v4", "v3", "multilingual"):
+        for m in ka:
+            if pref in m and "flash" not in m and "turbo" not in m:
+                return m
+    return ka[0] if ka else "eleven_v3"
 
 
-def edge_tts_voice(text, voice, path):
+def eleven_voice(key, path, text_with_tags):
+    voices = [v for v in (os.getenv("ELEVENLABS_VOICES") or "").split(",") if v.strip()]
+    if not voices:
+        voices = json.loads((ROOT / "voices.json").read_text()).get("elevenlabs", [])
+    if not voices:
+        return None
+    voice = random.choice(voices).strip()
+    model = eleven_model(key)
+    tags_ok = "v3" in model or "v4" in model
+    text = text_with_tags if tags_ok else plain(text_with_tags)
+    r = requests.post(
+        f"https://api.elevenlabs.io/v1/text-to-speech/{voice}/with-timestamps",
+        params={"output_format": "mp3_44100_128"},
+        headers={"xi-api-key": key, "Content-Type": "application/json"},
+        json={"text": text, "model_id": model, "language_code": "ka",
+              "voice_settings": {"stability": 0.5, "similarity_boost": 0.8}},
+        timeout=180)
+    if r.status_code == 400 and "language_code" in r.text:  # older models reject language_code
+        r = requests.post(
+            f"https://api.elevenlabs.io/v1/text-to-speech/{voice}/with-timestamps",
+            params={"output_format": "mp3_44100_128"},
+            headers={"xi-api-key": key, "Content-Type": "application/json"},
+            json={"text": text, "model_id": model, "voice_settings": {"stability": 0.5, "similarity_boost": 0.8}},
+            timeout=180)
+    r.raise_for_status()
+    data = r.json()
+    path.write_bytes(base64.b64decode(data["audio_base64"]))
+    al = data.get("alignment") or data.get("normalized_alignment") or {}
+    words, cur, s, e, in_tag = [], "", 0.0, 0.0, False
+    for c, a, b in zip(al.get("characters", []), al.get("character_start_times_seconds", []),
+                       al.get("character_end_times_seconds", [])):
+        if c == "[":
+            in_tag = True
+        if in_tag:
+            in_tag = c != "]"
+            continue
+        if c.isspace() or c == "*":
+            if cur:
+                words.append((cur, s, e))
+                cur = ""
+            continue
+        if not cur:
+            s = a
+        cur, e = cur + c, b
+    if cur:
+        words.append((cur, s, e))
+    return f"ElevenLabs/{model}", words
+
+
+def edge_voice(path, text, voice):
     if os.getenv("DISABLE_EDGE_TTS"):
-        return False
-    try:
-        import edge_tts
-        edge_tts.Communicate(clean(text), voice, rate="+12%").save_sync(str(path))
-        return path.exists() and path.stat().st_size > 1000
-    except Exception as e:  # unofficial service: never let it break the run
-        log(f"edge-tts failed: {e}")
-        return False
+        return None
+    import asyncio
+    import edge_tts
+
+    async def go():
+        words = []
+        com = edge_tts.Communicate(text, voice, rate="+10%", boundary="WordBoundary")
+        with open(path, "wb") as f:
+            async for ch in com.stream():
+                if ch["type"] == "audio":
+                    f.write(ch["data"])
+                elif ch["type"] == "WordBoundary":
+                    st = ch["offset"] / 1e7
+                    words.append((ch["text"], st, st + ch["duration"] / 1e7))
+        return words
+
+    words = asyncio.run(go())
+    return (f"edge/{voice}", words) if path.exists() and path.stat().st_size > 1000 else None
 
 
-def duration(path):
-    out = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration",
-                          "-of", "csv=p=0", str(path)], capture_output=True, text=True, check=True)
-    return float(out.stdout.strip())
+def make_voice(script, work):
+    """Returns (label, audio_path or None, timed words matching caption_words)."""
+    targets = caption_words(script["beats"])
+    tagged = " ".join((f"[{b['tone']}] " if b.get("tone") else "") + b["say"].replace("*", "")
+                      for b in script["beats"])
+    audio = work / "voice.mp3"
+    result = None
+    key = os.getenv("ELEVENLABS_API_KEY")
+    if key:
+        try:
+            result = eleven_voice(key, audio, tagged)
+        except Exception as e:
+            log(f"ElevenLabs failed: {e}")
+    if not result:
+        try:
+            result = edge_voice(audio, plain(tagged), random.choice(EDGE_VOICES))
+        except Exception as e:
+            log(f"edge-tts failed: {e}")
+    if result:
+        label, got = result
+        total = duration(audio)
+        return label, audio, align(targets, got, total)
+    # no voice at all: reading-speed timing
+    t, timed = 0.3, []
+    for w, emph, b in targets:
+        d = 0.16 + 0.055 * len(w)
+        timed.append((w, emph, b, t, t + d))
+        t += d + (0.25 if w[-1] in ".!?" else 0.04)
+    return "none", None, timed
+
+
+def norm(w):
+    return re.sub(r"[^\w]", "", w.lower())
+
+
+def align(targets, got, total):
+    """Map caption words onto spoken word timings (counts can differ slightly)."""
+    if got and len(got) == len(targets):
+        return [(w, e, b, s, en) for (w, e, b), (_, s, en) in zip(targets, got)]
+    if got:  # greedy match by normalized text, fill gaps by interpolation
+        out, j = [], 0
+        for w, e, b in targets:
+            k = next((i for i in range(j, min(j + 4, len(got))) if norm(got[i][0]) == norm(w)), None)
+            if k is not None:
+                out.append([w, e, b, got[k][1], got[k][2]])
+                j = k + 1
+            else:
+                out.append([w, e, b, None, None])
+        known = [i for i, o in enumerate(out) if o[3] is not None]
+        for i, o in enumerate(out):
+            if o[3] is None:
+                prev = max([k for k in known if k < i], default=None)
+                nxt = min([k for k in known if k > i], default=None)
+                a = out[prev][4] if prev is not None else 0.0
+                z = out[nxt][3] if nxt is not None else total
+                gap = [x for x in range(prev + 1 if prev is not None else 0, nxt if nxt is not None else len(out))]
+                step = (z - a) / max(1, len(gap))
+                pos = gap.index(i)
+                o[3], o[4] = a + step * pos, a + step * (pos + 1)
+        return [tuple(o) for o in out]
+    # proportional
+    weights = [len(w) + 1 for w, _, _ in targets]
+    t, out = 0.0, []
+    for (w, e, b), wt in zip(targets, weights):
+        d = total * wt / sum(weights)
+        out.append((w, e, b, t, t + d))
+        t += d
+    return out
 
 
 # ------------------------------------------------------------------- footage
@@ -145,9 +251,11 @@ def download(url, path):
     if not path.exists():
         with requests.get(url, stream=True, timeout=180) as d:
             d.raise_for_status()
-            with open(path, "wb") as f:
+            tmp = path.with_suffix(".part")
+            with open(tmp, "wb") as f:
                 for chunk in d.iter_content(1 << 20):
                     f.write(chunk)
+            tmp.rename(path)
     return path
 
 
@@ -159,14 +267,13 @@ def pixabay_video(query, used, min_len):
         "key": key, "q": query[:100], "per_page": 30, "safesearch": "true", "order": "popular"})
     r.raise_for_status()
     hits = [h for h in r.json().get("hits", []) if h["id"] not in used and h.get("duration", 0) >= min_len]
-    top = hits[:8]
+    top = hits[:6]
     random.shuffle(top)
     for h in top:
         sizes = h.get("videos", {})
-        # Cropping a horizontal clip to 9:16 keeps only a narrow strip, so it must be ~4K to stay sharp.
-        # Pick the smallest version that is sharp after the crop, else the biggest one available.
         options = [sizes[k] for k in ("medium", "large", "small") if sizes.get(k, {}).get("url")]
 
+        # horizontal clips lose most of their width in the 9:16 crop, so they need ~4K to stay sharp
         def sharp(v):
             return v["width"] >= 1080 if v["height"] > v["width"] else v["height"] >= 1900
         options.sort(key=lambda v: (not sharp(v), v["width"] * v["height"] * (1 if sharp(v) else -1)))
@@ -174,14 +281,30 @@ def pixabay_video(query, used, min_len):
             continue
         used.add(h["id"])
         path = download(options[0]["url"], CACHE / f"pixabay_{h['id']}_{options[0]['height']}.mp4")
-        return path, float(h["duration"]), h.get("user", "")
+        return path, float(h["duration"])
+    return None
+
+
+def pexels_video(query, used, min_len):
+    key = os.getenv("PEXELS_API_KEY")
+    if not key:
+        return None
+    r = requests.get("https://api.pexels.com/videos/search", headers={"Authorization": key}, timeout=30,
+                     params={"query": query, "per_page": 15, "orientation": "portrait"})
+    r.raise_for_status()
+    vids = [v for v in r.json().get("videos", []) if v["id"] not in used and v["duration"] >= min_len]
+    for v in vids[:6]:
+        files = [f for f in v["video_files"] if f.get("height") and f.get("file_type") == "video/mp4"]
+        files.sort(key=lambda f: abs(f["height"] - 1920))
+        if files:
+            used.add(v["id"])
+            return download(files[0]["link"], CACHE / f"pexels_{v['id']}.mp4"), float(v["duration"])
     return None
 
 
 def stock_video(query, used, min_len):
-    """Try every configured free footage source, simplest query last."""
     for q in dict.fromkeys([query, " ".join(query.split()[-2:]), query.split()[-1]]):
-        for source in (pexels_video, pixabay_video):
+        for source in (pixabay_video, pexels_video):
             try:
                 got = source(q, used, min_len)
             except requests.RequestException as e:
@@ -192,36 +315,8 @@ def stock_video(query, used, min_len):
     return None
 
 
-def pexels_video(query, used, min_len):
-    key = os.getenv("PEXELS_API_KEY")
-    if not key:
-        return None
-    for orientation in ("portrait", None):
-        params = {"query": query, "per_page": 15, "size": "medium"}
-        if orientation:
-            params["orientation"] = orientation
-        r = requests.get("https://api.pexels.com/videos/search", params=params,
-                         headers={"Authorization": key}, timeout=30)
-        r.raise_for_status()
-        vids = [v for v in r.json().get("videos", []) if v["id"] not in used and v["duration"] >= min_len]
-        if not vids:
-            continue
-        v = random.choice(vids[:6])
-        files = [f for f in v["video_files"]
-                 if f.get("height") and f.get("width") and f.get("file_type") == "video/mp4"]
-        # prefer portrait, then the size closest to 1920 px
-        files.sort(key=lambda f: (f["height"] < f["width"], abs(max(f["height"], f["width"]) - 1920)))
-        if not files:
-            continue
-        used.add(v["id"])
-        path = download(files[0]["link"], CACHE / f"pexels_{v['id']}_{files[0]['height']}.mp4")
-        return path, v["duration"], v.get("user", {}).get("name", "")
-    return None
-
-
 PALETTES = [((255, 61, 104), (255, 179, 71)), ((58, 123, 213), (0, 210, 255)),
-            ((131, 58, 180), (253, 29, 29)), ((17, 153, 142), (56, 239, 125)),
-            ((252, 70, 107), (63, 94, 251)), ((15, 32, 39), (44, 83, 100))]
+            ((131, 58, 180), (253, 29, 29)), ((17, 153, 142), (56, 239, 125))]
 
 
 def gradient(path, seed):
@@ -232,132 +327,121 @@ def gradient(path, seed):
     small.resize((W, H), Image.BICUBIC).filter(ImageFilter.GaussianBlur(30)).save(path)
 
 
-def motion(kind, frames):
-    """Camera-move presets so consecutive shots never feel the same."""
-    center = "x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'"
-    zp = f":d=1:s={W}x{H}:fps={FPS}"
-    if kind == "punch":   # fast zoom-out hit on every scene start
-        return f"zoompan=z='if(lt(on,9),1.28-0.031*on,1)':{center}{zp}"
-    if kind == "push":    # slow push-in
-        return f"zoompan=z='1+{0.12 / frames:.5f}*on':{center}{zp}"
-    if kind == "pull":    # slow pull-out
-        return f"zoompan=z='1.12-{0.12 / frames:.5f}*on':{center}{zp}"
-    if kind == "drift":   # sideways pan
-        return f"zoompan=z=1.12:x='(iw-iw/zoom)*on/{frames}':y='ih/2-(ih/zoom/2)'{zp}"
-    return "null"
-
-
-def make_shot(src, length, kind, out, is_image=False, src_len=0.0):
-    frames = max(1, int(round(length * FPS)))
-    cover = f"scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H},setsar=1"
-    if is_image:
-        inp = ["-loop", "1", "-framerate", FPS, "-t", f"{length + 0.2:.3f}", "-i", src]
-        vf = f"{cover},{motion('push' if kind == 'static' else kind, frames)}"
-    else:  # random section of the stock clip, so reused clips look different
-        start = random.uniform(0.3, src_len - length - 0.3) if src_len > length + 0.6 else 0
-        inp = ["-ss", f"{start:.2f}", "-t", f"{length + 0.3:.3f}", "-i", src]
-        vf = f"fps={FPS},{cover},{motion(kind, frames)}"
-    run(["ffmpeg", "-y", "-loglevel", "error", *inp, "-vf", f"{vf},setsar=1,format=yuv420p",
-         "-frames:v", frames, "-r", FPS, "-an", "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", out])
-
-
-# ------------------------------------------------------------------ captions
-
-def ass_time(t):
-    t = max(0.0, t)
-    return f"{int(t // 3600)}:{int(t % 3600 // 60):02d}:{t % 60:05.2f}"
-
-
-def caption_groups(narration, start, length):
-    """Split narration into 1-3 word chunks timed proportionally to word length."""
-    tokens = []
-    for i, part in enumerate(narration.split("*")):
-        for w in part.split():
-            tokens.append((w, i % 2 == 1))
-    groups, cur = [], []
-    for w, emph in tokens:
-        cur.append((w, emph))
-        chars = sum(len(x[0]) for x in cur)
-        if len(cur) == 3 or chars > 14 or w[-1] in ".,!?:":
-            groups.append(cur)
-            cur = []
-    if cur:
-        groups.append(cur)
-    weights = [sum(len(w) + 2 for w, _ in g) for g in groups]
-    total, t, out = sum(weights), start, []
-    for g, wgt in zip(groups, weights):
-        d = length * wgt / total
-        out.append((t, t + d, g))
-        t += d
-    return out
-
-
-def build_ass(script, timings, path):
-    head = f"""[Script Info]
-ScriptType: v4.00+
-PlayResX: {W}
-PlayResY: {H}
-WrapStyle: 0
-
-[V4+ Styles]
-Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: Cap,{FONT_NAME},112,&H00FFFFFF,&H00FFFFFF,&H00000000,&H96000000,0,0,0,0,100,100,0,0,1,7,4,5,70,70,0,1
-Style: Hook,{FONT_NAME},88,&H00000000,&H00000000,&H0000E6FF,&H00000000,0,0,0,0,100,100,0,0,3,22,0,8,90,90,300,1
-
-[Events]
-Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
-"""
-    lines = []
-    # Hook title on a yellow box at the top for the whole first scene
-    lines.append(f"Dialogue: 1,{ass_time(0)},{ass_time(timings[0][1])},Hook,,0,0,0,,"
-                 r"{\fscx60\fscy60\t(0,180,\fscx106\fscy106)\t(180,260,\fscx100\fscy100)}"
-                 + script["hook_text"])
-    pop = r"{\pos(540,1180)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,150,\fscx100\fscy100)}"
-    for (st, en), sc in zip(timings, script["scenes"]):
-        for a, b, group in caption_groups(sc["narration"], st, en - st):
-            text = " ".join(r"{\c&H00E6FF&}" + w + r"{\c&HFFFFFF&}" if e else w for w, e in group)
-            lines.append(f"Dialogue: 0,{ass_time(a)},{ass_time(b)},Cap,,0,0,0,,{pop}{text}")
-    path.write_text(head + "\n".join(lines) + "\n", encoding="utf-8")
+def prep_clip(src, src_len, length, out):
+    """Trim a random section and normalize to 1080x1920@30 so the renderer just plays it."""
+    start = random.uniform(0.3, src_len - length - 0.3) if src_len > length + 0.8 else 0
+    run(["ffmpeg", "-y", "-loglevel", "error", "-ss", f"{start:.2f}", "-t", f"{length + 0.3:.2f}", "-i", src,
+         "-vf", f"fps={FPS},scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H},setsar=1",
+         "-an", "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", "-pix_fmt", "yuv420p", out])
 
 
 # --------------------------------------------------------------------- sound
 
-def sfx(work):
-    whoosh, hit = work / "whoosh.wav", work / "hit.wav"
-    run(["ffmpeg", "-y", "-loglevel", "error", "-f", "lavfi", "-i",
-         "anoisesrc=d=0.45:c=pink:a=0.6,highpass=f=500,lowpass=f=5000,"
-         "afade=t=in:d=0.2,afade=t=out:st=0.2:d=0.25,volume=0.45", "-ar", "44100", whoosh])
-    run(["ffmpeg", "-y", "-loglevel", "error", "-f", "lavfi", "-i",
-         "sine=f=55:d=0.6,afade=t=out:st=0.03:d=0.55,volume=3", "-ar", "44100", hit])
-    return whoosh, hit
+SFX = {
+    "pop": "sine=f=900:d=0.12,asetrate=44100*1.0,afade=t=out:st=0.02:d=0.1,volume=0.7",
+    "whoosh": "anoisesrc=d=0.4:c=pink:a=0.6,highpass=f=600,lowpass=f=5000,afade=t=in:d=0.18,afade=t=out:st=0.18:d=0.22,volume=0.5",
+    "hit": "sine=f=50:d=0.7,afade=t=out:st=0.02:d=0.65,volume=3.5",
+    "ding": "sine=f=1320:d=0.5,afade=t=out:st=0.02:d=0.45,volume=0.45",
+    "tick": "sine=f=2400:d=0.03,volume=0.25",
+}
 
 
-def mix_audio(voice_parts, timings, total, work):
-    whoosh, hit = sfx(work)
-    args, filters, labels = [], [], []
+def make_sfx(work):
+    d = work / "sfx"
+    d.mkdir(exist_ok=True)
+    for name, f in SFX.items():
+        run(["ffmpeg", "-y", "-loglevel", "error", "-f", "lavfi", "-i", f, "-ar", "44100", "-ac", "2", d / f"{name}.wav"])
 
-    def add(path, delay, label, extra=(), vol=None):
-        idx = len(labels)
-        args.extend([*extra, "-i", path])
-        f = f"[{idx}:a]aresample=44100,aformat=channel_layouts=stereo,adelay={int(delay * 1000)}:all=1"
-        filters.append(f + (f",volume={vol}" if vol else "") + f"[{label}]")
-        labels.append(f"[{label}]")
 
-    for i, (p, (st, _)) in enumerate(zip(voice_parts, timings)):
-        if p:
-            add(p, st, f"v{i}")
-    add(hit, 0, "hit")
-    for j, (st, _) in enumerate(timings[1:]):
-        add(whoosh, max(0.0, st - 0.2), f"w{j}")
+# ---------------------------------------------------------------------- plan
+
+def build(script, work, history):
+    label, audio, timed = make_voice(script, work)
+    beats = script["beats"]
+    n = len(beats)
+    b_start = [min(t[3] for t in timed if t[2] == b) for b in range(n)]
+    total = (max(t[4] for t in timed) if timed else 10) + 0.7
+    b_end = b_start[1:] + [total]
+    b_start[0] = 0.0
+    log(f"Voice: {label}, {total:.1f}s")
+
+    # caption pages: 1-3 words, break on punctuation and beat change
+    words, page, cnt, prev_b = [], 0, 0, 0
+    for w, emph, b, s, e in timed:
+        if cnt and (cnt >= 3 or b != prev_b or sum(len(x["text"]) for x in words if x["page"] == page) + len(w) > 15):
+            page, cnt = page + 1, 0
+        words.append({"text": w, "start": round(s, 3), "end": round(e, 3), "emph": emph, "page": page})
+        cnt, prev_b = cnt + 1, b
+        if w[-1] in ".!?,:":
+            page, cnt = page + 1, 0
+
+    # footage: one shot per beat, two if the beat is long
+    used, clips, real = set(), [], 0
+    moves = ["push", "drift", "pull", "push", "drift"]
+    (work / "clips").mkdir(exist_ok=True)
+    for b, beat in enumerate(beats):
+        st, en = b_start[b], b_end[b]
+        parts = 2 if en - st > 2.8 else 1
+        queries = beat["shot"] if isinstance(beat["shot"], list) else [beat["shot"]]
+        for j in range(parts):
+            a = st + (en - st) * j / parts
+            z = st + (en - st) * (j + 1) / parts
+            name = f"clips/b{b}_{j}"
+            got = stock_video(queries[j % len(queries)], used, z - a + 0.8)
+            if got:
+                prep_clip(got[0], got[1], z - a, work / f"{name}.mp4")
+                src, real = f"{name}.mp4", real + 1
+            else:
+                gradient(work / f"{name}.png", b * 2 + j + len(history))
+                src = f"{name}.png"
+            clips.append({"src": src, "start": round(a, 3), "end": round(z, 3),
+                          "move": "punch" if j == 0 else moves[(b + j) % len(moves)]})
+    log(f"Footage: {len(clips)} shots, {real} real")
+
+    # pop-ups + sound effects
+    overlays, sfx = [], [{"src": "sfx/hit.wav", "start": 0.0, "volume": 0.9}]
+    for b, beat in enumerate(beats):
+        st, en = b_start[b], b_end[b]
+        if b:
+            sfx.append({"src": "sfx/whoosh.wav", "start": max(0, st - 0.15), "volume": 0.5})
+        pop = beat.get("pop")
+        if pop:
+            at = st + 0.15 if b else 0.6
+            o = {**pop, "start": round(at, 3), "end": round(max(en - 0.05, at + 1.2), 3), "slot": b}
+            overlays.append(o)
+            sfx.append({"src": "sfx/ding.wav" if pop["type"] == "number" else "sfx/pop.wav",
+                        "start": at, "volume": 0.6})
+    for w in words:
+        if w["emph"]:
+            sfx.append({"src": "sfx/tick.wav", "start": w["start"], "volume": 0.5})
+    flashes = [b_start[b] for b in range(1, n) if b % 2 == 0]
+
     music = sorted((ROOT / "assets/music").glob("*.mp3"))
+    music_src = None
     if music:
-        add(random.choice(music), 0, "m", extra=("-stream_loop", "-1"), vol=0.10)
-    filters.append(f"{''.join(labels)}amix=inputs={len(labels)}:duration=longest:normalize=0,"
-                   f"apad,atrim=0:{total:.3f},alimiter=limit=0.95[out]")
-    out = work / "audio.m4a"
-    run(["ffmpeg", "-y", "-loglevel", "error", *args, "-filter_complex", ";".join(filters),
-         "-map", "[out]", "-c:a", "aac", "-b:a", "160k", out])
-    return out
+        shutil.copy(random.choice(music), work / "music.mp3")
+        music_src = "music.mp3"
+    hook_end = b_end[0] if n > 1 else min(total, 3)
+    props = {
+        "fps": FPS, "durationInFrames": int(total * FPS), "audio": "voice.mp3" if audio else None,
+        "music": music_src, "hook": {"text": script["hook_text"], "end": round(max(hook_end, 1.8), 3)},
+        "clips": clips, "words": words, "overlays": overlays, "sfx": sfx, "flashes": flashes,
+    }
+    return props, label, total, len(clips), real
+
+
+def render(props, work, final):
+    shutil.copy(ROOT / "assets/fonts/TikTokGeo.ttf", work / "TikTokGeo.ttf")
+    make_sfx(work)
+    (work / "props.json").write_text(json.dumps(props, ensure_ascii=False))
+    cmd = ["npx", "remotion", "render", "src/index.ts", "Main", str(final),
+           f"--props={(work / 'props.json').resolve()}", f"--public-dir={work.resolve()}",
+           "--codec=h264", "--crf=18", "--log=error"]
+    if os.getenv("REMOTION_BROWSER"):
+        cmd.append(f"--browser-executable={os.getenv('REMOTION_BROWSER')}")
+    if os.getenv("REMOTION_CONCURRENCY"):
+        cmd.append(f"--concurrency={os.getenv('REMOTION_CONCURRENCY')}")
+    run(cmd, cwd=RENDER)
 
 
 # ------------------------------------------------------------------ telegram
@@ -378,7 +462,7 @@ def send_telegram(video, info_text, caption):
         return False
     with open(video, "rb") as f:
         telegram("sendVideo", {"supports_streaming": "true", "width": W, "height": H}, files={"video": f})
-    telegram("sendMessage", {"text": caption})  # separate message = one tap to copy
+    telegram("sendMessage", {"text": caption})
     return True
 
 
@@ -389,112 +473,45 @@ def main():
     ap.add_argument("--script")
     ap.add_argument("--niche")
     ap.add_argument("--no-send", action="store_true")
+    ap.add_argument("--no-log", action="store_true", help="test run: don't record in history")
     args = ap.parse_args()
 
     history = json.loads(HISTORY.read_text())
     script, bank = pick_script(history, args.script, args.niche)
     if script is None:
-        if os.getenv("ANTHROPIC_API_KEY"):
-            script = claude_script(args.niche or random.choice(sorted({s["niche"] for s in bank})), history)
-        else:
-            telegram("sendMessage", {"text": "⚠️ სცენარები დამთავრდა - დაამატე ახალი scripts/bank.json-ში"})
-            sys.exit("Script bank is empty - add new scripts to scripts/bank.json")
+        telegram("sendMessage", {"text": "⚠️ სცენარები დამთავრდა - სთხოვე Claude-ს ახლების დაწერა"})
+        sys.exit("Script bank is empty - add new scripts to scripts/bank.json")
     used_ids = {h.get("script_id") for h in history} | {script["id"]}
     left = len([s for s in bank if s["id"] not in used_ids])
 
-    vcount = {v: sum(1 for h in history if h.get("voice") == v) for v in VOICES}
-    voice = min(VOICES, key=lambda v: (vcount[v], random.random()))
     vid = f"V{len(history) + 1:03d}"
     today = dt.datetime.now(TBILISI).date().isoformat()
-    log(f"{vid}: {script['id']} '{script['title']}' niche={script['niche']} "
-        f"hook={script['hook_type']} voice={voice}")
-
+    log(f"{vid}: {script['id']} '{script['title']}' niche={script['niche']} hook={script['hook_type']}")
     work = OUT / f"{today}_{vid}"
     work.mkdir(parents=True, exist_ok=True)
     CACHE.mkdir(parents=True, exist_ok=True)
 
-    # 1. voice per scene -> scene timings
-    voice_parts, timings, t, has_voice = [], [], 0.0, False
-    for i, sc in enumerate(script["scenes"]):
-        a = work / f"voice{i}.mp3"
-        try:
-            ok = tts(sc["narration"], voice, a)
-        except requests.RequestException as e:
-            log(f"TTS failed: {e}")
-            ok = False
-        if ok:
-            has_voice = True
-            d = duration(a) + 0.12
-        else:
-            a = None
-            d = max(2.0, len(clean(sc["narration"]).split()) * 0.42 + 0.4)
-        voice_parts.append(a)
-        timings.append((t, t + d))
-        t += d
-    total = t + 0.4
-
-    # 2. footage: each scene is cut into up to 3 shots with different camera moves
-    used, clips, credits, real = set(), [], set(), 0
-    moves, k = ["push", "drift", "pull", "static"], 0
-    for i, ((st, en), sc) in enumerate(zip(timings, script["scenes"])):
-        end = total if i == len(timings) - 1 else en
-        queries = sc["shots"]
-        n = max(1, min(3, int((end - st) // 1.2)))
-        length = (end - st) / n
-        for j in range(n):
-            out = work / f"shot{i}_{j}.mp4"
-            kind = "punch" if j == 0 else moves[k % len(moves)]
-            k += 1
-            got = None
-            try:
-                got = stock_video(queries[j % len(queries)], used, length + 0.6)
-            except requests.RequestException as e:
-                log(f"Footage search failed for '{queries[j % len(queries)]}': {e}")
-            if got:
-                path, src_len, author = got
-                make_shot(path, length, kind, out, src_len=src_len)
-                credits.add(author)
-                real += 1
-            else:
-                bg = work / f"bg{i}_{j}.png"
-                gradient(bg, i * 3 + j + len(history))
-                make_shot(bg, length, kind, out, is_image=True)
-            clips.append(out)
-        log(f"  scene {i + 1}: {end - st:.1f}s, {n} shots")
-
-    # 3. join shots, burn captions, add voice + sound effects
-    (work / "list.txt").write_text("".join(f"file '{c.name}'\n" for c in clips))
-    run(["ffmpeg", "-y", "-loglevel", "error", "-f", "concat", "-safe", "0", "-i", "list.txt",
-         "-c", "copy", "joined.mp4"], cwd=work)
-    build_ass(script, timings, work / "captions.ass")
-    mix_audio(voice_parts, timings, total, work)
+    props, voice, total, shots, real = build(script, work, history)
     final = (OUT / f"{today}_{vid}.mp4").resolve()
-    run(["ffmpeg", "-y", "-loglevel", "error", "-i", "joined.mp4", "-i", "audio.m4a",
-         "-vf", f"subtitles=captions.ass:fontsdir={FONTS.resolve()}",
-         "-map", "0:v", "-map", "1:a", "-c:v", "libx264", "-preset", "medium", "-crf", "19",
-         "-pix_fmt", "yuv420p", "-c:a", "copy", "-t", f"{total:.3f}", "-movflags", "+faststart",
-         final], cwd=work)
-    log(f"Video ready: {final} ({total:.1f}s, {len(clips)} shots, {real} with real footage)")
+    render(props, work, final)
+    log(f"Video ready: {final}")
 
-    # 4. deliver
     caption = f"{script['caption']}\n\n{' '.join(script['hashtags'])}"
     info = (f"🎬 {vid} | {today}\n"
-            f"თემა: {script['niche']} | ჰუკი: {script['hook_type']} | "
-            f"ხმა: {voice.split('-')[2].replace('Neural', '')}\n"
-            f"„{script['title']}“ · {total:.0f} წმ · {len(clips)} კადრი\n"
-            + ("" if has_voice else "🔇 ხმის გარეშე - ხმის სერვისი ვერ დაუკავშირდა\n")
-            + ("" if real else "🎨 ვიდეო-კადრები ვერ მოიძებნა (Pixabay გასაღები?) - ფონები გრადიენტია\n")
+            f"თემა: {script['niche']} | ჰუკი: {script['hook_type']}\n"
+            f"„{script['title']}“ · {total:.0f} წმ · {shots} კადრი · ხმა: {voice.split('/')[0]}\n"
+            + ("" if real else "🎨 ვიდეო-კადრები ვერ მოიძებნა - ფონები გრადიენტია\n")
             + f"📚 დარჩენილი სცენარები: {left}\n"
             + f"📊 2 დღეში ჩაწერე ნახვები data/results.csv-ში (ID: {vid})")
     sent = False if args.no_send else send_telegram(final, info, caption)
     if left <= 5:
         telegram("sendMessage", {"text": f"⚠️ მხოლოდ {left} სცენარი დარჩა - სთხოვე Claude-ს ახლების დაწერა"})
 
-    history.append({"id": vid, "date": today, "script_id": script["id"], "niche": script["niche"],
-                    "hook_type": script["hook_type"], "voice": voice if has_voice else None,
-                    "title": script["title"], "seconds": round(total, 1), "shots": len(clips),
-                    "real_footage": real, "credits": sorted(c for c in credits if c), "sent": sent})
-    HISTORY.write_text(json.dumps(history, ensure_ascii=False, indent=2) + "\n")
+    if not args.no_log:
+        history.append({"id": vid, "date": today, "script_id": script["id"], "niche": script["niche"],
+                        "hook_type": script["hook_type"], "voice": voice, "title": script["title"],
+                        "seconds": round(total, 1), "shots": shots, "real_footage": real, "sent": sent})
+        HISTORY.write_text(json.dumps(history, ensure_ascii=False, indent=2) + "\n")
     log("Done")
 
 

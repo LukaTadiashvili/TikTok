@@ -1,336 +1,374 @@
 [
   {
-    "id": "S001", "niche": "facts", "hook_type": "shock",
-    "title": "თაფლი არასდროს ფუჭდება",
+    "id": "S001", "niche": "facts", "hook_type": "shock", "title": "თაფლი არასდროს ფუჭდება",
     "hook_text": "ეს საკვები 5000 წელს ძლებს",
-    "scenes": [
-      {"narration": "არსებობს საკვები, რომელიც *არასდროს* ფუჭდება.", "shots": ["honey dripping slow motion", "honey jar close up"]},
-      {"narration": "არქეოლოგებმა ეგვიპტურ სამარხებში *ათასობით წლის* თაფლი იპოვეს.", "shots": ["egypt pyramids", "desert ancient ruins"]},
-      {"narration": "და ის დღესაც *ჭამის ვარგისი* იყო.", "shots": ["honey spoon", "dipping bread in honey"]},
-      {"narration": "თაფლში ძალიან ცოტა წყალია, ამიტომ ბაქტერიები მასში *ვერ ცოცხლობენ*.", "shots": ["microscope laboratory", "bees honeycomb close up"]},
-      {"narration": "საქართველოში კი *მსოფლიოში უძველესი* თაფლის კვალი იპოვეს. შენ რომელი თაფლი გიყვარს? *დაწერე*!", "shots": ["beekeeper hives", "mountain village sunset"]}
+    "beats": [
+      {"say": "არსებობს საკვები, რომელიც *არასდროს* ფუჭდება.", "tone": "mysterious", "shot": "honey dripping slow motion", "pop": {"type": "emoji", "value": "🍯"}},
+      {"say": "ეგვიპტის სამარხებში თაფლი იპოვეს...", "tone": "curious", "shot": "egypt pyramids", "pop": {"type": "emoji", "value": "🏺"}},
+      {"say": "რომელიც *ათასობით წლის* იყო.", "shot": "ancient ruins desert", "pop": {"type": "number", "value": 3000, "suffix": " წელი"}},
+      {"say": "და დღესაც *ჭამის ვარგისი* იყო!", "tone": "excited", "shot": "honey spoon", "pop": {"type": "check"}},
+      {"say": "საიდუმლო? თაფლში თითქმის *არ არის წყალი*,", "tone": "curious", "shot": "honeycomb close up", "pop": {"type": "card", "text": "წყალი ≈ 17%"}},
+      {"say": "ამიტომ ბაქტერიები მასში *ვერ ცოცხლობენ*.", "shot": "microscope laboratory", "pop": {"type": "cross"}},
+      {"say": "იცი, სად იპოვეს მსოფლიოში *უძველესი თაფლი*?", "tone": "curious", "shot": "caucasus mountains", "pop": {"type": "emoji", "value": "🤔"}},
+      {"say": "*საქართველოში*! დაახლოებით 5500 წლის.", "tone": "proud", "shot": "mountain village", "pop": {"type": "number", "value": 5500, "suffix": " წელი"}},
+      {"say": "შენ რომელი თაფლი გიყვარს? *დაწერე*!", "tone": "excited", "shot": "beekeeper hives", "pop": {"type": "emoji", "value": "👇"}}
     ],
     "caption": "ეს საკვები ათასობით წელს ძლებს და საქართველოსთანაც არის დაკავშირებული 🍯",
     "hashtags": ["#ფაქტები", "#საქართველო", "#იცოდით", "#თაფლი", "#fyp"]
   },
   {
-    "id": "S002", "niche": "facts", "hook_type": "shock",
-    "title": "რვაფეხას სამი გული",
+    "id": "S002", "niche": "facts", "hook_type": "shock", "title": "რვაფეხას სამი გული",
     "hook_text": "3 გული და ცისფერი სისხლი",
-    "scenes": [
-      {"narration": "ამ ცხოველს *სამი გული* აქვს.", "shots": ["octopus underwater", "octopus close up"]},
-      {"narration": "მისი სისხლი წითელი კი არა, *ცისფერია*.", "shots": ["deep blue ocean", "underwater coral reef"]},
-      {"narration": "ნეირონების დაახლოებით ორი მესამედი კი ტვინში კი არა, *საცეცებშია*.", "shots": ["octopus tentacles", "octopus swimming"]},
-      {"narration": "ანუ თითოეულ საცეცს თითქმის *საკუთარი გონება* აქვს.", "shots": ["octopus camouflage", "scuba diver ocean"]},
-      {"narration": "იცოდი ეს? დაწერე კომენტარში, *რომელ ცხოველზე* მოგიყვე შემდეგ!", "shots": ["ocean waves aerial", "sea turtle swimming"]}
+    "beats": [
+      {"say": "ამ ცხოველს *სამი გული* აქვს.", "tone": "surprised", "shot": "octopus underwater", "pop": {"type": "number", "value": 3, "suffix": " ❤️"}},
+      {"say": "და მისი სისხლი წითელი კი არა...", "tone": "mysterious", "shot": "deep blue ocean", "pop": {"type": "emoji", "value": "🩸"}},
+      {"say": "*ცისფერია*!", "tone": "excited", "shot": "blue water underwater", "pop": {"type": "emoji", "value": "💙"}},
+      {"say": "მაგრამ ყველაზე გიჟური სხვა რამეა.", "tone": "curious", "shot": "octopus close up", "pop": {"type": "emoji", "value": "🤯"}},
+      {"say": "მისი ნეირონების ორი მესამედი *საცეცებშია*.", "shot": "octopus tentacles", "pop": {"type": "card", "text": "⅔ ნეირონი საცეცებში"}},
+      {"say": "ანუ თითოეულ საცეცს თითქმის *საკუთარი გონება* აქვს.", "tone": "surprised", "shot": "octopus swimming", "pop": {"type": "emoji", "value": "🧠"}},
+      {"say": "რომელ ცხოველზე მოგიყვე შემდეგ? *დაწერე*!", "tone": "excited", "shot": "sea turtle swimming", "pop": {"type": "emoji", "value": "👇"}}
     ],
     "caption": "ეს ცხოველი სხვა პლანეტიდან მოსულს ჰგავს 🐙",
     "hashtags": ["#ფაქტები", "#ცხოველები", "#იცოდით", "#ოკეანე", "#fyp"]
   },
   {
-    "id": "S003", "niche": "facts", "hook_type": "question",
-    "title": "ეიფელის კოშკი ზაფხულში იზრდება",
+    "id": "S003", "niche": "facts", "hook_type": "question", "title": "ეიფელის კოშკი ზაფხულში იზრდება",
     "hook_text": "რატომ იზრდება ეიფელის კოშკი?",
-    "scenes": [
-      {"narration": "იცი, რომ ეიფელის კოშკი ზაფხულში *15 სანტიმეტრით* მაღლდება?", "shots": ["eiffel tower", "paris aerial"]},
-      {"narration": "მიზეზი *სიცხეა*: მზეზე გახურებული რკინა ფართოვდება.", "shots": ["sun heat summer sky", "hot metal sparks"]},
-      {"narration": "ზამთარში კი ის ისევ *პატარავდება*.", "shots": ["paris winter", "eiffel tower night"]},
-      {"narration": "თან კოშკი თავიდან მხოლოდ *20 წლით* ააშენეს და დანგრევას უპირებდნენ.", "shots": ["construction crane", "old paris street"]},
-      {"narration": "ის *რადიოანტენამ* გადაარჩინა. კიდევ რა საიდუმლოს მოგიყვე? *დაწერე*!", "shots": ["radio antenna tower", "paris sunset"]}
+    "beats": [
+      {"say": "იცი, რომ ეიფელის კოშკი ზაფხულში *იზრდება*?", "tone": "curious", "shot": "eiffel tower", "pop": {"type": "emoji", "value": "🗼"}},
+      {"say": "დაახლოებით *15 სანტიმეტრით*!", "tone": "surprised", "shot": "paris aerial", "pop": {"type": "number", "value": 15, "prefix": "+", "suffix": " სმ"}},
+      {"say": "მიზეზი *სიცხეა*.", "shot": "sun summer sky", "pop": {"type": "emoji", "value": "🔥"}},
+      {"say": "მზეზე გახურებული რკინა *ფართოვდება*,", "shot": "hot metal sparks", "pop": {"type": "card", "text": "სიცხე = რკინა ფართოვდება"}},
+      {"say": "ზამთარში კი კოშკი ისევ *პატარავდება*.", "shot": "paris winter snow", "pop": {"type": "emoji", "value": "❄️"}},
+      {"say": "თან თავიდან კოშკი მხოლოდ *20 წლით* ააშენეს.", "tone": "mysterious", "shot": "construction crane", "pop": {"type": "number", "value": 20, "suffix": " წელი"}},
+      {"say": "მის დანგრევას აპირებდნენ, მაგრამ *რადიოანტენამ* გადაარჩინა.", "shot": "radio antenna tower", "pop": {"type": "emoji", "value": "📡"}},
+      {"say": "კიდევ რა საიდუმლო მოგიყვე? *დაწერე*!", "tone": "excited", "shot": "paris sunset", "pop": {"type": "emoji", "value": "👇"}}
     ],
     "caption": "ეიფელის კოშკი ყოველ ზაფხულს მაღლდება და ეს ფაქტი ცოტამ თუ იცის 🗼",
     "hashtags": ["#ფაქტები", "#პარიზი", "#იცოდით", "#მოგზაურობა", "#fyp"]
   },
   {
-    "id": "S004", "niche": "facts", "hook_type": "mistake",
-    "title": "ბანანი კენკრაა",
+    "id": "S004", "niche": "facts", "hook_type": "mistake", "title": "ბანანი კენკრაა",
     "hook_text": "ბანანი კენკრაა, მარწყვი არა",
-    "scenes": [
-      {"narration": "მარწყვს კენკრას ეძახი? *შეცდები*.", "shots": ["strawberries close up", "strawberry field"]},
-      {"narration": "ბოტანიკის მიხედვით, ბანანი *კენკრაა*, მარწყვი კი *არა*.", "shots": ["bananas", "banana tree"]},
-      {"narration": "კენკრა ერთი ყვავილის ნაყოფია, რომელსაც თესლი *შიგნით* აქვს.", "shots": ["flower blooming", "fruit cut slow motion"]},
-      {"narration": "მარწყვს კი თესლი *გარეთ* აქვს.", "shots": ["strawberry macro", "strawberry falling in water"]},
-      {"narration": "ამ ლოგიკით, *საზამთროც* კენკრაა! შენ იცოდი? *დაწერე*!", "shots": ["watermelon slice", "summer fruit"]}
+    "beats": [
+      {"say": "მარწყვს კენკრას ეძახი? *შეცდები*.", "tone": "sarcastic", "shot": "strawberries close up", "pop": {"type": "cross"}},
+      {"say": "ბოტანიკის მიხედვით, მარწყვი *არ არის* კენკრა...", "shot": "strawberry field", "pop": {"type": "emoji", "value": "🍓"}},
+      {"say": "ბანანი კი *კენკრაა*!", "tone": "surprised", "shot": "bananas", "pop": {"type": "emoji", "value": "🍌"}},
+      {"say": "კენკრა ერთი ყვავილის ნაყოფია, თესლით *შიგნით*.", "shot": "flower blooming", "pop": {"type": "card", "text": "თესლი შიგნით = კენკრა"}},
+      {"say": "მარწყვს კი თესლი *გარეთ* აქვს.", "shot": "strawberry macro", "pop": {"type": "emoji", "value": "👀"}},
+      {"say": "და ამ ლოგიკით, *საზამთროც* კენკრაა!", "tone": "laughs", "shot": "watermelon slice", "pop": {"type": "emoji", "value": "🍉"}},
+      {"say": "შენ იცოდი ეს? *დაწერე*!", "tone": "excited", "shot": "summer fruit", "pop": {"type": "emoji", "value": "👇"}}
     ],
     "caption": "ბიოლოგიის მასწავლებელმა ეს არ გითხრა 🍓🍌",
     "hashtags": ["#ფაქტები", "#იცოდით", "#ხილი", "#მეცნიერება", "#fyp"]
   },
   {
-    "id": "S005", "niche": "business", "hook_type": "mistake",
-    "title": "ფასის შემდეგ გაჩუმდი",
+    "id": "S005", "niche": "business", "hook_type": "mistake", "title": "ფასის შემდეგ გაჩუმდი",
     "hook_text": "ფასის თქმის შემდეგ გაჩუმდი",
-    "scenes": [
-      {"narration": "გაყიდვების უმეტესობა *ერთი შეცდომის* გამო იკარგება.", "shots": ["business meeting", "salesman talking to client"]},
-      {"narration": "ფასს ეუბნები კლიენტს და მაშინვე *ფასდაკლებას* სთავაზობ.", "shots": ["nervous man talking", "price tag"]},
-      {"narration": "ასე შენ თვითონ აჩვენებ, რომ შენს ფასს *არ ენდობი*.", "shots": ["businessman thinking", "doubtful face"]},
-      {"narration": "პროფესიონალები ფასს ამბობენ და *ჩუმდებიან*.", "shots": ["confident businesswoman", "office meeting silence"]},
-      {"narration": "ვინც პირველი ილაპარაკებს, ის *დათმობს*. სცადე და დაწერე, როგორ ჩაიარა!", "shots": ["handshake deal", "signing contract"]}
+    "beats": [
+      {"say": "გაყიდვების უმეტესობა *ერთი შეცდომის* გამო იკარგება.", "tone": "serious", "shot": "business meeting", "pop": {"type": "emoji", "value": "💸"}},
+      {"say": "ფასს ეუბნები კლიენტს...", "shot": "salesman talking to client", "pop": {"type": "card", "text": "„ეს 500 ლარი ღირს“"}},
+      {"say": "და მაშინვე *ფასდაკლებას* სთავაზობ.", "tone": "sarcastic", "shot": "price tag", "pop": {"type": "cross"}},
+      {"say": "ასე თვითონ აჩვენებ, რომ შენს ფასს *არ ენდობი*.", "shot": "nervous man", "pop": {"type": "emoji", "value": "😬"}},
+      {"say": "პროფესიონალები ფასს ამბობენ და...", "tone": "whispers", "shot": "confident businesswoman", "pop": {"type": "emoji", "value": "🤫"}},
+      {"say": "*ჩუმდებიან*.", "tone": "serious", "shot": "office silence", "pop": {"type": "check"}},
+      {"say": "ვინც პირველი ილაპარაკებს, ის *დათმობს*.", "shot": "handshake deal", "pop": {"type": "card", "text": "სიჩუმე = ძალა"}},
+      {"say": "სცადე ხვალვე და დაწერე, *როგორ ჩაიარა*!", "tone": "excited", "shot": "signing contract", "pop": {"type": "emoji", "value": "👇"}}
     ],
     "caption": "ეს ერთი წამი გადაწყვეტს, გაყიდი თუ არა 🤐",
     "hashtags": ["#ბიზნესი", "#გაყიდვები", "#მეწარმე", "#ბიზნესრჩევები", "#fyp"]
   },
   {
-    "id": "S006", "niche": "business", "hook_type": "question",
-    "title": "რატომ ღირს ყველაფერი 9.99",
+    "id": "S006", "niche": "business", "hook_type": "question", "title": "რატომ ღირს ყველაფერი 9.99",
     "hook_text": "რატომ ღირს ყველაფერი 9.99?",
-    "scenes": [
-      {"narration": "რატომ ღირს თითქმის ყველაფერი *ცხრა ოთხმოცდაცხრამეტი* და არა ათი?", "shots": ["supermarket shelves", "price tags store"]},
-      {"narration": "ჩვენი ტვინი ფასს *მარცხნიდან* კითხულობს.", "shots": ["eye close up", "woman reading"]},
-      {"narration": "პირველ ციფრს ვხედავთ და ფასი გვეჩვენება *უფრო იაფი*, ვიდრე სინამდვილეშია.", "shots": ["shopping cart", "woman shopping"]},
-      {"narration": "ამას *მარცხენა ციფრის ეფექტი* ჰქვია და მაღაზიები მას ყოველდღე იყენებენ.", "shots": ["cashier checkout", "shopping mall"]},
-      {"narration": "შენს ბიზნესში იყენებ ამ ხრიკს? *დაწერე* კომენტარში!", "shots": ["small business owner", "cafe owner smiling"]}
+    "beats": [
+      {"say": "რატომ ღირს თითქმის ყველაფერი *ცხრა ოთხმოცდაცხრამეტი*?", "tone": "curious", "shot": "supermarket shelves", "pop": {"type": "card", "text": "9.99 ₾"}},
+      {"say": "და არა *ათი*?", "tone": "curious", "shot": "price tags store", "pop": {"type": "card", "text": "10.00 ₾ ?"}},
+      {"say": "იმიტომ, რომ ტვინი ფასს *მარცხნიდან* კითხულობს.", "shot": "eye close up", "pop": {"type": "emoji", "value": "🧠"}},
+      {"say": "პირველ ციფრს ვხედავთ და ფასი გვეჩვენება *უფრო იაფი*.", "shot": "woman shopping", "pop": {"type": "emoji", "value": "👀"}},
+      {"say": "ამას *მარცხენა ციფრის ეფექტი* ჰქვია.", "tone": "serious", "shot": "cashier checkout", "pop": {"type": "card", "text": "მარცხენა ციფრის ეფექტი"}},
+      {"say": "და მაღაზიები მას შენზე *ყოველდღე* იყენებენ.", "tone": "sarcastic", "shot": "shopping mall", "pop": {"type": "emoji", "value": "🛒"}},
+      {"say": "შენს ბიზნესში იყენებ ამ ხრიკს? *დაწერე*!", "tone": "excited", "shot": "small business owner", "pop": {"type": "emoji", "value": "👇"}}
     ],
     "caption": "მაღაზიები ამ ხრიკს ყოველდღე იყენებენ შენზე 🧠",
     "hashtags": ["#ბიზნესი", "#მარკეტინგი", "#ფსიქოლოგია", "#გაყიდვები", "#fyp"]
   },
   {
-    "id": "S007", "niche": "business", "hook_type": "story",
-    "title": "კოდაკის შეცდომა",
+    "id": "S007", "niche": "business", "hook_type": "story", "title": "კოდაკის შეცდომა",
     "hook_text": "თავად გამოიგონეს ის, რამაც გაანადგურა",
-    "scenes": [
-      {"narration": "1975 წელს კოდაკის ინჟინერმა *პირველი ციფრული კამერა* შექმნა.", "shots": ["vintage camera", "old film camera"]},
-      {"narration": "კომპანიას შეეშინდა, რომ ეს მათ *ფირის ბიზნესს* მოკლავდა.", "shots": ["film roll", "serious business meeting"]},
-      {"narration": "სხვა კომპანიებმა კი ციფრული ფოტო *ყველას* ხელში ჩაუდეს.", "shots": ["taking photo with smartphone", "people taking selfie"]},
-      {"narration": "2012 წელს კოდაკმა *გაკოტრება* გამოაცხადა.", "shots": ["empty office", "closed shop"]},
-      {"narration": "გაკვეთილი: თუ შენ არ შეცვლი შენს ბიზნესს, *სხვა შეცვლის*. გამოიწერე მეტი ისტორიისთვის!", "shots": ["entrepreneur laptop", "city business district"]}
+    "beats": [
+      {"say": "1975 წელს კოდაკის ინჟინერმა რაღაც *გამოიგონა*.", "tone": "mysterious", "shot": "vintage camera", "pop": {"type": "number", "value": 1975}},
+      {"say": "*პირველი ციფრული კამერა*.", "tone": "excited", "shot": "old film camera", "pop": {"type": "emoji", "value": "📸"}},
+      {"say": "მაგრამ კომპანიას *შეეშინდა*.", "tone": "serious", "shot": "serious business meeting", "pop": {"type": "emoji", "value": "😨"}},
+      {"say": "ეს ხომ მათ *ფირის ბიზნესს* მოკლავდა.", "shot": "film roll", "pop": {"type": "card", "text": "ფირი = მათი ფული"}},
+      {"say": "ამიტომ იდეა *თაროზე შემოდეს*.", "tone": "sarcastic", "shot": "dusty shelf", "pop": {"type": "cross"}},
+      {"say": "სხვებმა კი ციფრული ფოტო *ყველას* ხელში ჩაუდეს.", "shot": "taking photo with smartphone", "pop": {"type": "emoji", "value": "📱"}},
+      {"say": "2012 წელს კოდაკი *გაკოტრდა*.", "tone": "serious", "shot": "empty office", "pop": {"type": "number", "value": 2012}},
+      {"say": "თუ შენ არ შეცვლი ბიზნესს, მას *სხვა შეცვლის*. გამოიწერე!", "tone": "serious", "shot": "city business district", "pop": {"type": "card", "text": "შეიცვალე ან გაქრები"}}
     ],
     "caption": "მათ ხელში ჰქონდათ მომავალი და დამალეს 📸",
     "hashtags": ["#ბიზნესი", "#ისტორია", "#მეწარმე", "#წარმატება", "#fyp"]
   },
   {
-    "id": "S008", "niche": "business", "hook_type": "mistake",
-    "title": "ხალხი შედეგს ყიდულობს",
+    "id": "S008", "niche": "business", "hook_type": "mistake", "title": "ხალხი შედეგს ყიდულობს",
     "hook_text": "შენი პროდუქტი არავის აინტერესებს",
-    "scenes": [
-      {"narration": "ხალხს შენი პროდუქტი *არ აინტერესებს*.", "shots": ["bored customer", "scrolling phone"]},
-      {"narration": "ადამიანი ბურღს კი არ ყიდულობს, ის *კედელში ხვრელს* ყიდულობს.", "shots": ["power drill", "drilling wall"]},
-      {"narration": "ანუ ის ყიდულობს *შედეგს*: ჩამოკიდებულ სურათს, ლამაზ სახლს.", "shots": ["hanging picture frame", "cozy living room"]},
-      {"narration": "ამიტომ ნუ ჩამოთვლი ფუნქციებს. თქვი, *რა შეეცვლება* კლიენტს.", "shots": ["business presentation", "happy customer"]},
-      {"narration": "შენ რას ყიდი სინამდვილეში? *დაწერე* კომენტარში!", "shots": ["shop owner smiling", "small business"]}
+    "beats": [
+      {"say": "ხალხს შენი პროდუქტი *არ აინტერესებს*.", "tone": "serious", "shot": "bored customer", "pop": {"type": "cross"}},
+      {"say": "ადამიანი ბურღს კი არ ყიდულობს...", "shot": "power drill", "pop": {"type": "emoji", "value": "🔩"}},
+      {"say": "ის *კედელში ხვრელს* ყიდულობს.", "tone": "curious", "shot": "drilling wall", "pop": {"type": "emoji", "value": "🕳️"}},
+      {"say": "უფრო სწორად, *ჩამოკიდებულ სურათს*.", "shot": "hanging picture frame", "pop": {"type": "emoji", "value": "🖼️"}},
+      {"say": "და *ლამაზ სახლს*.", "tone": "excited", "shot": "cozy living room", "pop": {"type": "emoji", "value": "🏡"}},
+      {"say": "ამიტომ ნუ ჩამოთვლი *ფუნქციებს*.", "shot": "business presentation", "pop": {"type": "card", "text": "ფუნქციები ❌"}},
+      {"say": "თქვი, *რა შეეცვლება* კლიენტს.", "tone": "excited", "shot": "happy customer", "pop": {"type": "card", "text": "შედეგი ✅"}},
+      {"say": "შენ რას ყიდი სინამდვილეში? *დაწერე*!", "shot": "shop owner smiling", "pop": {"type": "emoji", "value": "👇"}}
     ],
     "caption": "გაყიდვების ყველაზე მნიშვნელოვანი წესი 🎯",
     "hashtags": ["#ბიზნესი", "#გაყიდვები", "#მარკეტინგი", "#ბიზნესრჩევები", "#fyp"]
   },
   {
-    "id": "S009", "niche": "georgia", "hook_type": "shock",
-    "title": "დმანისის ადამიანები",
+    "id": "S009", "niche": "georgia", "hook_type": "shock", "title": "დმანისის ადამიანები",
     "hook_text": "პირველი ევროპელები საქართველოში ცხოვრობდნენ",
-    "scenes": [
-      {"narration": "აფრიკის გარეთ ერთ-ერთი *უძველესი ადამიანი* საქართველოში იპოვეს.", "shots": ["caucasus mountains aerial", "green valley mountains"]},
-      {"narration": "დმანისში აღმოჩენილი თავის ქალები *თითქმის 2 მილიონი* წლისაა.", "shots": ["human skull", "archaeology excavation"]},
-      {"narration": "ამ აღმოჩენამ მეცნიერებს *ადამიანის ისტორია* გადააწერინა.", "shots": ["scientist laboratory", "museum"]},
-      {"narration": "ჩვენი მიწა ერთ-ერთი *პირველი* იყო, სადაც ადამიანი აფრიკიდან მოვიდა.", "shots": ["ancient ruins hills", "hiking mountains"]},
-      {"narration": "იცოდი ეს? *გაუზიარე* მას, ვისაც ჯერ არ სმენია!", "shots": ["mountain sunset", "people looking at mountains"]}
+    "beats": [
+      {"say": "აფრიკის გარეთ ერთ-ერთი *უძველესი ადამიანი*...", "tone": "mysterious", "shot": "caucasus mountains aerial", "pop": {"type": "emoji", "value": "🌍"}},
+      {"say": "*საქართველოში* იპოვეს.", "tone": "proud", "shot": "green valley mountains", "pop": {"type": "emoji", "value": "🇬🇪"}},
+      {"say": "დმანისში აღმოჩენილი თავის ქალები...", "shot": "human skull", "pop": {"type": "emoji", "value": "💀"}},
+      {"say": "*თითქმის 2 მილიონი* წლისაა.", "tone": "surprised", "shot": "archaeology excavation", "pop": {"type": "number", "value": 1800000, "suffix": " წელი"}},
+      {"say": "ამ აღმოჩენამ მეცნიერებს *ადამიანის ისტორია* გადააწერინა.", "shot": "scientist laboratory", "pop": {"type": "card", "text": "ისტორია გადაიწერა"}},
+      {"say": "ჩვენი მიწა ერთ-ერთი *პირველი* იყო, სადაც ადამიანი აფრიკიდან მოვიდა.", "tone": "proud", "shot": "hiking mountains", "pop": {"type": "emoji", "value": "🏔️"}},
+      {"say": "იცოდი ეს? *გაუზიარე* მას, ვისაც ჯერ არ სმენია!", "tone": "excited", "shot": "mountain sunset", "pop": {"type": "emoji", "value": "📤"}}
     ],
     "caption": "საქართველო კაცობრიობის ისტორიის დასაწყისშია 🇬🇪",
     "hashtags": ["#საქართველო", "#ისტორია", "#დმანისი", "#იცოდით", "#fyp"]
   },
   {
-    "id": "S010", "niche": "georgia", "hook_type": "shock",
-    "title": "8000 წლის ღვინო",
+    "id": "S010", "niche": "georgia", "hook_type": "shock", "title": "8000 წლის ღვინო",
     "hook_text": "8000 წლის ტრადიცია",
-    "scenes": [
-      {"narration": "მსოფლიოში ღვინის *უძველესი კვალი* საქართველოში იპოვეს.", "shots": ["pouring red wine", "vineyard"]},
-      {"narration": "თიხის ჭურჭლის ნატეხებში ღვინის ნარჩენი *8000 წლისაა*.", "shots": ["clay pottery", "archaeology"]},
-      {"narration": "ქვევრში ღვინის დაყენების ქართული მეთოდი *იუნესკოს* მემკვიდრეობის სიაშია.", "shots": ["vineyard aerial", "grape harvest"]},
-      {"narration": "ანუ ჩვენ ღვინოს *ათასობით წელია* ვაყენებთ.", "shots": ["wine cellar", "grapes close up"]},
-      {"narration": "შენ რომელი ქართული ღვინო გიყვარს *ყველაზე მეტად*? დაწერე!", "shots": ["friends toasting wine", "dinner table"]}
+    "beats": [
+      {"say": "მსოფლიოში ღვინის *უძველესი კვალი*...", "tone": "mysterious", "shot": "pouring red wine", "pop": {"type": "emoji", "value": "🍷"}},
+      {"say": "*საქართველოში* იპოვეს.", "tone": "proud", "shot": "vineyard", "pop": {"type": "emoji", "value": "🇬🇪"}},
+      {"say": "თიხის ჭურჭლის ნატეხებში ღვინის ნარჩენი...", "shot": "clay pottery", "pop": {"type": "emoji", "value": "🏺"}},
+      {"say": "*8000 წლისაა*!", "tone": "surprised", "shot": "archaeology", "pop": {"type": "number", "value": 8000, "suffix": " წელი"}},
+      {"say": "ქვევრის ქართული მეთოდი კი *იუნესკოს* მემკვიდრეობის სიაშია.", "shot": "vineyard aerial", "pop": {"type": "card", "text": "UNESCO ✅"}},
+      {"say": "ანუ ჩვენ ღვინოს *ათასობით წელია* ვაყენებთ.", "tone": "proud", "shot": "wine cellar", "pop": {"type": "emoji", "value": "🍇"}},
+      {"say": "შენ რომელი ქართული ღვინო გიყვარს? *დაწერე*!", "tone": "excited", "shot": "friends toasting wine", "pop": {"type": "emoji", "value": "👇"}}
     ],
     "caption": "საქართველო ღვინის სამშობლოა და ეს მეცნიერულადაა დამტკიცებული 🍷",
     "hashtags": ["#საქართველო", "#ღვინო", "#ქვევრი", "#ისტორია", "#fyp"]
   },
   {
-    "id": "S011", "niche": "georgia", "hook_type": "question",
-    "title": "მამა და დედა",
+    "id": "S011", "niche": "georgia", "hook_type": "question", "title": "მამა და დედა",
     "hook_text": "რატომ იბნევიან უცხოელები?",
-    "scenes": [
-      {"narration": "მსოფლიოს ბევრ ენაში *მამა* დედას ნიშნავს.", "shots": ["mother hugging baby", "mother and child"]},
-      {"narration": "ქართულში კი მამა *მამაა*, დედა კი *დედა*.", "shots": ["father and son playing", "family in park"]},
-      {"narration": "უცხოელები ამაზე ხშირად *იბნევიან*.", "shots": ["confused tourist", "people laughing"]},
-      {"narration": "თან ქართულ დამწერლობას *სამი სახე* აქვს და სამივე იუნესკოს მემკვიდრეობაა.", "shots": ["old manuscript", "calligraphy writing"]},
-      {"narration": "შენ რომელი ქართული სიტყვა გიყვარს *ყველაზე მეტად*? დაწერე!", "shots": ["old town street", "tbilisi"]}
+    "beats": [
+      {"say": "იცი, რატომ იბნევიან უცხოელები *ქართულში*?", "tone": "curious", "shot": "confused tourist", "pop": {"type": "emoji", "value": "🤔"}},
+      {"say": "მსოფლიოს ბევრ ენაში *მამა* დედას ნიშნავს.", "shot": "mother hugging baby", "pop": {"type": "card", "text": "mama = დედა"}},
+      {"say": "ქართულში კი მამა *მამაა*...", "tone": "laughs", "shot": "father and son playing", "pop": {"type": "emoji", "value": "👨"}},
+      {"say": "და დედა *დედაა*.", "shot": "mother and child", "pop": {"type": "emoji", "value": "👩"}},
+      {"say": "თან ჩვენს დამწერლობას *სამი სახე* აქვს.", "tone": "proud", "shot": "old manuscript", "pop": {"type": "number", "value": 3, "suffix": " დამწერლობა"}},
+      {"say": "და სამივე *იუნესკოს* მემკვიდრეობაა.", "shot": "calligraphy writing", "pop": {"type": "check"}},
+      {"say": "შენ რომელი ქართული სიტყვა გიყვარს? *დაწერე*!", "tone": "excited", "shot": "old town street", "pop": {"type": "emoji", "value": "👇"}}
     ],
     "caption": "ქართული ენა ყველასგან განსხვავდება 🇬🇪",
     "hashtags": ["#საქართველო", "#ქართულიენა", "#იცოდით", "#ფაქტები", "#fyp"]
   },
   {
-    "id": "S012", "niche": "georgia", "hook_type": "story",
-    "title": "თბილისი და ხოხობი",
+    "id": "S012", "niche": "georgia", "hook_type": "story", "title": "თბილისი და ხოხობი",
     "hook_text": "თბილისი ერთი ხოხბის გამო აშენდა",
-    "scenes": [
-      {"narration": "ლეგენდის თანახმად, თბილისი *ერთი ხოხბის* გამო აშენდა.", "shots": ["pheasant bird", "forest"]},
-      {"narration": "მეფე ვახტანგ გორგასალი ნადირობდა და მისმა *შევარდენმა* ხოხობი დაიჭირა.", "shots": ["falcon flying", "forest path"]},
-      {"narration": "ორივე *ცხელ წყაროში* ჩავარდა.", "shots": ["hot spring steam", "steaming water"]},
-      {"narration": "მეფემ აქ ქალაქის აშენება ბრძანა და *თბილი* წყლის გამო დაარქვა თბილისი.", "shots": ["tbilisi aerial", "old town rooftops"]},
-      {"narration": "დღესაც აბანოთუბანში *იმავე წყაროებით* ბანაობენ. ყოფილხარ? დაწერე!", "shots": ["bath house", "spa steam"]}
+    "beats": [
+      {"say": "ლეგენდის თანახმად, თბილისი *ერთი ხოხბის* გამო აშენდა.", "tone": "mysterious", "shot": "pheasant bird", "pop": {"type": "emoji", "value": "🐦"}},
+      {"say": "მეფე ვახტანგ გორგასალი ტყეში *ნადირობდა*.", "shot": "forest path", "pop": {"type": "emoji", "value": "👑"}},
+      {"say": "მისმა *შევარდენმა* ხოხობი დაიჭირა...", "tone": "excited", "shot": "falcon flying", "pop": {"type": "emoji", "value": "🦅"}},
+      {"say": "და ორივე *ცხელ წყაროში* ჩავარდა.", "tone": "surprised", "shot": "hot spring steam", "pop": {"type": "emoji", "value": "♨️"}},
+      {"say": "მეფემ აქ ქალაქის აშენება ბრძანა.", "shot": "tbilisi aerial", "pop": {"type": "emoji", "value": "🏰"}},
+      {"say": "და *თბილი წყლის* გამო დაარქვა *თბილისი*.", "tone": "proud", "shot": "old town rooftops", "pop": {"type": "card", "text": "თბილი → თბილისი"}},
+      {"say": "დღესაც აბანოთუბანში *იმავე წყაროებით* ბანაობენ.", "shot": "bath house", "pop": {"type": "emoji", "value": "🛁"}},
+      {"say": "ყოფილხარ? *დაწერე*!", "tone": "excited", "shot": "spa steam", "pop": {"type": "emoji", "value": "👇"}}
     ],
     "caption": "თბილისის დაარსების ლეგენდა, რომელიც ყველამ უნდა იცოდეს 🦅",
     "hashtags": ["#თბილისი", "#საქართველო", "#ისტორია", "#ლეგენდა", "#fyp"]
   },
   {
-    "id": "S013", "niche": "psychology", "hook_type": "mistake",
-    "title": "ვარდისფერი სპილო",
+    "id": "S013", "niche": "psychology", "hook_type": "mistake", "title": "ვარდისფერი სპილო",
     "hook_text": "ნუ იფიქრებ ვარდისფერ სპილოზე",
-    "scenes": [
-      {"narration": "ახლა *ნუ იფიქრებ* ვარდისფერ სპილოზე.", "shots": ["elephant", "pink sky clouds"]},
-      {"narration": "უკვე იფიქრე, *ხომ*?", "shots": ["woman thinking", "surprised face"]},
-      {"narration": "როცა ტვინს რამეზე ფიქრს უკრძალავ, ის *უფრო ხშირად* უბრუნდება იმ ფიქრს.", "shots": ["stressed man", "sleepless night"]},
-      {"narration": "ამიტომ ნუ ეტყვი თავს: ნუ ნერვიულობ. თქვი, *რა გააკეთო* ამის ნაცვლად.", "shots": ["calm breathing", "meditation"]},
-      {"narration": "მომდევნო ვიდეოში კიდევ ერთ ტვინის ხრიკს გაჩვენებ. *გამოიწერე*!", "shots": ["person smiling at phone", "sunrise"]}
+    "beats": [
+      {"say": "ახლა *ნუ იფიქრებ* ვარდისფერ სპილოზე.", "tone": "whispers", "shot": "elephant", "pop": {"type": "emoji", "value": "🐘"}},
+      {"say": "უკვე იფიქრე, *ხომ*?", "tone": "laughs", "shot": "woman thinking", "pop": {"type": "emoji", "value": "😏"}},
+      {"say": "როცა ტვინს რამეზე ფიქრს *უკრძალავ*...", "tone": "curious", "shot": "stressed man", "pop": {"type": "cross"}},
+      {"say": "ის იმ ფიქრს *უფრო ხშირად* უბრუნდება.", "shot": "sleepless night", "pop": {"type": "emoji", "value": "🔁"}},
+      {"say": "ამიტომ ნუ ეტყვი თავს: *ნუ ნერვიულობ*.", "tone": "serious", "shot": "anxious woman", "pop": {"type": "card", "text": "„ნუ ნერვიულობ“ ❌"}},
+      {"say": "თქვი, *რა გააკეთო* ამის ნაცვლად.", "shot": "calm breathing meditation", "pop": {"type": "card", "text": "„ღრმად ჩავისუნთქავ“ ✅"}},
+      {"say": "შემდეგ ვიდეოში კიდევ ერთ ხრიკს გაჩვენებ. *გამოიწერე*!", "tone": "excited", "shot": "sunrise", "pop": {"type": "emoji", "value": "🔔"}}
     ],
     "caption": "შენი ტვინი ამ ხრიკს ვერ უძლებს 🐘",
     "hashtags": ["#ფსიქოლოგია", "#ტვინი", "#ფაქტები", "#თვითგანვითარება", "#fyp"]
   },
   {
-    "id": "S014", "niche": "psychology", "hook_type": "question",
-    "title": "ფრანკლინის ეფექტი",
+    "id": "S014", "niche": "psychology", "hook_type": "question", "title": "ფრანკლინის ეფექტი",
     "hook_text": "გინდა მოეწონო? სთხოვე დახმარება",
-    "scenes": [
-      {"narration": "გინდა ვინმეს *მოეწონო*? სთხოვე მას დახმარება.", "shots": ["friends talking coffee", "two people conversation"]},
-      {"narration": "ბენჯამინ ფრანკლინმა ასე თავისი *მოწინააღმდეგე* მეგობრად აქცია.", "shots": ["old library", "vintage books"]},
-      {"narration": "მან სთხოვა, *იშვიათი წიგნი* ეთხოვებინა.", "shots": ["old book close up", "giving a book"]},
-      {"narration": "ტვინი ფიქრობს: თუ მას ვეხმარები, ესე იგი *მომწონს*.", "shots": ["smiling man", "people helping each other"]},
-      {"narration": "ოღონდ *პატარა თხოვნით* დაიწყე. სცადე და დაწერე შედეგი!", "shots": ["friends laughing", "handshake"]}
+    "beats": [
+      {"say": "გინდა ვინმეს *მოეწონო*?", "tone": "curious", "shot": "friends talking coffee", "pop": {"type": "emoji", "value": "😍"}},
+      {"say": "მაშინ სთხოვე მას *დახმარება*.", "tone": "mysterious", "shot": "two people conversation", "pop": {"type": "emoji", "value": "🙏"}},
+      {"say": "ბენჯამინ ფრანკლინმა ასე თავისი *მოწინააღმდეგე* მეგობრად აქცია.", "shot": "old library", "pop": {"type": "card", "text": "მტერი → მეგობარი"}},
+      {"say": "მან უბრალოდ *იშვიათი წიგნი* ათხოვნინა.", "shot": "old book close up", "pop": {"type": "emoji", "value": "📖"}},
+      {"say": "ტვინი ფიქრობს: თუ ვეხმარები, ესე იგი *მომწონს*.", "tone": "curious", "shot": "smiling man", "pop": {"type": "emoji", "value": "🧠"}},
+      {"say": "ოღონდ *პატარა თხოვნით* დაიწყე.", "tone": "serious", "shot": "people helping each other", "pop": {"type": "check"}},
+      {"say": "სცადე და დაწერე *შედეგი*!", "tone": "excited", "shot": "friends laughing", "pop": {"type": "emoji", "value": "👇"}}
     ],
     "caption": "ეს ფსიქოლოგიური ხრიკი 250 წელზე მეტია მუშაობს 🧠",
     "hashtags": ["#ფსიქოლოგია", "#ურთიერთობები", "#ხრიკები", "#თვითგანვითარება", "#fyp"]
   },
   {
-    "id": "S015", "niche": "psychology", "hook_type": "shock",
-    "title": "უხილავი გორილა",
+    "id": "S015", "niche": "psychology", "hook_type": "shock", "title": "უხილავი გორილა",
     "hook_text": "ნახევარმა გორილა ვერ შეამჩნია",
-    "scenes": [
-      {"narration": "ექსპერიმენტში ადამიანებს *ბურთის პასების* დათვლა სთხოვეს.", "shots": ["basketball passing", "people playing basketball"]},
-      {"narration": "ამ დროს ეკრანზე *გორილას კოსტიუმში* გამოწყობილმა კაცმა გაიარა.", "shots": ["gorilla", "gorilla walking"]},
-      {"narration": "მაყურებლების თითქმის *ნახევარმა* ის ვერ შეამჩნია.", "shots": ["surprised woman", "eye close up"]},
-      {"narration": "როცა რამეზე ვართ კონცენტრირებული, ტვინი დანარჩენს *უბრალოდ შლის*.", "shots": ["crowd walking street", "focused man working"]},
-      {"narration": "ახლა დაფიქრდი: შენს ცხოვრებაში *რას ვერ ამჩნევ*? დაწერე!", "shots": ["man looking out window", "city night"]}
+    "beats": [
+      {"say": "ადამიანებს სთხოვეს, დაეთვალათ *ბურთის პასები*.", "tone": "curious", "shot": "basketball passing", "pop": {"type": "emoji", "value": "🏀"}},
+      {"say": "ამ დროს კადრში *გორილა* გაიარა.", "tone": "mysterious", "shot": "gorilla", "pop": {"type": "emoji", "value": "🦍"}},
+      {"say": "უფრო სწორად, კაცმა გორილას *კოსტიუმში*.", "tone": "laughs", "shot": "gorilla walking", "pop": {"type": "emoji", "value": "🕺"}},
+      {"say": "და იცი რა?", "tone": "whispers", "shot": "surprised woman", "pop": {"type": "emoji", "value": "🤫"}},
+      {"say": "თითქმის *ნახევარმა* ის ვერ შეამჩნია!", "tone": "surprised", "shot": "eye close up", "pop": {"type": "number", "value": 50, "suffix": "%"}},
+      {"say": "როცა კონცენტრირებული ვართ, ტვინი დანარჩენს *უბრალოდ შლის*.", "shot": "crowd walking street", "pop": {"type": "card", "text": "ფოკუსი = სიბრმავე"}},
+      {"say": "შენს ცხოვრებაში *რას ვერ ამჩნევ*? დაწერე!", "tone": "serious", "shot": "man looking out window", "pop": {"type": "emoji", "value": "👇"}}
     ],
     "caption": "შენც ვერ შეამჩნევდი, დარწმუნებული ვარ 🦍",
     "hashtags": ["#ფსიქოლოგია", "#ექსპერიმენტი", "#ტვინი", "#ფაქტები", "#fyp"]
   },
   {
-    "id": "S016", "niche": "psychology", "hook_type": "question",
-    "title": "წვეულების ეფექტი",
+    "id": "S016", "niche": "psychology", "hook_type": "question", "title": "წვეულების ეფექტი",
     "hook_text": "ხმაურში რატომ გესმის შენი სახელი?",
-    "scenes": [
-      {"narration": "ხმაურიან წვეულებაზე *სხვების საუბარს* ვერ არჩევ.", "shots": ["party crowd", "noisy bar"]},
-      {"narration": "მაგრამ ვინმე შენს სახელს იტყვის და *მაშინვე* გესმის.", "shots": ["woman turning head", "surprised man"]},
-      {"narration": "ამას *წვეულების ეფექტი* ჰქვია: ტვინი ხმებს გამუდმებით ფილტრავს.", "shots": ["sound waves", "headphones music"]},
-      {"narration": "და შენი სახელი ამ ფილტრს *ყოველთვის* გადის.", "shots": ["friends talking", "people at party"]},
-      {"narration": "ამიტომ, თუ გინდა მოეწონო ვინმეს, *სახელით მიმართე*. გამოიწერე მეტი ხრიკისთვის!", "shots": ["business handshake", "smiling people"]}
+    "beats": [
+      {"say": "ხმაურიან წვეულებაზე *სხვების საუბარს* ვერ არჩევ.", "shot": "party crowd", "pop": {"type": "emoji", "value": "🎉"}},
+      {"say": "მაგრამ ვინმე შენს *სახელს* იტყვის...", "tone": "whispers", "shot": "woman turning head", "pop": {"type": "emoji", "value": "👂"}},
+      {"say": "და *მაშინვე* გესმის!", "tone": "surprised", "shot": "surprised man", "pop": {"type": "emoji", "value": "😳"}},
+      {"say": "ამას *წვეულების ეფექტი* ჰქვია.", "tone": "serious", "shot": "sound waves", "pop": {"type": "card", "text": "წვეულების ეფექტი"}},
+      {"say": "ტვინი ხმებს გამუდმებით *ფილტრავს*...", "shot": "headphones music", "pop": {"type": "emoji", "value": "🧠"}},
+      {"say": "და შენი სახელი ფილტრს *ყოველთვის* გადის.", "shot": "friends talking", "pop": {"type": "check"}},
+      {"say": "ამიტომ, თუ გინდა მოეწონო ვინმეს, *სახელით მიმართე*.", "tone": "excited", "shot": "business handshake", "pop": {"type": "card", "text": "სახელი = ყურადღება"}},
+      {"say": "*გამოიწერე* მეტი ხრიკისთვის!", "tone": "excited", "shot": "smiling people", "pop": {"type": "emoji", "value": "🔔"}}
     ],
     "caption": "შენი ტვინი ყოველთვის გისმენს, მაშინაც კი, როცა არ ფიქრობ 👂",
     "hashtags": ["#ფსიქოლოგია", "#ტვინი", "#ურთიერთობები", "#ფაქტები", "#fyp"]
   },
   {
-    "id": "S017", "niche": "money", "hook_type": "shock",
-    "title": "10 წლის დაგვიანება",
+    "id": "S017", "niche": "money", "hook_type": "shock", "title": "10 წლის დაგვიანება",
     "hook_text": "10 წლის დაგვიანება = ნახევარი ქონება",
-    "scenes": [
-      {"narration": "თვეში *200 ლარი*. ერთი შეხედვით, არაფერია.", "shots": ["counting money", "coins hands"]},
-      {"narration": "მაგრამ თუ 25 წლიდან დააბანდებ წლიური რვა პროცენტით, 65 წლისთვის *დაახლოებით 700 ათასი* დაგიგროვდება.", "shots": ["plant growing from coins", "stock market chart"]},
-      {"narration": "თუ 35 წლიდან დაიწყებ, *მხოლოდ 300 ათასი*.", "shots": ["clock ticking", "hourglass"]},
-      {"narration": "ათი წლის დაგვიანება *ნახევარზე მეტი* ჯდება. ამას რთული პროცენტი ჰქვია.", "shots": ["calculator", "financial chart"]},
-      {"narration": "ეს ფინანსური რჩევა არ არის, მაგრამ დაფიქრდი: *როდის დაიწყებ*? დაწერე!", "shots": ["young man thinking", "city sunrise"]}
+    "beats": [
+      {"say": "თვეში *200 ლარი*. ერთი შეხედვით, არაფერია.", "tone": "sarcastic", "shot": "counting money", "pop": {"type": "number", "value": 200, "suffix": " ₾"}},
+      {"say": "მაგრამ თუ 25 წლიდან დააბანდებ, წლიური რვა პროცენტით...", "tone": "curious", "shot": "stock market chart", "pop": {"type": "card", "text": "25 წლიდან · 8%"}},
+      {"say": "65 წლისთვის *დაახლოებით 700 ათასი* დაგიგროვდება.", "tone": "excited", "shot": "plant growing from coins", "pop": {"type": "number", "value": 700000, "suffix": " ₾"}},
+      {"say": "თუ *35 წლიდან* დაიწყებ...", "tone": "serious", "shot": "clock ticking", "pop": {"type": "emoji", "value": "⏰"}},
+      {"say": "*მხოლოდ 300 ათასი*.", "tone": "serious", "shot": "hourglass", "pop": {"type": "number", "value": 300000, "suffix": " ₾"}},
+      {"say": "ათი წლის დაგვიანება *ნახევარზე მეტი* ჯდება.", "shot": "calculator", "pop": {"type": "emoji", "value": "📉"}},
+      {"say": "ამას *რთული პროცენტი* ჰქვია.", "shot": "financial chart", "pop": {"type": "card", "text": "რთული პროცენტი"}},
+      {"say": "ეს ფინანსური რჩევა არ არის. მაგრამ *როდის დაიწყებ*?", "tone": "serious", "shot": "young man thinking", "pop": {"type": "emoji", "value": "👇"}}
     ],
     "caption": "დრო ფულზე ძვირია და აი, ციფრებით ⏳",
     "hashtags": ["#ფინანსები", "#ინვესტიცია", "#ფული", "#დაზოგვა", "#fyp"]
   },
   {
-    "id": "S018", "niche": "money", "hook_type": "mistake",
-    "title": "პატარა ხარჯები",
+    "id": "S018", "niche": "money", "hook_type": "mistake", "title": "პატარა ხარჯები",
     "hook_text": "ყოველდღიური ყავა = 1800 ლარი",
-    "scenes": [
-      {"narration": "ყოველდღე *5 ლარიანი* ყავა. რა მოხდა მერე?", "shots": ["coffee to go", "barista making coffee"]},
-      {"narration": "წელიწადში ეს *1800 ლარზე მეტია*.", "shots": ["counting cash", "calendar"]},
-      {"narration": "დაამატე გამოწერები, რომლებსაც *აღარ იყენებ*, და საჭმლის მიტანა.", "shots": ["phone apps", "food delivery"]},
-      {"narration": "ფული დიდ ხარჯებზე კი არა, *პატარებზე* ქრება.", "shots": ["empty wallet", "worried woman"]},
-      {"narration": "ამ კვირაში ჩაიწერე ყველა ხარჯი. შედეგი *გაგაოცებს*. დაწერე, რაზე ხარჯავ ყველაზე მეტს!", "shots": ["writing in notebook", "planner desk"]}
+    "beats": [
+      {"say": "ყოველდღე *5 ლარიანი* ყავა.", "shot": "coffee to go", "pop": {"type": "number", "value": 5, "suffix": " ₾"}},
+      {"say": "რა მოხდა მერე?", "tone": "sarcastic", "shot": "barista making coffee", "pop": {"type": "emoji", "value": "☕"}},
+      {"say": "წელიწადში ეს *1800 ლარზე მეტია*!", "tone": "surprised", "shot": "counting cash", "pop": {"type": "number", "value": 1825, "suffix": " ₾"}},
+      {"say": "დაამატე გამოწერები, რომლებსაც *აღარ იყენებ*...", "shot": "phone apps", "pop": {"type": "emoji", "value": "📱"}},
+      {"say": "და *საჭმლის მიტანა*.", "shot": "food delivery", "pop": {"type": "emoji", "value": "🛵"}},
+      {"say": "ფული დიდ ხარჯებზე კი არა, *პატარებზე* ქრება.", "tone": "serious", "shot": "empty wallet", "pop": {"type": "card", "text": "პატარა ხარჯი = დიდი დანაკარგი"}},
+      {"say": "ამ კვირაში ჩაიწერე ყველა ხარჯი. შედეგი *გაგაოცებს*.", "tone": "excited", "shot": "writing in notebook", "pop": {"type": "emoji", "value": "📝"}},
+      {"say": "რაზე ხარჯავ ყველაზე მეტს? *დაწერე*!", "shot": "planner desk", "pop": {"type": "emoji", "value": "👇"}}
     ],
     "caption": "შენი ფული აქ ქრება და ვერც კი ამჩნევ ☕",
     "hashtags": ["#ფინანსები", "#ფული", "#დაზოგვა", "#რჩევები", "#fyp"]
   },
   {
-    "id": "S019", "niche": "money", "hook_type": "question",
-    "title": "ჯერ შენ თავს გადაუხადე",
+    "id": "S019", "niche": "money", "hook_type": "question", "title": "ჯერ შენ თავს გადაუხადე",
     "hook_text": "თვის ბოლოს არაფერი გრჩება?",
-    "scenes": [
-      {"narration": "ხელფასი აიღე და თვის ბოლოს *არაფერი* დაგრჩა?", "shots": ["empty wallet", "paying bills"]},
-      {"narration": "პრობლემა ისაა, რომ *ბოლოს* ზოგავ.", "shots": ["shopping bags", "credit card payment"]},
-      {"narration": "გააკეთე პირიქით: ხელფასის დღესვე *ათი პროცენტი* ცალკე გადადე.", "shots": ["piggy bank", "saving coins"]},
-      {"narration": "დანარჩენით იცხოვრე. ამას ჰქვია: *ჯერ შენ თავს გადაუხადე*.", "shots": ["happy woman laptop", "calm home"]},
-      {"narration": "წელიწადში *ერთ თვეზე მეტი* ხელფასი დაგიგროვდება. გამოიწერე მეტი რჩევისთვის!", "shots": ["money plant growing", "success celebration"]}
+    "beats": [
+      {"say": "ხელფასი აიღე და თვის ბოლოს *არაფერი* დაგრჩა?", "tone": "curious", "shot": "empty wallet", "pop": {"type": "emoji", "value": "😩"}},
+      {"say": "პრობლემა ისაა, რომ *ბოლოს* ზოგავ.", "tone": "serious", "shot": "shopping bags", "pop": {"type": "cross"}},
+      {"say": "გააკეთე *პირიქით*.", "tone": "excited", "shot": "credit card payment", "pop": {"type": "emoji", "value": "🔄"}},
+      {"say": "ხელფასის დღესვე *ათი პროცენტი* ცალკე გადადე.", "shot": "piggy bank", "pop": {"type": "number", "value": 10, "suffix": "%"}},
+      {"say": "დანარჩენით იცხოვრე.", "shot": "calm home", "pop": {"type": "check"}},
+      {"say": "ამას ჰქვია: *ჯერ შენ თავს გადაუხადე*.", "tone": "serious", "shot": "happy woman laptop", "pop": {"type": "card", "text": "ჯერ შენ თავს გადაუხადე"}},
+      {"say": "წელიწადში *ერთ თვეზე მეტი* ხელფასი დაგიგროვდება!", "tone": "excited", "shot": "money plant growing", "pop": {"type": "emoji", "value": "💰"}},
+      {"say": "*გამოიწერე* მეტი რჩევისთვის!", "shot": "success celebration", "pop": {"type": "emoji", "value": "🔔"}}
     ],
     "caption": "მარტივი წესი, რომელიც ფინანსებს შეგიცვლის 💰",
     "hashtags": ["#ფინანსები", "#ფული", "#დაზოგვა", "#ხელფასი", "#fyp"]
   },
   {
-    "id": "S020", "niche": "money", "hook_type": "story",
-    "title": "ყველაზე ძვირი პიცა",
+    "id": "S020", "niche": "money", "hook_type": "story", "title": "ყველაზე ძვირი პიცა",
     "hook_text": "ყველაზე ძვირი პიცა ისტორიაში",
-    "scenes": [
-      {"narration": "2010 წელს ერთმა პროგრამისტმა *ორი პიცა* იყიდა.", "shots": ["pizza box", "cheese pizza slice"]},
-      {"narration": "მან გადაიხადა *10 ათასი ბიტკოინი*.", "shots": ["bitcoin", "cryptocurrency"]},
-      {"narration": "მაშინ ეს დაახლოებით *40 დოლარი* იყო.", "shots": ["dollar bills", "cash money"]},
-      {"narration": "დღეს ამ ბიტკოინების ღირებულება *ასობით მილიონი დოლარია*.", "shots": ["stock market screen", "city skyline night"]},
-      {"narration": "22 მაისს ამ დღეს დღესაც *პიცის დღედ* იხსენებენ. შენ რას იზამდი? დაწერე!", "shots": ["friends eating pizza", "party"]}
+    "beats": [
+      {"say": "2010 წელს ერთმა პროგრამისტმა *ორი პიცა* იყიდა.", "tone": "curious", "shot": "pizza box", "pop": {"type": "emoji", "value": "🍕"}},
+      {"say": "მან გადაიხადა...", "tone": "mysterious", "shot": "cheese pizza slice", "pop": {"type": "emoji", "value": "🤔"}},
+      {"say": "*10 ათასი ბიტკოინი*.", "tone": "surprised", "shot": "bitcoin", "pop": {"type": "number", "value": 10000, "suffix": " ₿"}},
+      {"say": "მაშინ ეს დაახლოებით *40 დოლარი* იყო.", "shot": "dollar bills", "pop": {"type": "number", "value": 40, "prefix": "$"}},
+      {"say": "დღეს კი ეს ბიტკოინები *ასობით მილიონი დოლარი* ღირს!", "tone": "excited", "shot": "stock market screen", "pop": {"type": "emoji", "value": "🤯"}},
+      {"say": "22 მაისს ამ დღეს *პიცის დღედ* იხსენებენ.", "tone": "laughs", "shot": "friends eating pizza", "pop": {"type": "card", "text": "22 მაისი · Pizza Day"}},
+      {"say": "შენ რას იზამდი? *დაწერე*!", "tone": "excited", "shot": "party", "pop": {"type": "emoji", "value": "👇"}}
     ],
     "caption": "2 პიცა, რომელიც ახლა ასობით მილიონი ღირს 🍕",
     "hashtags": ["#ბიტკოინი", "#ფინანსები", "#კრიპტო", "#ისტორია", "#fyp"]
   },
   {
-    "id": "S021", "niche": "motivation", "hook_type": "story",
-    "title": "12 უარი",
+    "id": "S021", "niche": "motivation", "hook_type": "story", "title": "12 უარი",
     "hook_text": "12-ჯერ უარი უთხრეს",
-    "scenes": [
-      {"narration": "ეს ქალი *12 გამომცემლობამ* უარით გაისტუმრა.", "shots": ["woman writing", "typewriter"]},
-      {"narration": "ის მარტოხელა დედა იყო და *ძალიან ღარიბად* ცხოვრობდა.", "shots": ["mother and child", "rainy window"]},
-      {"narration": "მეცამეტე გამომცემელმა კი წიგნი *ბოლოს და ბოლოს* მიიღო.", "shots": ["book printing", "stack of books"]},
-      {"narration": "ეს იყო *ჰარი პოტერი*, ისტორიაში ერთ-ერთი ყველაზე გაყიდვადი წიგნი.", "shots": ["castle", "magic book"]},
-      {"narration": "შენი უარი შეიძლება *მეთორმეტე* იყოს და არა ბოლო. მონიშნე ის, ვისაც ეს სჭირდება!", "shots": ["mountain sunrise", "person running"]}
+    "beats": [
+      {"say": "ეს ქალი *12 გამომცემლობამ* უარით გაისტუმრა.", "tone": "serious", "shot": "woman writing", "pop": {"type": "number", "value": 12, "suffix": " უარი"}},
+      {"say": "ის მარტოხელა დედა იყო...", "tone": "sad", "shot": "rainy window", "pop": {"type": "emoji", "value": "🌧️"}},
+      {"say": "და *ძალიან ღარიბად* ცხოვრობდა.", "shot": "mother and child", "pop": {"type": "emoji", "value": "💔"}},
+      {"say": "მაგრამ მეცამეტე გამომცემელმა *თქვა კი*.", "tone": "excited", "shot": "book printing", "pop": {"type": "check"}},
+      {"say": "ეს წიგნი იყო...", "tone": "mysterious", "shot": "stack of books", "pop": {"type": "emoji", "value": "📚"}},
+      {"say": "*ჰარი პოტერი*!", "tone": "excited", "shot": "castle", "pop": {"type": "emoji", "value": "⚡"}},
+      {"say": "შენი უარი შეიძლება *მეთორმეტე* იყოს, და არა ბოლო.", "tone": "serious", "shot": "mountain sunrise", "pop": {"type": "card", "text": "არ გაჩერდე"}},
+      {"say": "*მონიშნე* ის, ვისაც ეს სჭირდება!", "tone": "excited", "shot": "person running", "pop": {"type": "emoji", "value": "👇"}}
     ],
     "caption": "როცა დანებება გინდა, გაიხსენე ეს ისტორია ✨",
     "hashtags": ["#მოტივაცია", "#წარმატება", "#ისტორია", "#თვითგანვითარება", "#fyp"]
   },
   {
-    "id": "S022", "niche": "motivation", "hook_type": "mistake",
-    "title": "1 პროცენტი ყოველდღე",
+    "id": "S022", "niche": "motivation", "hook_type": "mistake", "title": "1 პროცენტი ყოველდღე",
     "hook_text": "1% ყოველდღე = 37-ჯერ უკეთესი",
-    "scenes": [
-      {"narration": "დიდ ცვლილებას ელოდები? *შეცდომაა*.", "shots": ["person waiting", "bored man"]},
-      {"narration": "თუ ყოველდღე მხოლოდ *ერთი პროცენტით* გაუმჯობესდები...", "shots": ["morning run", "writing notes"]},
-      {"narration": "წლის ბოლოს *37-ჯერ* უკეთესი იქნები. ეს მათემატიკაა.", "shots": ["calculator", "growing chart"]},
-      {"narration": "თუ ყოველდღე ერთი პროცენტით გაუარესდები, თითქმის *ნულამდე* ჩამოხვალ.", "shots": ["tired man couch", "scrolling phone at night"]},
-      {"narration": "დღეს *რა პატარა ნაბიჯს* გადადგამ? დაწერე კომენტარში!", "shots": ["walking up stairs", "sunrise"]}
+    "beats": [
+      {"say": "დიდ ცვლილებას ელოდები? *შეცდომაა*.", "tone": "sarcastic", "shot": "bored man waiting", "pop": {"type": "cross"}},
+      {"say": "თუ ყოველდღე მხოლოდ *ერთი პროცენტით* გაუმჯობესდები...", "tone": "curious", "shot": "morning run", "pop": {"type": "number", "value": 1, "prefix": "+", "suffix": "%"}},
+      {"say": "წლის ბოლოს *37-ჯერ* უკეთესი იქნები!", "tone": "excited", "shot": "growing chart", "pop": {"type": "number", "value": 37, "prefix": "×"}},
+      {"say": "ეს *მათემატიკაა*.", "tone": "serious", "shot": "calculator", "pop": {"type": "card", "text": "1.01³⁶⁵ ≈ 37.8"}},
+      {"say": "ხოლო თუ ყოველდღე ერთი პროცენტით *გაუარესდები*...", "tone": "serious", "shot": "tired man couch", "pop": {"type": "number", "value": 1, "prefix": "−", "suffix": "%"}},
+      {"say": "თითქმის *ნულამდე* ჩამოხვალ.", "shot": "scrolling phone at night", "pop": {"type": "emoji", "value": "📉"}},
+      {"say": "დღეს *რა პატარა ნაბიჯს* გადადგამ? დაწერე!", "tone": "excited", "shot": "walking up stairs", "pop": {"type": "emoji", "value": "👇"}}
     ],
     "caption": "პატარა ნაბიჯები დიდ შედეგს იძლევა 📈",
     "hashtags": ["#მოტივაცია", "#ჩვევები", "#თვითგანვითარება", "#წარმატება", "#fyp"]
   },
   {
-    "id": "S023", "niche": "motivation", "hook_type": "question",
-    "title": "2 წუთის წესი",
+    "id": "S023", "niche": "motivation", "hook_type": "question", "title": "2 წუთის წესი",
     "hook_text": "გეზარება? სცადე 2 წუთი",
-    "scenes": [
-      {"narration": "რამის დაწყება *გეზარება*?", "shots": ["lazy man couch", "procrastination"]},
-      {"narration": "მიეცი თავს პირობა, რომ მხოლოდ *ორი წუთით* გააკეთებ.", "shots": ["timer", "clock"]},
-      {"narration": "ორი წუთი ვარჯიში, ორი წუთი კითხვა, *ორი წუთი* დალაგება.", "shots": ["push ups", "reading book"]},
-      {"narration": "ყველაზე რთული *დაწყებაა*. როცა დაიწყებ, ხშირად ვეღარ ჩერდები.", "shots": ["woman working on laptop", "running"]},
-      {"narration": "აბა, ახლავე სცადე და დაწერე, *რას დაიწყებ*!", "shots": ["sunrise", "man celebrating success"]}
+    "beats": [
+      {"say": "რამის დაწყება *გეზარება*?", "tone": "curious", "shot": "lazy man couch", "pop": {"type": "emoji", "value": "😴"}},
+      {"say": "მიეცი თავს პირობა, რომ მხოლოდ *ორი წუთით* გააკეთებ.", "shot": "timer", "pop": {"type": "number", "value": 2, "suffix": " წუთი"}},
+      {"say": "ორი წუთი *ვარჯიში*.", "tone": "excited", "shot": "push ups", "pop": {"type": "emoji", "value": "💪"}},
+      {"say": "ორი წუთი *კითხვა*.", "shot": "reading book", "pop": {"type": "emoji", "value": "📖"}},
+      {"say": "ორი წუთი *დალაგება*.", "shot": "cleaning room", "pop": {"type": "emoji", "value": "🧹"}},
+      {"say": "ყველაზე რთული *დაწყებაა*.", "tone": "serious", "shot": "woman working on laptop", "pop": {"type": "card", "text": "დაწყება = 80%"}},
+      {"say": "როცა დაიწყებ, ხშირად *ვეღარ ჩერდები*.", "tone": "laughs", "shot": "running", "pop": {"type": "check"}},
+      {"say": "ახლავე სცადე და დაწერე, *რას დაიწყებ*!", "tone": "excited", "shot": "sunrise", "pop": {"type": "emoji", "value": "👇"}}
     ],
     "caption": "ზარმაცობის მოსაგერიებელი ყველაზე მარტივი ხრიკი ⏱️",
     "hashtags": ["#მოტივაცია", "#ჩვევები", "#პროდუქტიულობა", "#თვითგანვითარება", "#fyp"]
   },
   {
-    "id": "S024", "niche": "motivation", "hook_type": "shock",
-    "title": "62 წლის ასაკში",
+    "id": "S024", "niche": "motivation", "hook_type": "shock", "title": "62 წლის ასაკში",
     "hook_text": "62 წლის ასაკში დაიწყო",
-    "scenes": [
-      {"narration": "ამ კაცმა თავისი ცნობილი ბიზნესი *62 წლის ასაკში* დაიწყო.", "shots": ["old man smiling", "senior man"]},
-      {"narration": "მანამდე ხშირად *იცვლიდა სამსახურს* და ბევრჯერ დამარცხდა.", "shots": ["man looking out window", "rainy day"]},
-      {"narration": "მას ჰქონდა *ქათმის რეცეპტი* და დაუღალავი ხასიათი.", "shots": ["fried chicken", "cooking kitchen"]},
-      {"narration": "ეს იყო *პოლკოვნიკი სანდერსი*, კეი-ეფ-სის დამფუძნებელი.", "shots": ["fast food restaurant", "city night"]},
-      {"narration": "ჯერ *გვიან არ არის*. მონიშნე ის, ვინც ფიქრობს, რომ დააგვიანა!", "shots": ["sunrise", "hiking"]}
+    "beats": [
+      {"say": "ამ კაცმა თავისი ცნობილი ბიზნესი *62 წლის ასაკში* დაიწყო.", "tone": "surprised", "shot": "old man smiling", "pop": {"type": "number", "value": 62, "suffix": " წელი"}},
+      {"say": "მანამდე ხშირად *იცვლიდა სამსახურს*...", "tone": "serious", "shot": "man looking out window", "pop": {"type": "emoji", "value": "🔁"}},
+      {"say": "და ბევრჯერ *დამარცხდა*.", "shot": "rainy day", "pop": {"type": "cross"}},
+      {"say": "მას ჰქონდა მხოლოდ ერთი *ქათმის რეცეპტი*.", "tone": "curious", "shot": "fried chicken", "pop": {"type": "emoji", "value": "🍗"}},
+      {"say": "და *დაუღალავი ხასიათი*.", "shot": "cooking kitchen", "pop": {"type": "emoji", "value": "🔥"}},
+      {"say": "ეს იყო *პოლკოვნიკი სანდერსი*...", "tone": "mysterious", "shot": "fast food restaurant", "pop": {"type": "emoji", "value": "👴"}},
+      {"say": "კეი-ეფ-სის *დამფუძნებელი*!", "tone": "excited", "shot": "city night", "pop": {"type": "card", "text": "KFC"}},
+      {"say": "ჯერ *გვიან არ არის*. მონიშნე ის, ვინც ფიქრობს, რომ დააგვიანა!", "tone": "serious", "shot": "sunrise hiking", "pop": {"type": "emoji", "value": "👇"}}
     ],
     "caption": "არასდროს არის გვიანი, აი, დამტკიცება 🍗",
     "hashtags": ["#მოტივაცია", "#წარმატება", "#ბიზნესი", "#ისტორია", "#fyp"]
