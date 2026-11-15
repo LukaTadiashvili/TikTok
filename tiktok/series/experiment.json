@@ -1,34 +1,83 @@
 {
-  "id": "experiment",
-  "title": "ექსპერიმენტი",
-  "episodes_total": 15,
-  "style": "Characters are fashionable and good-looking. Natural lip movement. No subtitles, no text on screen.",
-  "episodes": [
+ "id": "experiment",
+ "title": "ექსპერიმენტი",
+ "episodes_total": 15,
+ "style": "Characters are fashionable and good-looking. Natural lip movement. No subtitles, no text on screen.",
+ "episodes": [
+  {
+   "n": 1,
+   "title": "წესი ნომერი ერთი",
+   "clips": [
     {
-      "n": 1,
-      "title": "წესი ნომერი ერთი",
-      "clips": [
-        {
-          "prompt": "15-second fast-paced cinematic sequence, vertical 9:16, realistic, 35mm film look, film grain, cold blue tones, quick cuts, no dead time.\nShot 1 (0-4s): Aerial drone shot at dusk: an isolated modern-rustic two-story wooden cabin in a foggy pine forest, a black minivan driving away. No dialogue.\nShot 2 (4-8s): Six attractive, stylish young Georgian people with lean bodies walk toward the cabin with designer backpacks. A charming lean Georgian man with curly auburn hair in a mustard knit sweater smirks and says in Georgian: \"ორმოცდაათი ათასი შვიდ დღეში? საეჭვოდ კარგია.\"\nShot 3 (8-11s): Night, inside a stylish rustic living room with warm lamps. A black speaker on the wall crackles, and a calm, deep, slightly distorted male voice from the speaker says in Georgian: \"კეთილი იყოს თქვენი მობრძანება.\"\nShot 4 (11-15s): Quick cuts across the six tense faces as the speaker voice continues in Georgian: \"წესი პირველი: ერთ-ერთი თქვენგანი იტყუება.\" The last cut lands on a handsome lean young Georgian man with styled dark wavy hair and stubble in a black leather jacket, who slowly turns to stare suspiciously at a beautiful young woman with long light-brown waves and gold hoops.\nCharacters are fashionable and good-looking. Natural lip movement. Ambient: wind, static crackle. No subtitles, no text on screen.",
-          "lines": [
-            {"who": "narrator", "at": 0.4, "text": "ექვსი უცნობი. შვიდი დღე. *ორმოცდაათი ათასი ლარი*."},
-            {"who": "veo", "from": 4.3, "to": 7.8, "text": "ორმოცდაათი ათასი შვიდ დღეში? *საეჭვოდ კარგია*."},
-            {"who": "veo", "from": 8.3, "to": 10.8, "text": "კეთილი იყოს თქვენი მობრძანება."},
-            {"who": "veo", "from": 11.2, "to": 14.6, "text": "წესი პირველი: *ერთ-ერთი თქვენგანი იტყუება*."}
-          ],
-          "pops": [{"type": "number", "value": 50000, "suffix": " ₾", "at": 2.4, "dur": 1.8}]
-        },
-        {
-          "prompt": "15-second fast-paced cinematic sequence, vertical 9:16, realistic, 35mm film look, film grain, cold blue moonlight, quick cuts.\nShot 1 (0-4s): Dark cabin hallway. A handsome lean young Georgian man with styled dark wavy hair and stubble in a black leather jacket yanks the front door handle — locked. Heavy lock clicks.\nShot 2 (4-8s): A pretty petite Georgian woman with a sleek black bob and thin gold round glasses in an olive blazer holds an empty basket and says in Georgian with panic: \"ტელეფონები... ჩვენი ტელეფონები გაქრა!\"\nShot 3 (8-11s): Quick close-ups, no dialogue: a fit Georgian man with a short faded haircut in a black hoodie clenches his jaw; a beautiful woman with light-brown waves exchanges a secret glance with someone off-screen.\nShot 4 (11-15s): Dim bedroom. A striking Georgian woman with sharp features and dark hair in a sleek tight bun, charcoal hoodie, sits on a bed, looks straight into the camera and says quietly in Georgian: \"ერთ-ერთი ჩვენგანი იტყუება.\" Hard cut to black.\nCharacters are fashionable and good-looking. Natural lip movement. Ambient: lock clicking, wind, creaking wood. No subtitles, no text on screen.",
-          "lines": [
-            {"who": "veo", "from": 4.3, "to": 7.8, "text": "ტელეფონები... ჩვენი *ტელეფონები გაქრა*!"},
-            {"who": "narrator", "at": 8.1, "text": "მათ ჯერ არ იციან, რომ ექსპერიმენტი *უკვე დაიწყო*."},
-            {"who": "veo", "from": 11.4, "to": 14.6, "text": "ერთ-ერთი ჩვენგანი *იტყუება*."}
-          ],
-          "pops": []
-        }
-      ],
-      "next": "🔒 სერია 2 · ორ დღეში"
+     "prompt": "15-second fast-paced cinematic sequence, vertical 9:16, realistic, 35mm film look, film grain, cold blue tones, quick cuts, no dead time.\nShot 1 (0-4s): Aerial drone shot at dusk: an isolated modern-rustic two-story wooden cabin in a foggy pine forest, a black minivan driving away. No dialogue.\nShot 2 (4-8s): Six attractive, stylish young Georgian people with lean bodies walk toward the cabin with designer backpacks. A charming lean Georgian man with curly auburn hair in a mustard knit sweater smirks and says in Georgian: \"ორმოცდაათი ათასი შვიდ დღეში? საეჭვოდ კარგია.\"\nShot 3 (8-11s): Night, inside a stylish rustic living room with warm lamps, the six sit on sofas. A black speaker on the wall crackles, and a calm, deep, slightly distorted male voice from the speaker says in Georgian: \"კეთილი იყოს თქვენი მობრძანება.\"\nShot 4 (11-15s): The speaker voice continues in Georgian: \"თქვენ შორის ერთი ჩვენთვის მუშაობს.\" Quick cuts across the six shocked faces as they slowly look at each other with suspicion. The last cut lands on a handsome lean young Georgian man with styled dark wavy hair and stubble in a black leather jacket, staring at a beautiful young woman with long light-brown waves and gold hoops.\nCharacters are fashionable and good-looking. Natural lip movement. Ambient: wind, static crackle. No subtitles, no text on screen.",
+     "lines": [
+      {
+       "who": "narrator",
+       "at": 0.4,
+       "text": "ექვსი უცნობი. შვიდი დღე. *ორმოცდაათი ათასი ლარი*."
+      },
+      {
+       "who": "veo",
+       "from": 4.3,
+       "to": 7.8,
+       "text": "ორმოცდაათი ათასი შვიდ დღეში? *საეჭვოდ კარგია*."
+      },
+      {
+       "who": "veo",
+       "from": 8.3,
+       "to": 10.8,
+       "text": "კეთილი იყოს თქვენი მობრძანება."
+      },
+      {
+       "who": "veo",
+       "from": 11.2,
+       "to": 13.6,
+       "text": "თქვენ შორის *ერთი ჩვენთვის მუშაობს*."
+      }
+     ],
+     "pops": [
+      {
+       "type": "number",
+       "value": 50000,
+       "suffix": " ₾",
+       "at": 2.4,
+       "dur": 1.8
+      }
+     ]
+    },
+    {
+     "prompt": "15-second fast-paced cinematic sequence, vertical 9:16, realistic, 35mm film look, film grain, cold blue moonlight, quick cuts.\nShot 1 (0-5s): Night, the six stylish young Georgian people argue silently in the living room, pointing at each other, close-ups of suspicious eyes. No dialogue.\nShot 2 (5-8s): Dark cabin hallway. A handsome lean young Georgian man with styled dark wavy hair and stubble in a black leather jacket yanks the front door handle — locked. A pretty petite Georgian woman with a sleek black bob and thin gold round glasses in an olive blazer holds an empty basket and says in Georgian with panic: \"ტელეფონები გაქრა!\"\nShot 3 (8-11s): Quick close-ups, no dialogue: a fit Georgian man with a short faded haircut in a black hoodie clenches his jaw; a beautiful woman with light-brown waves glances nervously over her shoulder.\nShot 4 (11-15s): Dim bedroom. A striking Georgian woman with sharp features and dark hair in a sleek tight bun, charcoal hoodie, sits on a bed, looks straight into the camera with a faint cold smile and says quietly in Georgian: \"მოღალატეს ვერასდროს იპოვიან.\" Hard cut to black.\nCharacters are fashionable and good-looking. Natural lip movement. Ambient: lock clicking, wind, creaking wood. No subtitles, no text on screen.",
+     "lines": [
+      {
+       "who": "narrator",
+       "at": 0.3,
+       "text": "ყოველ ღამე კენჭისყრა. იპოვი *მოღალატეს*, ფულს ყველა გაიყოფთ. შეცდები და ერთი *სახლს ტოვებს*."
+      },
+      {
+       "who": "veo",
+       "from": 6.3,
+       "to": 7.9,
+       "text": "ტელეფონები *გაქრა*!"
+      },
+      {
+       "who": "veo",
+       "from": 11.4,
+       "to": 14.6,
+       "text": "მოღალატეს *ვერასდროს* იპოვიან."
+      }
+     ],
+     "pops": []
     }
-  ]
+   ],
+   "next": "🔒 სერია 2 · ორ დღეში",
+   "caption": "ვინ არის მოღალატე? დაწერე შენი ვარაუდი 👇"
+  }
+ ],
+ "rules": [
+  "7 დღე, 50 000 ლარი",
+  "ერთი მონაწილე მოღალატეა (დოქტორისთვის მუშაობს)",
+  "ყოველ ღამე კენჭისყრა — ყველაზე მეტი ხმის მქონე ტოვებს სახლს",
+  "მოღალატის გაგდება = ფულს დარჩენილები იყოფენ; შეცდომა = უდანაშაულო მიდის ფულის გარეშე",
+  "მოღალატე: თეკლა (გამოაშკარავება სერია 12-ში)"
+ ]
 }
