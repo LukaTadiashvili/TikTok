@@ -160,6 +160,58 @@ def fit_window(spans, a, b):
     return (s0, s1) if s1 - s0 > 0.6 else (a, b)
 
 
+def make_cover(season, ep, clip_files, out):
+    """Thumbnail 1080x1920: a strong frame from the episode + big "სერია N" title.
+    Text sits in the middle band so it also reads in TikTok's 3:4 profile grid crop."""
+    from PIL import Image, ImageDraw, ImageFilter, ImageFont
+    W, H = 1080, 1920
+    cov = ep.get("cover", {})
+    ci = min(cov.get("clip", len(clip_files) - 1), len(clip_files) - 1)
+    src = clip_files[ci]
+    at = cov.get("at", g.duration(src) * 0.8)
+    frame = out.with_suffix(".frame.jpg")
+    g.run(["ffmpeg", "-y", "-loglevel", "error", "-ss", f"{at:.2f}", "-i", src, "-frames:v", "1", "-q:v", "2", frame])
+    img = Image.open(frame).convert("RGB")
+    sc = max(W / img.width, H / img.height)
+    img = img.resize((round(img.width * sc), round(img.height * sc)), Image.LANCZOS)
+    l, t = (img.width - W) // 2, (img.height - H) // 2
+    img = img.crop((l, t, l + W, t + H)).convert("RGBA")
+    # darken for contrast: vertical gradient, strongest behind the text band
+    shade = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    d = ImageDraw.Draw(shade)
+    for y in range(H):
+        k = 0.25 + 0.5 * max(0.0, 1 - abs(y - H * 0.62) / (H * 0.32))
+        d.line([(0, y), (W, y)], fill=(0, 0, 0, int(255 * k)))
+    img.alpha_composite(shade)
+    font = str(ROOT / "assets/fonts/TikTokGeo.ttf")
+
+    def centered(text, size, y, fill, glow=None, spacing=0):
+        f = ImageFont.truetype(font, size)
+        dd = ImageDraw.Draw(img)
+        w = sum(dd.textlength(ch, font=f) for ch in text) + spacing * (len(text) - 1)
+        if glow:
+            layer = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+            gd = ImageDraw.Draw(layer)
+            x = (W - w) / 2
+            for ch in text:
+                gd.text((x, y), ch, font=f, fill=glow)
+                x += gd.textlength(ch, font=f) + spacing
+            blur = layer.filter(ImageFilter.GaussianBlur(28))
+            img.alpha_composite(blur)
+            img.alpha_composite(blur)
+        x = (W - w) / 2
+        for ch in text:
+            dd.text((x, y), ch, font=f, fill=fill)
+            x += dd.textlength(ch, font=f) + spacing
+
+    centered(season["title"].upper(), 74, int(H * 0.47), (255, 255, 255, 235), spacing=10)
+    centered(f"სერია {ep['n']}", 190, int(H * 0.53), (255, 255, 255, 255), glow=(255, 30, 50, 255))
+    if ep.get("title"):
+        centered(f"„{ep['title']}“", 54, int(H * 0.67), (255, 230, 0, 255))
+    img.convert("RGB").save(out, quality=92)
+    return out
+
+
 def render_episode(season, ep, clip_files, final):
     """Cinematic edit: Veo sound untouched, film subtitles, title, freeze-frame end card."""
     work = OUT / f"{season['id']}_ep{ep['n']:02d}"
@@ -319,6 +371,19 @@ def collect(season, state, do_render=True, wait=0):
                       data={"chat_id": os.environ["TELEGRAM_CHAT_ID"], "supports_streaming": "true",
                             "caption": f"✅ სერია {ep['n']} მზადაა ({total:.0f} წმ)"},
                       files={"video": f}, timeout=300).raise_for_status()
+    try:
+        cover = make_cover(season, ep, files, final.with_suffix(".cover.jpg"))
+        with open(cover, "rb") as f:
+            requests.post(f"https://api.telegram.org/bot{token}/sendPhoto",
+                          data={"chat_id": os.environ["TELEGRAM_CHAT_ID"],
+                                "caption": "🖼️ ყდა (cover): TikTok-ში „Edit cover“ → ატვირთე ეს სურათი"},
+                          files={"photo": f}, timeout=120).raise_for_status()
+        with open(cover, "rb") as f:  # also as a file, full quality
+            requests.post(f"https://api.telegram.org/bot{token}/sendDocument",
+                          data={"chat_id": os.environ["TELEGRAM_CHAT_ID"]},
+                          files={"document": (f"cover_ep{ep['n']:02d}.jpg", f, "image/jpeg")}, timeout=120)
+    except Exception as e:
+        g.log(f"cover failed: {e}")
     send_text(caption)
     send_text("📌 ატვირთვისას TikTok-ში ჩართე „AI-generated content“.")
     state["received"] = state["received"][len(ep["clips"]):]
