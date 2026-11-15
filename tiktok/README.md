@@ -8,7 +8,7 @@ Every morning around **07:20 Tbilisi time**, GitHub Actions makes one 20-30 seco
 - **Pop-ups synced to the voice:** emojis, counting numbers (`700 000 ₾`), keyword cards and ✅/❌ marks, each with a pop sound
 - **Captions:** word-by-word with exact timing; the spoken word is highlighted and key words sit on yellow boxes
 - **Progress bar** at the top, plus whoosh sounds and optional music from `assets/music/`
-- **Voice:** ElevenLabs (realistic, with emotion tags such as `[excited]` and `[whispers]`). If it isn't set up, the free edge-tts voice is used instead.
+- **Voice:** tried in this order: ElevenLabs (paid, most realistic), then Gemini TTS (free API key; Georgian is a preview language), then the free edge-tts voice.
 
 Cost: ElevenLabs Starter is about $6 per month. Everything else is free.
 
@@ -38,7 +38,8 @@ Go to GitHub repo **Settings, then Secrets and variables, then Actions, then New
 | `TELEGRAM_BOT_TOKEN` | In Telegram, message **@BotFather**, send `/newbot`, and copy the token |
 | `TELEGRAM_CHAT_ID` | Send "hi" to your new bot, then open `https://api.telegram.org/bot<TOKEN>/getUpdates` and copy the number in `"chat":{"id":...}` |
 | `PIXABAY_API_KEY` | Sign up at pixabay.com, then open pixabay.com/api/docs and copy the green key shown under **Parameters** next to `key` |
-| `ELEVENLABS_API_KEY` | elevenlabs.io, then the Starter plan, then Profile, then API Keys, then Create (Text to Speech and Voices read access) |
+| `GEMINI_API_KEY` | *Free.* aistudio.google.com, then Get API key, then Create API key |
+| `ELEVENLABS_API_KEY` | *Optional, paid.* elevenlabs.io, then the Starter plan, then Profile, then API Keys, then Create (Text to Speech and Voices read access) |
 
 Variables (the Variables tab): `ELEVENLABS_VOICES` = comma-separated voice IDs to rotate (otherwise `voices.json` is used). Optionally `ELEVENLABS_MODEL` to force a model.
 

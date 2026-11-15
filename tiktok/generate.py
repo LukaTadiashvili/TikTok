@@ -177,6 +177,66 @@ def eleven_voice(key, path, text_with_tags):
     return f"ElevenLabs/{model}", words
 
 
+GEMINI_VOICES = ["Puck", "Kore", "Fenrir", "Aoede"]
+
+
+def gemini_voice(key, path, beats, targets):
+    """Free Gemini API voice (Georgian is a preview language). One request for the whole script;
+    beat boundaries come from the pauses in the audio, words are spread inside each beat."""
+    model = os.getenv("GEMINI_TTS_MODEL") or "gemini-2.5-flash-preview-tts"
+    voice = os.getenv("GEMINI_VOICE") or random.choice(GEMINI_VOICES)
+    lines = "\n".join((f"[{b['tone']}] " if b.get("tone") else "") + plain(b["say"]) for b in beats)
+    prompt = ("Read this Georgian TikTok voiceover aloud like a charismatic, energetic native Georgian narrator. "
+              "Hook the listener from the first word, vary your intonation, speed up on exciting parts, "
+              "and make a short clear pause after each line. The words in [brackets] are tone directions: "
+              "follow them but never read them aloud.\n\n" + lines)
+    r = requests.post(
+        f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
+        headers={"x-goog-api-key": key, "Content-Type": "application/json"},
+        json={"contents": [{"parts": [{"text": prompt}]}],
+              "generationConfig": {"responseModalities": ["AUDIO"], "speechConfig": {
+                  "voiceConfig": {"prebuiltVoiceConfig": {"voiceName": voice}}}}},
+        timeout=300)
+    r.raise_for_status()
+    part = r.json()["candidates"][0]["content"]["parts"][0]["inlineData"]
+    pcm = path.with_suffix(".pcm")
+    pcm.write_bytes(base64.b64decode(part["data"]))
+    rate = re.search(r"rate=(\d+)", part.get("mimeType", "")) or None
+    run(["ffmpeg", "-y", "-loglevel", "error", "-f", "s16le", "-ar", rate.group(1) if rate else "24000",
+         "-ac", "1", "-i", pcm, "-af", "silenceremove=start_periods=1:start_threshold=-45dB", "-b:a", "160k", path])
+    return f"Gemini/{voice}", words_from_pauses(path, beats, targets)
+
+
+def words_from_pauses(path, beats, targets):
+    total = duration(path)
+    out = subprocess.run(["ffmpeg", "-i", str(path), "-af", "silencedetect=noise=-38dB:d=0.15", "-f", "null", "-"],
+                         capture_output=True, text=True).stderr
+    starts = [float(x) for x in re.findall(r"silence_start: ([\d.]+)", out)]
+    ends = [float(x) for x in re.findall(r"silence_end: ([\d.]+)", out)]
+    gaps = [(e - s, (s + e) / 2) for s, e in zip(starts, ends) if 0.2 < s and e < total - 0.2]
+    n = len(beats)
+    chars = [len(plain(b["say"])) for b in beats]
+    if len(gaps) >= n - 1:
+        cuts = sorted(mid for _, mid in sorted(gaps, reverse=True)[:n - 1])
+    else:  # not enough clear pauses: split by text length
+        cuts, acc = [], 0
+        for c in chars[:-1]:
+            acc += c
+            cuts.append(total * acc / sum(chars))
+    bounds = [0.0] + cuts + [total]
+    words = []
+    for b in range(n):
+        ws = [w for w, _, bb in targets if bb == b]
+        a, z = bounds[b] + 0.05, bounds[b + 1] - 0.1
+        weights = [len(w) + 1 for w in ws]
+        t = a
+        for w, wt in zip(ws, weights):
+            d = (z - a) * wt / sum(weights)
+            words.append((w, t, t + d))
+            t += d
+    return words
+
+
 def edge_voice(path, text, voice):
     if os.getenv("DISABLE_EDGE_TTS"):
         return None
@@ -212,6 +272,12 @@ def make_voice(script, work):
             result = eleven_voice(key, audio, tagged)
         except Exception as e:
             log(f"ElevenLabs failed: {e}")
+    gkey = os.getenv("GEMINI_API_KEY")
+    if not result and gkey:
+        try:
+            result = gemini_voice(gkey, audio, script["beats"], targets)
+        except Exception as e:
+            log(f"Gemini TTS failed: {e}")
     if not result:
         try:
             result = edge_voice(audio, plain(tagged), random.choice(EDGE_VOICES))
