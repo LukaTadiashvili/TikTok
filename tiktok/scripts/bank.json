@@ -1,236 +1,2559 @@
 [
-  {
-    "id": "M001", "niche": "mystery", "hook_type": "shock", "mood": "dark", "title": "დიატლოვის უღელტეხილი",
-    "hook_text": "9 ადამიანმა კარავი შიგნიდან გაჭრა",
-    "beats": [
-      {"say": "1959 წელს, ურალის მთებში, ცხრა ტურისტი *უკვალოდ* გაქრა.", "tone": "whispers", "image": "lonely tent half buried in snow on a mountain slope at night, blizzard, ural mountains", "fx": ["boom"], "pop": {"type": "number", "value": 1959}},
-      {"say": "როცა იპოვეს, მათი კარავი *შიგნიდან* იყო გაჭრილი.", "tone": "mysterious", "image": "canvas tent ripped open from the inside with long knife cuts, snow, flashlight beam at night", "fx": ["glitch"], "pop": {"type": "emoji", "value": "🔪"}},
-      {"say": "ისინი საშინელ ყინვაში *ფეხშიშველები* გაიქცნენ.", "tone": "scared", "image": "bare footprints in deep snow leading into a dark pine forest at night", "fx": ["heartbeat"], "pop": {"type": "number", "value": -30, "suffix": "°C"}},
-      {"say": "ზოგს *ჩამტვრეული ძვლები* ჰქონდა, გარეგანი ჭრილობების გარეშე.", "tone": "serious", "image": "x-ray of fractured ribs glowing on a light box in a dark room", "fx": ["glitch"], "pop": {"type": "card", "text": "შიდა დაზიანებები"}},
-      {"say": "ტანსაცმელზე კი *რადიაციის* კვალი აღმოაჩინეს.", "tone": "mysterious", "image": "old geiger counter next to frozen clothes in a dark soviet laboratory, eerie green light", "pop": {"type": "emoji", "value": "☢️"}},
-      {"say": "რა მოხდა სინამდვილეში?", "tone": "whispers", "image": "silhouettes of soviet investigators looking up at a snowy mountain pass in fog", "fx": ["riser"], "pop": {"type": "emoji", "value": "🤔"}},
-      {"say": "2021 წელს მეცნიერებმა თქვეს: *ზვავი*.", "tone": "dramatic", "image": "massive snow avalanche crashing down a mountain at night", "fx": ["boom"], "pop": {"type": "card", "text": "ზვავი?"}},
-      {"say": "მაგრამ ბევრს ეს დღემდე *არ სჯერა*. შენ რას ფიქრობ? *დაწერე*!", "tone": "serious", "image": "ominous dark mountain pass under green northern lights", "pop": {"type": "emoji", "value": "👇"}}
+ {
+  "id": "X001",
+  "niche": "manipulation",
+  "hook_type": "mistake",
+  "mood": "dark",
+  "title": "გაზლაითინგი",
+  "hook_text": "„ეგ არ მითქვამს“ — ნიშანი №1",
+  "beats": [
+   {
+    "say": "თუ შენთან ხშირად ამბობენ: *ეგ არ მითქვამს*...",
+    "tone": "whispers",
+    "image": "woman looking confused at a cracked mirror in a dark room",
+    "fx": [
+     "boom"
     ],
-    "caption": "ამ საიდუმლოს 60 წელზე მეტია ვერავინ ხსნის 🏔️",
-    "hashtags": ["#მისტიკა", "#საიდუმლოებები", "#დიატლოვი", "#იცოდით", "#fyp"]
-  },
-  {
-    "id": "M002", "niche": "mystery", "hook_type": "story", "mood": "dark", "title": "მერი სელესტი",
-    "hook_text": "გემი იპოვეს. ეკიპაჟი — ვერასდროს",
-    "beats": [
-      {"say": "1872 წელს ოკეანეში იპოვეს გემი, რომელიც *თავისით* მიცურავდა.", "tone": "mysterious", "image": "old wooden sailing ship drifting alone on a foggy grey ocean", "fx": ["boom"], "pop": {"type": "number", "value": 1872}},
-      {"say": "გემზე *არავინ* იყო.", "tone": "whispers", "image": "empty ship deck with ropes and a wooden wheel, fog, no people", "fx": ["glitch"], "pop": {"type": "number", "value": 0, "suffix": " ადამიანი"}},
-      {"say": "კაპიტანი, მისი ცოლი, ორი წლის გოგონა და შვიდი მეზღვაური *გაქრა*.", "tone": "sad", "image": "old family portrait of a sea captain with wife and little daughter, sepia, candlelight", "pop": {"type": "number", "value": 10, "suffix": " გაქრა"}},
-      {"say": "მაგრამ *ექვსი თვის* საკვები და წყალი ხელუხლებელი დარჩა.", "tone": "curious", "image": "barrels and food supplies in a dark ship hold, lantern light", "pop": {"type": "card", "text": "6 თვის მარაგი"}},
-      {"say": "პირადი ნივთებიც *ადგილზე* იყო.", "tone": "mysterious", "image": "captain's cabin with personal belongings, open book and a pipe on a table, eerie light", "fx": ["heartbeat"], "pop": {"type": "check"}},
-      {"say": "აკლდა მხოლოდ *ერთი* რამ...", "tone": "whispers", "image": "dark ship side with empty ropes hanging where a boat used to be, fog", "fx": ["riser"], "pop": {"type": "emoji", "value": "🤔"}},
-      {"say": "*სამაშველო ნავი*!", "tone": "dramatic", "image": "small empty rowing boat lost in a stormy ocean at night", "fx": ["boom"], "pop": {"type": "emoji", "value": "🚣"}},
-      {"say": "რატომ დატოვებდა ვინმე კარგ გემს? *დაწერე* შენი ვერსია!", "tone": "serious", "image": "ghost ship silhouette in moonlight on calm black sea", "pop": {"type": "emoji", "value": "👇"}}
+    "pop": {
+     "type": "card",
+     "text": "„ეგ არ მითქვამს“"
+    }
+   },
+   {
+    "say": "ან: *ზედმეტად მგრძნობიარე* ხარ...",
+    "tone": "sarcastic",
+    "image": "man pointing at a worried woman in dim light, tense atmosphere",
+    "fx": [
+     "glitch"
     ],
-    "caption": "150 წელია ამ გემის საიდუმლოს ვერავინ ხსნის 🚢",
-    "hashtags": ["#მისტიკა", "#საიდუმლოებები", "#ისტორია", "#ოკეანე", "#fyp"]
-  },
-  {
-    "id": "M003", "niche": "mystery", "hook_type": "shock", "mood": "dark", "title": "Wow! სიგნალი",
-    "hook_text": "კოსმოსიდან 72 წამიანი სიგნალი მოვიდა",
-    "beats": [
-      {"say": "1977 წელს ტელესკოპმა კოსმოსიდან *უცნაური სიგნალი* დაიჭირა.", "tone": "mysterious", "image": "giant radio telescope under a starry night sky, milky way", "fx": ["boom"], "pop": {"type": "number", "value": 1977}},
-      {"say": "ის *72 წამს* გაგრძელდა.", "tone": "serious", "image": "old computer printout with columns of numbers and letters, dim desk lamp", "fx": ["glitch"], "pop": {"type": "number", "value": 72, "suffix": " წამი"}},
-      {"say": "მეცნიერმა ქაღალდზე შემოხაზა და დაწერა: *Wow!*", "tone": "excited", "image": "hand circling numbers on an old printout with a red pen", "pop": {"type": "card", "text": "Wow!"}},
-      {"say": "სიგნალი იმდენად ძლიერი იყო, რომ *ბუნებრივს* არ ჰგავდა.", "tone": "curious", "image": "scientist staring at glowing monitor in a dark observatory at night", "fx": ["heartbeat"], "pop": {"type": "emoji", "value": "📡"}},
-      {"say": "მას შემდეგ ის *არასდროს* განმეორებულა.", "tone": "whispers", "image": "empty silent observatory control room at night", "pop": {"type": "cross"}},
-      {"say": "ზოგი ფიქრობს, რომ ეს *უცხოპლანეტელები* იყვნენ...", "tone": "mysterious", "image": "deep space nebula with a mysterious bright point of light", "fx": ["riser"], "pop": {"type": "emoji", "value": "👽"}},
-      {"say": "ახალი ჰიპოთეზით კი, *წყალბადის ღრუბელი* აინთო.", "tone": "dramatic", "image": "glowing hydrogen gas cloud in deep space lit by a powerful flash", "fx": ["boom"], "pop": {"type": "card", "text": "ღრუბელი? ან...?"}},
-      {"say": "შენ რომელს იჯერებ? *დაწერე*!", "tone": "excited", "image": "person silhouette looking up at a sky full of stars", "pop": {"type": "emoji", "value": "👇"}}
+    "pop": {
+     "type": "card",
+     "text": "„ზედმეტად მგრძნობიარე ხარ“"
+    }
+   },
+   {
+    "say": "ფრთხილად. ეს შეიძლება იყოს *გაზლაითინგი*.",
+    "tone": "serious",
+    "image": "flickering gas lamp in a dark victorian room",
+    "fx": [
+     "boom"
     ],
-    "caption": "72 წამი, რომელსაც მეცნიერები 50 წელზე მეტია ვერ ხსნიან 👽",
-    "hashtags": ["#მისტიკა", "#კოსმოსი", "#საიდუმლოებები", "#იცოდით", "#fyp"]
-  },
-  {
-    "id": "M004", "niche": "mystery", "hook_type": "story", "mood": "dark", "title": "ფლანანის შუქურა",
-    "hook_text": "3 მეშუქურე ერთ ღამეში გაქრა",
-    "beats": [
-      {"say": "1900 წლის დეკემბერი. შოტლანდიის კუნძულზე შუქურა *ჩაქრა*.", "tone": "mysterious", "image": "dark lighthouse on a remote rocky island, stormy sky, light off", "fx": ["boom"], "pop": {"type": "emoji", "value": "🗼"}},
-      {"say": "როცა გემი მივიდა, *არავინ* დახვდა.", "tone": "whispers", "image": "small boat approaching a lonely island in rough grey sea", "pop": {"type": "number", "value": 0, "suffix": " ადამიანი"}},
-      {"say": "სამივე მეშუქურე *უკვალოდ* გამქრალიყო.", "tone": "serious", "image": "three empty chairs at a wooden table in a dim lighthouse room", "fx": ["glitch"], "pop": {"type": "number", "value": 3, "suffix": " გაქრა"}},
-      {"say": "ოთახში მხოლოდ ერთი *საწვიმარი* ეკიდა.", "tone": "curious", "image": "single old yellow oilskin coat hanging on a hook in a dark room", "fx": ["heartbeat"], "pop": {"type": "card", "text": "1 საწვიმარი, 3 კაცი"}},
-      {"say": "ანუ ერთ-ერთი *საწვიმრის გარეშე* გავიდა ქარიშხალში.", "tone": "whispers", "image": "lighthouse door open to a violent storm, rain, night", "fx": ["riser"], "pop": {"type": "emoji", "value": "🌧️"}},
-      {"say": "ვერსია: *უზარმაზარმა ტალღამ* წაიღო ისინი.", "tone": "dramatic", "image": "gigantic wave crashing over cliffs of a rocky island", "fx": ["boom"], "pop": {"type": "emoji", "value": "🌊"}},
-      {"say": "მაგრამ რატომ გავიდა *სამივე* ერთად? *დაწერე*!", "tone": "serious", "image": "lighthouse beam cutting through dark fog over the ocean", "pop": {"type": "emoji", "value": "👇"}}
+    "pop": {
+     "type": "emoji",
+     "value": "🚨"
+    }
+   },
+   {
+    "say": "ეს არის, როცა ადამიანი გაიძულებს, *საკუთარ მეხსიერებაში* დაეჭვდე.",
+    "tone": "mysterious",
+    "image": "person's memories dissolving like smoke around their head, surreal dark",
+    "fx": [
+     "heartbeat"
     ],
-    "caption": "125 წლის წინანდელი საიდუმლო, რომელიც დღემდე გაუხსნელია 🗼",
-    "hashtags": ["#მისტიკა", "#საიდუმლოებები", "#ისტორია", "#შუქურა", "#fyp"]
-  },
-  {
-    "id": "M005", "niche": "mystery", "hook_type": "question", "mood": "dark", "title": "ვოინიჩის ხელნაწერი",
-    "hook_text": "ამ წიგნს ვერავინ კითხულობს",
-    "beats": [
-      {"say": "არსებობს წიგნი, რომელსაც დედამიწაზე *ვერავინ* კითხულობს.", "tone": "mysterious", "image": "ancient manuscript with strange unknown script and drawings, candlelight", "fx": ["boom"], "pop": {"type": "emoji", "value": "📜"}},
-      {"say": "ის *600 წელზე* მეტი ხნისაა.", "tone": "serious", "image": "old leather bound book on a wooden table in a dusty library", "pop": {"type": "number", "value": 600, "suffix": "+ წელი"}},
-      {"say": "მისი ანბანი და ენა *არცერთ ცნობილ* ენას არ ჰგავს.", "tone": "curious", "image": "close-up of mysterious handwritten symbols in faded ink", "fx": ["glitch"], "pop": {"type": "cross"}},
-      {"say": "შიგნით ისეთი *მცენარეებია* დახატული, რომლებიც არ არსებობს.", "tone": "whispers", "image": "strange fantasy plant illustrations drawn in an ancient manuscript", "fx": ["heartbeat"], "pop": {"type": "emoji", "value": "🌿"}},
-      {"say": "მის გაშიფვრას *საუკეთესო კრიპტოგრაფებიც* ცდილობდნენ.", "tone": "serious", "image": "codebreakers in a dark room with papers and old typewriters", "pop": {"type": "emoji", "value": "🕵️"}},
-      {"say": "და იცი, რამდენმა შეძლო?", "tone": "whispers", "image": "magnifying glass over unknown ancient text, dark", "fx": ["riser"], "pop": {"type": "emoji", "value": "🤔"}},
-      {"say": "*არცერთმა*!", "tone": "dramatic", "image": "ancient book closing in darkness with dust in the light", "fx": ["boom"], "pop": {"type": "number", "value": 0}},
-      {"say": "როგორ ფიქრობ, რა წერია მასში? *დაწერე*!", "tone": "curious", "image": "candle next to an open mysterious manuscript at night", "pop": {"type": "emoji", "value": "👇"}}
+    "pop": {
+     "type": "emoji",
+     "value": "🌀"
+    }
+   },
+   {
+    "say": "და ნელ-ნელა იწყებ ფიქრს, რომ *შენ ხარ* პრობლემა.",
+    "tone": "sad",
+    "image": "woman sitting alone on the floor in a dark room, head down",
+    "fx": [
+     "riser"
     ],
-    "caption": "მსოფლიოს ყველაზე იდუმალი წიგნი 📜",
-    "hashtags": ["#მისტიკა", "#საიდუმლოებები", "#წიგნი", "#იცოდით", "#fyp"]
-  },
-  {
-    "id": "M006", "niche": "mystery", "hook_type": "story", "mood": "dark", "title": "სომერტონის კაცი",
-    "hook_text": "ჯიბეში ეწერა: „დასრულდა“",
-    "beats": [
-      {"say": "1948 წელს ავსტრალიის პლაჟზე *უცნობი კაცი* იპოვეს.", "tone": "mysterious", "image": "lonely beach at dawn with a man in a suit lying against a sea wall, fog", "fx": ["boom"], "pop": {"type": "number", "value": 1948}},
-      {"say": "მის ტანსაცმელს ყველა *ეტიკეტი* მოჭრილი ჰქონდა.", "tone": "whispers", "image": "old suit jacket with the label cut out, scissors, dim light", "fx": ["glitch"], "pop": {"type": "emoji", "value": "✂️"}},
-      {"say": "საიდუმლო ჯიბეში კი ქაღალდი იპოვეს, სიტყვით: *დასრულდა*.", "tone": "mysterious", "image": "tiny torn paper with printed words in a hidden pocket, macro photo", "fx": ["heartbeat"], "pop": {"type": "card", "text": "Tamám Shud"}},
-      {"say": "წიგნში, საიდანაც ეს ქაღალდი მოხიეს, *საიდუმლო კოდი* ეწერა.", "tone": "curious", "image": "old poetry book with pencil written code letters on the back page", "pop": {"type": "emoji", "value": "🔐"}},
-      {"say": "*70 წელზე* მეტი ხანი ვერავინ გაიგო, ვინ იყო ის.", "tone": "serious", "image": "detectives looking at old case files under a lamp", "pop": {"type": "number", "value": 70, "suffix": "+ წელი"}},
-      {"say": "2022 წელს კი მკვლევარმა *დნმ-ით* დაადგინა მისი სახელი...", "tone": "curious", "image": "dna strands glowing in a dark laboratory", "fx": ["riser"], "pop": {"type": "emoji", "value": "🧬"}},
-      {"say": "მაგრამ როგორ მოკვდა, *დღემდე* არავინ იცის.", "tone": "dramatic", "image": "foggy beach at night with waves and moonlight", "fx": ["boom"], "pop": {"type": "emoji", "value": "❓"}},
-      {"say": "კოდის ამოხსნა გინდა? *დაწერე*!", "tone": "excited", "image": "handwritten mysterious code on yellowed paper, flashlight", "pop": {"type": "emoji", "value": "👇"}}
+    "pop": {
+     "type": "emoji",
+     "value": "😔"
+    }
+   },
+   {
+    "say": "როგორ დაიცვა თავი? *ჩაიწერე* ფაქტები.",
+    "tone": "dramatic",
+    "image": "hand writing notes in a journal by a window at dawn",
+    "fx": [
+     "boom"
     ],
-    "caption": "ავსტრალიის ყველაზე იდუმალი საქმე 🕵️",
-    "hashtags": ["#მისტიკა", "#საიდუმლოებები", "#დეტექტივი", "#ისტორია", "#fyp"]
-  },
-  {
-    "id": "M007", "niche": "mystery", "hook_type": "question", "mood": "dark", "title": "ბლუპი",
-    "hook_text": "ოკეანეში რაღაც ყვიროდა",
-    "beats": [
-      {"say": "1997 წელს ოკეანის მიკროფონებმა *საშინელი ხმა* ჩაწერეს.", "tone": "mysterious", "image": "deep dark ocean abyss with faint light rays from above", "fx": ["boom"], "pop": {"type": "number", "value": 1997}},
-      {"say": "ის *5000 კილომეტრზე* მეტ მანძილზე გაისმა.", "tone": "surprised", "image": "underwater sound waves spreading through a dark ocean, visualization", "pop": {"type": "number", "value": 5000, "suffix": " კმ"}},
-      {"say": "ამხელა ხმის გამოცემა *არცერთ ცნობილ ცხოველს* არ შეუძლია.", "tone": "whispers", "image": "blue whale silhouette in deep dark water", "fx": ["heartbeat"], "pop": {"type": "cross"}},
-      {"say": "ხალხმა დაიწყო ლაპარაკი *გიგანტურ არსებაზე*...", "tone": "scared", "image": "giant shadow of a sea monster beneath a small boat at night", "fx": ["glitch"], "pop": {"type": "emoji", "value": "🐙"}},
-      {"say": "ხმას დაარქვეს *ბლუპი*.", "tone": "mysterious", "image": "sonar screen glowing green in a dark submarine", "pop": {"type": "card", "text": "BLOOP"}},
-      {"say": "მაგრამ პასუხი სულ სხვა აღმოჩნდა...", "tone": "whispers", "image": "dark antarctic sea with fog", "fx": ["riser"], "pop": {"type": "emoji", "value": "🤫"}},
-      {"say": "ეს *ყინულის მთები* იყო, რომლებიც ტყდებოდა!", "tone": "dramatic", "image": "huge iceberg cracking and collapsing into the sea", "fx": ["boom"], "pop": {"type": "emoji", "value": "🧊"}},
-      {"say": "შენ რა გეგონა? *დაწერე*!", "tone": "excited", "image": "ocean surface at night under moonlight", "pop": {"type": "emoji", "value": "👇"}}
+    "pop": {
+     "type": "check"
+    }
+   },
+   {
+    "say": "და ესაუბრე *მესამე ადამიანს*, ვისაც ენდობი.",
+    "tone": "serious",
+    "image": "two friends talking honestly in a warm cafe at night",
+    "pop": {
+     "type": "check"
+    }
+   },
+   {
+    "say": "*გაუგზავნე* ეს მას, ვისაც ეს სჭირდება.",
+    "tone": "serious",
+    "image": "phone screen glowing in the dark with a message being sent",
+    "pop": {
+     "type": "emoji",
+     "value": "📤"
+    }
+   }
+  ],
+  "caption": "თუ ამ ფრაზებს ხშირად გეუბნებიან, ეს ვიდეო შენთვისაა 🚨",
+  "hashtags": [
+   "#მანიპულაცია",
+   "#ფსიქოლოგია",
+   "#გაზლაითინგი",
+   "#ურთიერთობები",
+   "#fyp"
+  ]
+ },
+ {
+  "id": "X002",
+  "niche": "manipulation",
+  "hook_type": "shock",
+  "mood": "dark",
+  "title": "სიყვარულის დაბომბვა",
+  "hook_text": "ზედმეტად იდეალური დასაწყისი",
+  "beats": [
+   {
+    "say": "ახლახან გაიცანი და უკვე *ყოველდღე* საჩუქრებს გჩუქნის?",
+    "tone": "curious",
+    "image": "huge bouquet of red roses and gifts at a door at night",
+    "fx": [
+     "boom"
     ],
-    "caption": "ოკეანის ყველაზე ხმამაღალი საიდუმლო 🌊",
-    "hashtags": ["#მისტიკა", "#ოკეანე", "#საიდუმლოებები", "#იცოდით", "#fyp"]
-  },
-  {
-    "id": "P001", "niche": "psychology", "hook_type": "mistake", "mood": "dark", "title": "პროჟექტორის ეფექტი",
-    "hook_text": "ყველა შენ არ გიყურებს",
-    "beats": [
-      {"say": "გგონია, რომ შენს ყოველ შეცდომას *ყველა* ამჩნევს?", "tone": "curious", "image": "nervous young woman in a crowded room feeling watched, spotlight on her", "fx": ["boom"], "pop": {"type": "emoji", "value": "😰"}},
-      {"say": "მეცნიერებმა სტუდენტებს *სასაცილო მაისური* ჩააცვეს.", "tone": "excited", "image": "student wearing an embarrassing funny t-shirt in a university hallway", "pop": {"type": "emoji", "value": "👕"}},
-      {"say": "მათ ეგონათ, რომ ოთახში *ნახევარი* შეამჩნევდა.", "tone": "serious", "image": "students in a classroom looking at their phones", "pop": {"type": "number", "value": 50, "suffix": "%"}},
-      {"say": "სინამდვილეში?", "tone": "whispers", "image": "close-up of a surprised face in dim light", "fx": ["riser"], "pop": {"type": "emoji", "value": "🤔"}},
-      {"say": "მხოლოდ *ოთხიდან ერთმა*!", "tone": "dramatic", "image": "crowd of people ignoring a single person, cinematic", "fx": ["boom"], "pop": {"type": "number", "value": 25, "suffix": "%"}},
-      {"say": "ამას *პროჟექტორის ეფექტი* ჰქვია.", "tone": "serious", "image": "single theatre spotlight on an empty stage", "pop": {"type": "card", "text": "პროჟექტორის ეფექტი"}},
-      {"say": "ხალხი შენზე *ბევრად ნაკლებს* ფიქრობს, ვიდრე გგონია.", "tone": "curious", "image": "busy city street where everyone is focused on themselves", "pop": {"type": "check"}},
-      {"say": "ასე რომ, იყავი *თამამი*. მონიშნე ის, ვისაც ეს სჭირდება!", "tone": "excited", "image": "confident woman walking in a city at sunset", "pop": {"type": "emoji", "value": "👇"}}
+    "pop": {
+     "type": "emoji",
+     "value": "💐"
+    }
+   },
+   {
+    "say": "გეუბნება, რომ *სულიერი მეგობარი* ხარ და ასეთი არავინ შეხვედრია?",
+    "tone": "whispers",
+    "image": "couple in a candlelit restaurant, man holding woman's hand intensely",
+    "pop": {
+     "type": "card",
+     "text": "„შენნაირი არავინ შემხვედრია“"
+    }
+   },
+   {
+    "say": "ეს შეიძლება რომანტიკას ჰგავდეს, მაგრამ...",
+    "tone": "mysterious",
+    "image": "rose petals on the floor leading into darkness",
+    "fx": [
+     "riser"
     ],
-    "caption": "ეს ცოდნა შენს თავდაჯერებულობას შეცვლის 🔦",
-    "hashtags": ["#ფსიქოლოგია", "#თავდაჯერებულობა", "#ტვინი", "#ფაქტები", "#fyp"]
-  },
-  {
-    "id": "P002", "niche": "psychology", "hook_type": "question", "mood": "dark", "title": "კარის ეფექტი",
-    "hook_text": "რატომ გავიწყდება, რისთვის შედი ოთახში?",
-    "beats": [
-      {"say": "შედიხარ ოთახში და *ავიწყდება*, რისთვის მოხვედი?", "tone": "curious", "image": "confused man standing in a doorway of a dark room", "fx": ["boom"], "pop": {"type": "emoji", "value": "🤯"}},
-      {"say": "ეს შენი ბრალი *არ არის*.", "tone": "serious", "image": "close-up of an old wooden door slightly open, light behind it", "pop": {"type": "cross"}},
-      {"say": "მეცნიერებმა აღმოაჩინეს, რომ *კარი* ტვინს მეხსიერებას უშლის.", "tone": "mysterious", "image": "brain neurons glowing, dark background", "fx": ["glitch"], "pop": {"type": "emoji", "value": "🧠"}},
-      {"say": "როცა ზღურბლს გადადიხარ, ტვინი ფიქრობს: *ახალი სცენა დაიწყო*.", "tone": "curious", "image": "person stepping through a doorway into a bright room, cinematic", "pop": {"type": "card", "text": "კარი = ახალი სცენა"}},
-      {"say": "და ძველ ფიქრს *არქივში* აგზავნის.", "tone": "whispers", "image": "endless dark archive shelves full of files", "pop": {"type": "emoji", "value": "🗄️"}},
-      {"say": "ამას *კარის ეფექტი* ჰქვია.", "tone": "serious", "image": "row of doors in a long dark corridor", "fx": ["riser"], "pop": {"type": "card", "text": "კარის ეფექტი"}},
-      {"say": "გამოსავალი? *დაბრუნდი* იმ ოთახში და გაგახსენდება!", "tone": "excited", "image": "person walking back through a door with a smile", "fx": ["boom"], "pop": {"type": "check"}},
-      {"say": "შენც ხშირად გემართება? *დაწერე*!", "tone": "excited", "image": "cozy home hallway with warm light", "pop": {"type": "emoji", "value": "👇"}}
+    "pop": {
+     "type": "emoji",
+     "value": "🤔"
+    }
+   },
+   {
+    "say": "შეიძლება იყოს *სიყვარულის დაბომბვა*.",
+    "tone": "dramatic",
+    "image": "heart shaped balloons floating in a dark empty room, ominous",
+    "fx": [
+     "boom"
     ],
-    "caption": "ახლა ბოლოს და ბოლოს იცი, რატომ ხდება ეს 🚪",
-    "hashtags": ["#ფსიქოლოგია", "#ტვინი", "#მეხსიერება", "#ფაქტები", "#fyp"]
-  },
-  {
-    "id": "P003", "niche": "psychology", "hook_type": "shock", "mood": "dark", "title": "ბაადერ-მაინჰოფის ფენომენი",
-    "hook_text": "რატომ ხედავ მას ყველგან?",
-    "beats": [
-      {"say": "ახალ სიტყვას გაიგებ და მერე უცებ *ყველგან* გესმის.", "tone": "mysterious", "image": "person noticing the same symbol everywhere on city signs at night", "fx": ["boom"], "pop": {"type": "emoji", "value": "👀"}},
-      {"say": "ან ახალ მანქანას იყიდი და *ყველა ქუჩაზე* ის დგას.", "tone": "curious", "image": "many identical red cars parked on a street, cinematic", "pop": {"type": "emoji", "value": "🚗"}},
-      {"say": "სამყარო ხომ არ გეთამაშება?", "tone": "whispers", "image": "glitching city street like a simulation, surreal", "fx": ["glitch"], "pop": {"type": "emoji", "value": "🌀"}},
-      {"say": "არა. ეს შენი *ტვინის ფილტრია*.", "tone": "serious", "image": "brain with a glowing filter net, abstract dark", "fx": ["riser"], "pop": {"type": "emoji", "value": "🧠"}},
-      {"say": "როცა რამე *მნიშვნელოვანი* გახდება, ტვინი მას ყველგან პოულობს.", "tone": "curious", "image": "magnifying glass scanning a crowd, one person highlighted", "fx": ["boom"], "pop": {"type": "card", "text": "მნიშვნელოვანი = შესამჩნევი"}},
-      {"say": "ამას *სიხშირის ილუზია* ჰქვია.", "tone": "serious", "image": "repeating pattern of the same object in a dark hall of mirrors", "pop": {"type": "card", "text": "სიხშირის ილუზია"}},
-      {"say": "და ახლა, როცა ეს გაიგე, *ყველგან* შეამჩნევ. დაწერე, რას ხედავ ყველგან!", "tone": "laughs", "image": "person smiling while walking through a busy city", "pop": {"type": "emoji", "value": "👇"}}
+    "pop": {
+     "type": "card",
+     "text": "Love bombing"
+    }
+   },
+   {
+    "say": "ჯერ ყურადღებაში *გახრჩობს*, რომ მიეჯაჭვო.",
+    "tone": "serious",
+    "image": "golden chains wrapped around a heart, dark background",
+    "fx": [
+     "glitch"
     ],
-    "caption": "ეს ფენომენი ყველას დამართნია, მაგრამ ცოტამ იცის მისი სახელი 🌀",
-    "hashtags": ["#ფსიქოლოგია", "#ტვინი", "#ფენომენი", "#ფაქტები", "#fyp"]
-  },
-  {
-    "id": "P004", "niche": "psychology", "hook_type": "mistake", "mood": "dark", "title": "ვარდისფერი სპილო",
-    "hook_text": "ნუ იფიქრებ ვარდისფერ სპილოზე",
-    "beats": [
-      {"say": "ახლა *ნუ იფიქრებ* ვარდისფერ სპილოზე.", "tone": "whispers", "image": "pink elephant standing in a dark misty room, surreal cinematic", "fx": ["boom"], "pop": {"type": "emoji", "value": "🐘"}},
-      {"say": "უკვე იფიქრე, *ხომ*?", "tone": "laughs", "image": "woman covering her face laughing, dramatic light", "pop": {"type": "emoji", "value": "😏"}},
-      {"say": "როცა ტვინს რამეზე ფიქრს *უკრძალავ*...", "tone": "curious", "image": "man trying to stop his thoughts, hands on head, dark room", "fx": ["glitch"], "pop": {"type": "cross"}},
-      {"say": "ის იმ ფიქრს *უფრო ხშირად* უბრუნდება.", "tone": "mysterious", "image": "thoughts swirling around a person's head at night, surreal", "fx": ["heartbeat"], "pop": {"type": "emoji", "value": "🔁"}},
-      {"say": "ამიტომ არ მუშაობს *ნუ ნერვიულობ*.", "tone": "serious", "image": "anxious person lying awake in bed at night", "fx": ["riser"], "pop": {"type": "card", "text": "„ნუ ნერვიულობ“ ❌"}},
-      {"say": "თქვი, *რა გააკეთო* ამის ნაცვლად.", "tone": "dramatic", "image": "calm person breathing deeply by a window at sunrise", "fx": ["boom"], "pop": {"type": "card", "text": "„ღრმად ჩავისუნთქავ“ ✅"}},
-      {"say": "კიდევ გინდა ტვინის ხრიკები? *გამოიწერე*!", "tone": "excited", "image": "glowing brain illustration in the dark", "pop": {"type": "emoji", "value": "🔔"}}
+    "pop": {
+     "type": "emoji",
+     "value": "⛓️"
+    }
+   },
+   {
+    "say": "მერე კი უცებ *ცივდება* და შენ ცდილობ, ის დასაწყისი დააბრუნო.",
+    "tone": "sad",
+    "image": "woman waiting alone by a phone in a cold blue lit room",
+    "fx": [
+     "heartbeat"
     ],
-    "caption": "შენი ტვინი ამ ხრიკს ვერ უძლებს 🐘",
-    "hashtags": ["#ფსიქოლოგია", "#ტვინი", "#ხრიკები", "#თვითგანვითარება", "#fyp"]
-  },
-  {
-    "id": "P005", "niche": "psychology", "hook_type": "shock", "mood": "dark", "title": "უხილავი გორილა",
-    "hook_text": "ნახევარმა გორილა ვერ შეამჩნია",
-    "beats": [
-      {"say": "ადამიანებს სთხოვეს, დაეთვალათ *ბურთის პასები*.", "tone": "curious", "image": "people passing a basketball in a dim gym, motion blur", "fx": ["boom"], "pop": {"type": "emoji", "value": "🏀"}},
-      {"say": "ამ დროს მათ შორის *გორილა* გაიარა.", "tone": "mysterious", "image": "person in a gorilla costume walking through a group of players", "fx": ["glitch"], "pop": {"type": "emoji", "value": "🦍"}},
-      {"say": "შუაში გაჩერდა და *მკერდზე* დაირტყა.", "tone": "laughs", "image": "gorilla costume beating its chest in a gym, dramatic light", "pop": {"type": "emoji", "value": "😂"}},
-      {"say": "და იცი, რამდენმა *ვერ* შეამჩნია?", "tone": "whispers", "image": "close-up of focused eyes in darkness", "fx": ["riser"], "pop": {"type": "emoji", "value": "🤫"}},
-      {"say": "თითქმის *ნახევარმა*!", "tone": "dramatic", "image": "shocked faces of people watching a screen", "fx": ["boom"], "pop": {"type": "number", "value": 50, "suffix": "%"}},
-      {"say": "როცა კონცენტრირებული ვართ, ტვინი დანარჩენს *უბრალოდ შლის*.", "tone": "serious", "image": "person in a crowd with everything around blurred out", "pop": {"type": "card", "text": "ფოკუსი = სიბრმავე"}},
-      {"say": "შენს ცხოვრებაში *რას ვერ ამჩნევ*? დაწერე!", "tone": "curious", "image": "person looking out a rainy window at night", "pop": {"type": "emoji", "value": "👇"}}
+    "pop": {
+     "type": "emoji",
+     "value": "🥶"
+    }
+   },
+   {
+    "say": "დაცვა მარტივია: *ნელა* იარე და უყურე საქციელს *დროში*.",
+    "tone": "serious",
+    "image": "calm woman walking slowly on a quiet road at sunrise",
+    "pop": {
+     "type": "check"
+    }
+   },
+   {
+    "say": "*მონიშნე* ის, ვისაც ამის გაგება სჭირდება!",
+    "tone": "excited",
+    "image": "friends supporting each other at night, warm light",
+    "pop": {
+     "type": "emoji",
+     "value": "👇"
+    }
+   }
+  ],
+  "caption": "ზედმეტად იდეალური დასაწყისი ზოგჯერ საფრთხის ნიშანია 💐",
+  "hashtags": [
+   "#მანიპულაცია",
+   "#ურთიერთობები",
+   "#ფსიქოლოგია",
+   "#lovebombing",
+   "#fyp"
+  ]
+ },
+ {
+  "id": "X003",
+  "niche": "manipulation",
+  "hook_type": "mistake",
+  "mood": "dark",
+  "title": "დანაშაულის გრძნობა",
+  "hook_text": "„მე შენთვის ამდენი გავაკეთე...“",
+  "beats": [
+   {
+    "say": "*მე შენთვის ამდენი გავაკეთე*, შენ კი ამას ვერ აკეთებ?",
+    "tone": "sad",
+    "image": "elderly hand reaching out in a dark room, dramatic light",
+    "fx": [
+     "boom"
     ],
-    "caption": "შენც ვერ შეამჩნევდი, დარწმუნებული ვარ 🦍",
-    "hashtags": ["#ფსიქოლოგია", "#ექსპერიმენტი", "#ტვინი", "#ფაქტები", "#fyp"]
-  },
-  {
-    "id": "P006", "niche": "psychology", "hook_type": "question", "mood": "dark", "title": "ფრანკლინის ეფექტი",
-    "hook_text": "გინდა მოეწონო? სთხოვე დახმარება",
-    "beats": [
-      {"say": "გინდა ვინმეს *მოეწონო*?", "tone": "curious", "image": "two people talking in a cozy dark cafe, warm light", "fx": ["boom"], "pop": {"type": "emoji", "value": "😍"}},
-      {"say": "მაშინ საჩუქარი კი არა, *დახმარება* სთხოვე.", "tone": "mysterious", "image": "hand asking for help reaching out, cinematic", "pop": {"type": "emoji", "value": "🙏"}},
-      {"say": "ბენჯამინ ფრანკლინს ერთი *მტერი* ჰყავდა.", "tone": "serious", "image": "18th century politician portrait in candlelight, stern face", "fx": ["glitch"], "pop": {"type": "emoji", "value": "😠"}},
-      {"say": "ფრანკლინმა მას *იშვიათი წიგნი* ათხოვნინა.", "tone": "curious", "image": "hands passing an old rare book in a dark library", "pop": {"type": "emoji", "value": "📖"}},
-      {"say": "და რა მოხდა?", "tone": "whispers", "image": "old library at night with a single candle", "fx": ["riser"], "pop": {"type": "emoji", "value": "🤔"}},
-      {"say": "ისინი *მეგობრები* გახდნენ!", "tone": "excited", "image": "two old gentlemen shaking hands warmly, candlelight", "fx": ["boom"], "pop": {"type": "card", "text": "მტერი → მეგობარი"}},
-      {"say": "ტვინი ფიქრობს: თუ ვეხმარები, ესე იგი *მომწონს*.", "tone": "curious", "image": "glowing brain with a heart shape, dark background", "pop": {"type": "emoji", "value": "🧠"}},
-      {"say": "სცადე და დაწერე *შედეგი*!", "tone": "excited", "image": "friends laughing together at night", "pop": {"type": "emoji", "value": "👇"}}
+    "pop": {
+     "type": "card",
+     "text": "„მე შენთვის ამდენი გავაკეთე...“"
+    }
+   },
+   {
+    "say": "ნაცნობია?",
+    "tone": "whispers",
+    "image": "close-up of a guilty face in shadow",
+    "pop": {
+     "type": "emoji",
+     "value": "😶"
+    }
+   },
+   {
+    "say": "ეს არის მანიპულაცია *დანაშაულის გრძნობით*.",
+    "tone": "serious",
+    "image": "puppet strings attached to a person's hands, dark theatrical lighting",
+    "fx": [
+     "glitch"
     ],
-    "caption": "ეს ფსიქოლოგიური ხრიკი 250 წელზე მეტია მუშაობს 🧠",
-    "hashtags": ["#ფსიქოლოგია", "#ურთიერთობები", "#ხრიკები", "#თვითგანვითარება", "#fyp"]
-  },
-  {
-    "id": "P007", "niche": "psychology", "hook_type": "question", "mood": "dark", "title": "ნაცნობობის ეფექტი",
-    "hook_text": "რატომ მოგწონს სიმღერა მესამედ მოსმენაზე?",
-    "beats": [
-      {"say": "ახალი სიმღერა *არ მოგეწონა*...", "tone": "curious", "image": "person with headphones frowning, dark room, neon light", "fx": ["boom"], "pop": {"type": "emoji", "value": "🎧"}},
-      {"say": "მესამედ მოსმენისას კი *თავში გიტრიალებს*?", "tone": "laughs", "image": "person dancing alone in a dark room with neon lights", "pop": {"type": "emoji", "value": "🔁"}},
-      {"say": "ეს შემთხვევითობა *არ არის*.", "tone": "serious", "image": "close-up of a vinyl record spinning in darkness", "fx": ["glitch"], "pop": {"type": "cross"}},
-      {"say": "რაც უფრო ხშირად ვხედავთ რამეს, მით *უფრო მოგვწონს*.", "tone": "mysterious", "image": "same face appearing on many screens in a dark room", "pop": {"type": "card", "text": "ხშირად = მომწონს"}},
-      {"say": "ამას *ნაცნობობის ეფექტი* ჰქვია.", "tone": "serious", "image": "billboards repeating the same advertisement in a city at night", "fx": ["riser"], "pop": {"type": "card", "text": "ნაცნობობის ეფექტი"}},
-      {"say": "სწორედ ამიტომ გაჩვენებენ ერთსა და იმავე *რეკლამას* ასჯერ!", "tone": "dramatic", "image": "tv screens all showing the same ad in a dark shop window", "fx": ["boom"], "pop": {"type": "emoji", "value": "📺"}},
-      {"say": "შენ რომელი სიმღერა დაგემართა ასე? *დაწერე*!", "tone": "excited", "image": "friends singing in a car at night, city lights", "pop": {"type": "emoji", "value": "👇"}}
+    "pop": {
+     "type": "emoji",
+     "value": "🎭"
+    }
+   },
+   {
+    "say": "შენ უარს კი არ ეუბნები თხოვნას...",
+    "tone": "curious",
+    "image": "person standing at a crossroad in fog",
+    "fx": [
+     "riser"
     ],
-    "caption": "შენი ტვინი ასე „ყიდულობს“ ყველაფერს 🎧",
-    "hashtags": ["#ფსიქოლოგია", "#ტვინი", "#მარკეტინგი", "#ფაქტები", "#fyp"]
-  },
-  {
-    "id": "P008", "niche": "psychology", "hook_type": "question", "mood": "dark", "title": "წვეულების ეფექტი",
-    "hook_text": "ხმაურში რატომ გესმის შენი სახელი?",
-    "beats": [
-      {"say": "ხმაურიან წვეულებაზე *არაფერი* გესმის.", "tone": "curious", "image": "crowded dark party with colorful lights and people talking", "fx": ["boom"], "pop": {"type": "emoji", "value": "🎉"}},
-      {"say": "მაგრამ ვინმე შენს *სახელს* ჩურჩულით იტყვის...", "tone": "whispers", "image": "close-up of a person whispering in someone's ear, dark", "fx": ["heartbeat"], "pop": {"type": "emoji", "value": "👂"}},
-      {"say": "და *მაშინვე* გესმის!", "tone": "surprised", "image": "woman turning her head suddenly at a party, dramatic light", "fx": ["boom"], "pop": {"type": "emoji", "value": "😳"}},
-      {"say": "შენი ტვინი ხმებს *გამუდმებით* ფილტრავს.", "tone": "mysterious", "image": "sound waves flowing into a glowing brain, abstract dark", "pop": {"type": "emoji", "value": "🧠"}},
-      {"say": "მაშინაც კი, როცა *არ უსმენ*.", "tone": "whispers", "image": "person sleeping while sound waves float around", "fx": ["riser"], "pop": {"type": "emoji", "value": "🤫"}},
-      {"say": "და შენი სახელი ამ ფილტრს *ყოველთვის* გადის.", "tone": "dramatic", "image": "spotlight on a name tag in a dark crowd", "fx": ["boom"], "pop": {"type": "card", "text": "წვეულების ეფექტი"}},
-      {"say": "ამიტომ, თუ გინდა მოეწონო ვინმეს, *სახელით მიმართე*. გამოიწერე!", "tone": "excited", "image": "two people smiling and shaking hands at an evening event", "pop": {"type": "emoji", "value": "🔔"}}
+    "pop": {
+     "type": "emoji",
+     "value": "🤔"
+    }
+   },
+   {
+    "say": "შენ *ცუდ ადამიანად* გაგრძნობინებენ თავს!",
+    "tone": "dramatic",
+    "image": "person shrinking under a huge shadow on the wall",
+    "fx": [
+     "boom"
     ],
-    "caption": "შენი ტვინი ყოველთვის გისმენს 👂",
-    "hashtags": ["#ფსიქოლოგია", "#ტვინი", "#ურთიერთობები", "#ფაქტები", "#fyp"]
-  }
+    "pop": {
+     "type": "cross"
+    }
+   },
+   {
+    "say": "როგორ დაიცვა თავი? გამოყავი *თხოვნა* და *დანაშაული*.",
+    "tone": "serious",
+    "image": "two separate doors in a dark corridor, one lit",
+    "pop": {
+     "type": "card",
+     "text": "თხოვნა ≠ ვალი"
+    }
+   },
+   {
+    "say": "თქვი მშვიდად: *მადლობა ყველაფრისთვის, მაგრამ ახლა არა*.",
+    "tone": "serious",
+    "image": "calm confident woman speaking at a kitchen table, warm light",
+    "fx": [
+     "heartbeat"
+    ],
+    "pop": {
+     "type": "check"
+    }
+   },
+   {
+    "say": "შენც გეუბნებიან ასე? *დაწერე*!",
+    "tone": "curious",
+    "image": "rainy window at night with city lights",
+    "pop": {
+     "type": "emoji",
+     "value": "👇"
+    }
+   }
+  ],
+  "caption": "„არა“-ს თქმა არ გხდის ცუდ ადამიანად 🎭",
+  "hashtags": [
+   "#მანიპულაცია",
+   "#ფსიქოლოგია",
+   "#საზღვრები",
+   "#ურთიერთობები",
+   "#fyp"
+  ]
+ },
+ {
+  "id": "X004",
+  "niche": "manipulation",
+  "hook_type": "question",
+  "mood": "dark",
+  "title": "სიჩუმით დასჯა",
+  "hook_text": "სიჩუმე, რომელიც გტკივა",
+  "beats": [
+   {
+    "say": "*დღეობით* არ გელაპარაკება და არ გეუბნება, რატომ?",
+    "tone": "whispers",
+    "image": "couple sitting far apart on a sofa in a cold dark living room, silence",
+    "fx": [
+     "boom"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "🤐"
+    }
+   },
+   {
+    "say": "შენ კი იწყებ ფიქრს: *რა დავაშავე*?",
+    "tone": "sad",
+    "image": "woman staring at her phone with no new messages at night",
+    "fx": [
+     "heartbeat"
+    ],
+    "pop": {
+     "type": "card",
+     "text": "„რა დავაშავე?“"
+    }
+   },
+   {
+    "say": "ეს *სიჩუმით დასჯაა*.",
+    "tone": "serious",
+    "image": "closed door with light under it in a dark hallway",
+    "fx": [
+     "glitch"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "🚪"
+    }
+   },
+   {
+    "say": "მისი მიზანია, რომ შენ *პირველმა* მოიბოდიშო, თუნდაც არაფერი დაგიშავებია.",
+    "tone": "mysterious",
+    "image": "person kneeling in front of a shadowy figure, dramatic",
+    "fx": [
+     "riser"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "🎯"
+    }
+   },
+   {
+    "say": "ეს *ძალაუფლების* თამაშია.",
+    "tone": "dramatic",
+    "image": "chess king piece casting a long shadow over pawns",
+    "fx": [
+     "boom"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "♟️"
+    }
+   },
+   {
+    "say": "ნუ დასდევ. თქვი: *როცა მზად იქნები, ვილაპარაკოთ*.",
+    "tone": "serious",
+    "image": "calm woman writing a short message, soft morning light",
+    "pop": {
+     "type": "check"
+    }
+   },
+   {
+    "say": "და თუ ეს *ხშირად* მეორდება, ეს უკვე სერიოზული ნიშანია.",
+    "tone": "serious",
+    "image": "red warning light glowing in a dark room",
+    "pop": {
+     "type": "emoji",
+     "value": "🚩"
+    }
+   },
+   {
+    "say": "*გააზიარე*, რომ სხვებმაც იცოდნენ!",
+    "tone": "excited",
+    "image": "people standing together in solidarity at dusk",
+    "pop": {
+     "type": "emoji",
+     "value": "📤"
+    }
+   }
+  ],
+  "caption": "სიჩუმე შეიძლება იარაღიც იყოს 🤐",
+  "hashtags": [
+   "#მანიპულაცია",
+   "#ურთიერთობები",
+   "#ფსიქოლოგია",
+   "#საზღვრები",
+   "#fyp"
+  ]
+ },
+ {
+  "id": "X005",
+  "niche": "manipulation",
+  "hook_type": "shock",
+  "mood": "dark",
+  "title": "ფეხი კარში",
+  "hook_text": "პატარა „კი“ დიდ „კი“-მდე მიდის",
+  "beats": [
+   {
+    "say": "მეცნიერებმა ხალხს სთხოვეს, ფანჯარაზე *პატარა ნიშანი* გაეკრათ.",
+    "tone": "curious",
+    "image": "small sticker on a house window, suburban street, cinematic evening",
+    "fx": [
+     "boom"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "🪧"
+    }
+   },
+   {
+    "say": "ცოტა ხანში კი სთხოვეს, ეზოში *უზარმაზარი, უშნო ბანერი* დაედგათ.",
+    "tone": "surprised",
+    "image": "huge ugly billboard sign standing in a front yard of a nice house",
+    "pop": {
+     "type": "emoji",
+     "value": "😳"
+    }
+   },
+   {
+    "say": "ვინც პატარაზე დათანხმდა, *ბევრად ხშირად* დათანხმდა დიდზეც!",
+    "tone": "dramatic",
+    "image": "person nodding yes while signing papers under a lamp",
+    "fx": [
+     "boom"
+    ],
+    "pop": {
+     "type": "number",
+     "value": 4,
+     "prefix": "×"
+    }
+   },
+   {
+    "say": "ამას ჰქვია *ფეხი კარში*.",
+    "tone": "serious",
+    "image": "foot stopping a door from closing, dramatic shadow",
+    "fx": [
+     "glitch"
+    ],
+    "pop": {
+     "type": "card",
+     "text": "ფეხი კარში"
+    }
+   },
+   {
+    "say": "გამყიდველები და მანიპულატორები ამას *ყოველდღე* იყენებენ.",
+    "tone": "whispers",
+    "image": "salesman smiling with a contract in a dim office",
+    "fx": [
+     "riser"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "🕵️"
+    }
+   },
+   {
+    "say": "დაცვა: ყოველ თხოვნას *ცალკე* შეაფასე, თითქოს პირველია.",
+    "tone": "serious",
+    "image": "person thinking carefully at a desk, single lamp",
+    "fx": [
+     "boom"
+    ],
+    "pop": {
+     "type": "check"
+    }
+   },
+   {
+    "say": "წინა *კი* არ გავალდებულებს ახალ *კი*-ზე.",
+    "tone": "serious",
+    "image": "confident person walking away from a door into light",
+    "pop": {
+     "type": "card",
+     "text": "წინა „კი“ ≠ ახალი „კი“"
+    }
+   },
+   {
+    "say": "*გამოიწერე* მანიპულაციის სერიისთვის!",
+    "tone": "excited",
+    "image": "dark chessboard with a single piece lit",
+    "pop": {
+     "type": "emoji",
+     "value": "🔔"
+    }
+   }
+  ],
+  "caption": "როგორ გიწევენ ნაბიჯ-ნაბიჯ დიდი „კი“-სკენ 🚪",
+  "hashtags": [
+   "#მანიპულაცია",
+   "#ფსიქოლოგია",
+   "#გაყიდვები",
+   "#ხრიკები",
+   "#fyp"
+  ]
+ },
+ {
+  "id": "X006",
+  "niche": "manipulation",
+  "hook_type": "question",
+  "mood": "dark",
+  "title": "კარი სახეში",
+  "hook_text": "რატომ ითხოვენ ჯერ შეუძლებელს?",
+  "beats": [
+   {
+    "say": "გთხოვენ *1000 ლარს* სესხად...",
+    "tone": "curious",
+    "image": "hand holding out a stack of money in a dark room",
+    "fx": [
+     "boom"
+    ],
+    "pop": {
+     "type": "number",
+     "value": 1000,
+     "suffix": " ₾"
+    }
+   },
+   {
+    "say": "შენ უარს ეუბნები.",
+    "tone": "serious",
+    "image": "person shaking head no, dramatic side light",
+    "pop": {
+     "type": "cross"
+    }
+   },
+   {
+    "say": "მერე გეუბნებიან: *კარგი, ასი ლარი მაინც*.",
+    "tone": "sad",
+    "image": "person asking with sad eyes, dim cafe",
+    "fx": [
+     "riser"
+    ],
+    "pop": {
+     "type": "number",
+     "value": 100,
+     "suffix": " ₾"
+    }
+   },
+   {
+    "say": "და შენ *თანხმდები*!",
+    "tone": "dramatic",
+    "image": "hands giving money across a table, dark cinematic",
+    "fx": [
+     "boom"
+    ],
+    "pop": {
+     "type": "check"
+    }
+   },
+   {
+    "say": "ეს *კარი სახეში* არის: ჯერ ზედმეტს გთხოვენ, რომ მეორე თხოვნა *პატარად* მოგეჩვენოს.",
+    "tone": "mysterious",
+    "image": "door slamming in darkness with light through the cracks",
+    "fx": [
+     "glitch"
+    ],
+    "pop": {
+     "type": "card",
+     "text": "კარი სახეში"
+    }
+   },
+   {
+    "say": "შენ კი გგონია, რომ *დათმობა* გააკეთე.",
+    "tone": "whispers",
+    "image": "puppet on strings holding a small coin, dark stage",
+    "fx": [
+     "heartbeat"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "🎭"
+    }
+   },
+   {
+    "say": "დაცვა: დაივიწყე პირველი თხოვნა და იკითხე: *ასი ლარს თავიდანვე მივცემდი?*",
+    "tone": "serious",
+    "image": "person calmly thinking by a window at night",
+    "pop": {
+     "type": "check"
+    }
+   },
+   {
+    "say": "*მონიშნე* მეგობარი, რომელიც ყოველთვის თანხმდება!",
+    "tone": "laughs",
+    "image": "friends laughing at night in a city street",
+    "pop": {
+     "type": "emoji",
+     "value": "👇"
+    }
+   }
+  ],
+  "caption": "ეს ხრიკი ასჯერ გამოუყენებიათ შენზე 🚪",
+  "hashtags": [
+   "#მანიპულაცია",
+   "#ფსიქოლოგია",
+   "#ფული",
+   "#ხრიკები",
+   "#fyp"
+  ]
+ },
+ {
+  "id": "X007",
+  "niche": "manipulation",
+  "hook_type": "mistake",
+  "mood": "dark",
+  "title": "ხელოვნური სიჩქარე",
+  "hook_text": "„მხოლოდ დღეს!“ — ტყუილია",
+  "beats": [
+   {
+    "say": "*მხოლოდ დღეს!* *დარჩა ორი ადგილი!*",
+    "tone": "excited",
+    "image": "flashing red sale signs in a dark shop window at night",
+    "fx": [
+     "boom"
+    ],
+    "pop": {
+     "type": "card",
+     "text": "⏰ მხოლოდ დღეს!"
+    }
+   },
+   {
+    "say": "ეს შემთხვევითი *არ არის*.",
+    "tone": "serious",
+    "image": "countdown timer glowing red in darkness",
+    "fx": [
+     "glitch"
+    ],
+    "pop": {
+     "type": "cross"
+    }
+   },
+   {
+    "say": "როცა გეჩქარება, ტვინი *ფიქრს წყვეტს* და მოქმედებს.",
+    "tone": "mysterious",
+    "image": "brain with red alarm lights, abstract dark",
+    "fx": [
+     "heartbeat"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "🧠"
+    }
+   },
+   {
+    "say": "ამას *ხელოვნური სიჩქარე* ჰქვია.",
+    "tone": "serious",
+    "image": "hourglass with sand running fast, dramatic lighting",
+    "pop": {
+     "type": "card",
+     "text": "ხელოვნური სიჩქარე"
+    }
+   },
+   {
+    "say": "მას იყენებენ მაღაზიები, თაღლითები და *ცრუ ინვესტორები*.",
+    "tone": "whispers",
+    "image": "shady man in a suit offering a deal in a dark office",
+    "fx": [
+     "riser"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "🕵️"
+    }
+   },
+   {
+    "say": "დაცვის წესი: *24 საათი*.",
+    "tone": "dramatic",
+    "image": "calendar and clock on a desk under a lamp",
+    "fx": [
+     "boom"
+    ],
+    "pop": {
+     "type": "number",
+     "value": 24,
+     "suffix": " საათი"
+    }
+   },
+   {
+    "say": "თუ შეთავაზება ხვალ *აღარ იარსებებს*, ესე იგი არც გჭირდებოდა.",
+    "tone": "serious",
+    "image": "person closing a laptop calmly at night",
+    "pop": {
+     "type": "check"
+    }
+   },
+   {
+    "say": "*გაუგზავნე* მას, ვინც იმპულსურად ყიდულობს!",
+    "tone": "laughs",
+    "image": "shopping bags piled on a bed, dramatic light",
+    "pop": {
+     "type": "emoji",
+     "value": "📤"
+    }
+   }
+  ],
+  "caption": "ეს წესი ბევრ ფულს დაგიზოგავს ⏰",
+  "hashtags": [
+   "#მანიპულაცია",
+   "#ფული",
+   "#თაღლითობა",
+   "#ფსიქოლოგია",
+   "#fyp"
+  ]
+ },
+ {
+  "id": "X008",
+  "niche": "manipulation",
+  "hook_type": "shock",
+  "mood": "dark",
+  "title": "DARVO",
+  "hook_text": "ბოლოს რატომ ბოდიშობ შენ?",
+  "beats": [
+   {
+    "say": "შენ უთხარი, რომ გატკინა...",
+    "tone": "sad",
+    "image": "woman speaking up in a tense dark kitchen, dramatic light",
+    "fx": [
+     "boom"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "💬"
+    }
+   },
+   {
+    "say": "და ბოლოს *შენ* ბოდიშობ?",
+    "tone": "surprised",
+    "image": "woman apologizing with head down while a shadowy figure stands tall",
+    "fx": [
+     "glitch"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "😳"
+    }
+   },
+   {
+    "say": "ეს ტექნიკაა და ჰქვია *DARVO*.",
+    "tone": "serious",
+    "image": "four glowing letters on a dark wall, cinematic",
+    "fx": [
+     "boom"
+    ],
+    "pop": {
+     "type": "card",
+     "text": "D · A · R · V · O"
+    }
+   },
+   {
+    "say": "ჯერ *უარყოფს*: ეგ არ მომხდარა.",
+    "tone": "sarcastic",
+    "image": "man raising hands in denial, dark room",
+    "pop": {
+     "type": "card",
+     "text": "1. უარყოფა"
+    }
+   },
+   {
+    "say": "მერე *გესხმის თავს*: შენ რა, იდეალური ხარ?",
+    "tone": "dramatic",
+    "image": "angry silhouette pointing a finger, harsh light",
+    "fx": [
+     "heartbeat"
+    ],
+    "pop": {
+     "type": "card",
+     "text": "2. თავდასხმა"
+    }
+   },
+   {
+    "say": "ბოლოს კი *მსხვერპლი* თვითონ ხდება.",
+    "tone": "whispers",
+    "image": "same man now sitting sadly acting hurt, dim light, theatrical",
+    "fx": [
+     "riser"
+    ],
+    "pop": {
+     "type": "card",
+     "text": "3. როლების შეცვლა"
+    }
+   },
+   {
+    "say": "დაცვა: ამოიცანი და *ფაქტებს* ჩაეჭიდე. საუბარი არ მიიტანო შენზე.",
+    "tone": "serious",
+    "image": "calm woman standing firm in a storm of papers, cinematic",
+    "fx": [
+     "boom"
+    ],
+    "pop": {
+     "type": "check"
+    }
+   },
+   {
+    "say": "ეს შენც გადაგხდენია? *დაწერე*!",
+    "tone": "curious",
+    "image": "rainy city street at night with neon reflections",
+    "pop": {
+     "type": "emoji",
+     "value": "👇"
+    }
+   }
+  ],
+  "caption": "როცა თავს იცავ და ბოლოს მაინც შენ ხარ დამნაშავე 🔄",
+  "hashtags": [
+   "#მანიპულაცია",
+   "#DARVO",
+   "#ურთიერთობები",
+   "#ფსიქოლოგია",
+   "#fyp"
+  ]
+ },
+ {
+  "id": "X009",
+  "niche": "manipulation",
+  "hook_type": "question",
+  "mood": "dark",
+  "title": "სამკუთხედი",
+  "hook_text": "რატომ გადარებს სხვას?",
+  "beats": [
+   {
+    "say": "*ჩემი ყოფილი ასე არასდროს მოიქცეოდა*...",
+    "tone": "sarcastic",
+    "image": "couple arguing with a ghostly third person silhouette between them",
+    "fx": [
+     "boom"
+    ],
+    "pop": {
+     "type": "card",
+     "text": "„ჩემი ყოფილი ასე არ...“"
+    }
+   },
+   {
+    "say": "ან: *სხვებს ჩემი ესმით, შენ არა*...",
+    "tone": "whispers",
+    "image": "woman watching a group laughing behind glass, feeling excluded",
+    "fx": [
+     "glitch"
+    ],
+    "pop": {
+     "type": "card",
+     "text": "„სხვებს ჩემი ესმით“"
+    }
+   },
+   {
+    "say": "ეს *სამკუთხედის* ტექნიკაა.",
+    "tone": "serious",
+    "image": "glowing red triangle in a dark room, three shadows",
+    "fx": [
+     "boom"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "🔺"
+    }
+   },
+   {
+    "say": "ურთიერთობაში *მესამე* ადამიანი შემოჰყავთ, რომ ეჭვიანობდე.",
+    "tone": "mysterious",
+    "image": "jealous person looking at their partner talking to someone else at a party",
+    "fx": [
+     "heartbeat"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "😒"
+    }
+   },
+   {
+    "say": "და *იბრძოლო* მათი ყურადღებისთვის.",
+    "tone": "sad",
+    "image": "person running after someone walking away in the rain",
+    "fx": [
+     "riser"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "🏃"
+    }
+   },
+   {
+    "say": "მაგრამ ჯანსაღ ურთიერთობაში *კონკურენცია* არ არის.",
+    "tone": "dramatic",
+    "image": "two people sitting calmly together by a lake at sunset",
+    "fx": [
+     "boom"
+    ],
+    "pop": {
+     "type": "check"
+    }
+   },
+   {
+    "say": "დაცვა: *ნუ ითამაშებ*. თქვი, რომ შედარება არ გსიამოვნებს და ნახე რეაქცია.",
+    "tone": "serious",
+    "image": "confident woman stepping out of a triangle of light",
+    "pop": {
+     "type": "card",
+     "text": "შედარება ≠ სიყვარული"
+    }
+   },
+   {
+    "say": "*გაუზიარე* მას, ვისაც ხშირად ადარებენ!",
+    "tone": "serious",
+    "image": "phone glowing with a share icon in the dark",
+    "pop": {
+     "type": "emoji",
+     "value": "📤"
+    }
+   }
+  ],
+  "caption": "როცა გაიძულებენ, სხვას შეეჯიბრო 🔺",
+  "hashtags": [
+   "#მანიპულაცია",
+   "#ურთიერთობები",
+   "#ეჭვიანობა",
+   "#ფსიქოლოგია",
+   "#fyp"
+  ]
+ },
+ {
+  "id": "X010",
+  "niche": "manipulation",
+  "hook_type": "story",
+  "mood": "dark",
+  "title": "საჩუქრის ხაფანგი",
+  "hook_text": "უფასო ყვავილი, რომელიც ძვირი ჯდება",
+  "beats": [
+   {
+    "say": "აეროპორტში უცნობი *უფასოდ* გაძლევს ყვავილს.",
+    "tone": "curious",
+    "image": "stranger handing a single flower to a traveler in an airport, cinematic",
+    "fx": [
+     "boom"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "🌸"
+    }
+   },
+   {
+    "say": "წამის შემდეგ კი *შემოწირულობას* გთხოვს.",
+    "tone": "mysterious",
+    "image": "hand holding out a donation box, dim light",
+    "pop": {
+     "type": "emoji",
+     "value": "🪙"
+    }
+   },
+   {
+    "say": "და შენ, რატომღაც, *იხდი*.",
+    "tone": "surprised",
+    "image": "person reluctantly putting money in a box",
+    "fx": [
+     "glitch"
+    ],
+    "pop": {
+     "type": "check"
+    }
+   },
+   {
+    "say": "ეს არის *ორმხრივობის* ხაფანგი.",
+    "tone": "serious",
+    "image": "golden gift box with a hidden chain attached, dark background",
+    "fx": [
+     "boom"
+    ],
+    "pop": {
+     "type": "card",
+     "text": "ორმხრივობის ხაფანგი"
+    }
+   },
+   {
+    "say": "როცა რამეს გვაძლევენ, ტვინი გრძნობს, რომ *ვალში* ვართ.",
+    "tone": "whispers",
+    "image": "glowing brain tied with a red ribbon, abstract",
+    "fx": [
+     "heartbeat"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "🧠"
+    }
+   },
+   {
+    "say": "ამიტომ გაძლევენ *უფასო* სინჯებს და საჩუქრებს.",
+    "tone": "sarcastic",
+    "image": "free samples on a tray in a shopping mall, dramatic light",
+    "fx": [
+     "riser"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "🎁"
+    }
+   },
+   {
+    "say": "დაცვა: გახსოვდეს, საჩუქარი, რომელიც *არ გითხოვია*, ვალს არ ქმნის.",
+    "tone": "dramatic",
+    "image": "person politely declining a gift with a calm smile",
+    "fx": [
+     "boom"
+    ],
+    "pop": {
+     "type": "card",
+     "text": "საჩუქარი ≠ ვალი"
+    }
+   },
+   {
+    "say": "*გამოიწერე* მანიპულაციის სერიისთვის!",
+    "tone": "excited",
+    "image": "dark theatre stage with a single spotlight",
+    "pop": {
+     "type": "emoji",
+     "value": "🔔"
+    }
+   }
+  ],
+  "caption": "„უფასო“ ყველაზე ძვირი სიტყვაა 🎁",
+  "hashtags": [
+   "#მანიპულაცია",
+   "#ფსიქოლოგია",
+   "#ხრიკები",
+   "#გაყიდვები",
+   "#fyp"
+  ]
+ },
+ {
+  "id": "M001",
+  "niche": "mystery",
+  "hook_type": "shock",
+  "mood": "dark",
+  "title": "დიატლოვის უღელტეხილი",
+  "hook_text": "9 ადამიანმა კარავი შიგნიდან გაჭრა",
+  "beats": [
+   {
+    "say": "1959 წელს, ურალის მთებში, ცხრა ტურისტი *უკვალოდ* გაქრა.",
+    "tone": "whispers",
+    "image": "lonely tent half buried in snow on a mountain slope at night, blizzard, ural mountains",
+    "fx": [
+     "boom"
+    ],
+    "pop": {
+     "type": "number",
+     "value": 1959
+    }
+   },
+   {
+    "say": "როცა იპოვეს, მათი კარავი *შიგნიდან* იყო გაჭრილი.",
+    "tone": "mysterious",
+    "image": "canvas tent ripped open from the inside with long knife cuts, snow, flashlight beam at night",
+    "fx": [
+     "glitch"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "🔪"
+    }
+   },
+   {
+    "say": "ისინი საშინელ ყინვაში *ფეხშიშველები* გაიქცნენ.",
+    "tone": "scared",
+    "image": "bare footprints in deep snow leading into a dark pine forest at night",
+    "fx": [
+     "heartbeat"
+    ],
+    "pop": {
+     "type": "number",
+     "value": -30,
+     "suffix": "°C"
+    }
+   },
+   {
+    "say": "ზოგს *ჩამტვრეული ძვლები* ჰქონდა, გარეგანი ჭრილობების გარეშე.",
+    "tone": "serious",
+    "image": "x-ray of fractured ribs glowing on a light box in a dark room",
+    "fx": [
+     "glitch"
+    ],
+    "pop": {
+     "type": "card",
+     "text": "შიდა დაზიანებები"
+    }
+   },
+   {
+    "say": "ტანსაცმელზე კი *რადიაციის* კვალი აღმოაჩინეს.",
+    "tone": "mysterious",
+    "image": "old geiger counter next to frozen clothes in a dark soviet laboratory, eerie green light",
+    "pop": {
+     "type": "emoji",
+     "value": "☢️"
+    }
+   },
+   {
+    "say": "რა მოხდა სინამდვილეში?",
+    "tone": "whispers",
+    "image": "silhouettes of soviet investigators looking up at a snowy mountain pass in fog",
+    "fx": [
+     "riser"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "🤔"
+    }
+   },
+   {
+    "say": "2021 წელს მეცნიერებმა თქვეს: *ზვავი*.",
+    "tone": "dramatic",
+    "image": "massive snow avalanche crashing down a mountain at night",
+    "fx": [
+     "boom"
+    ],
+    "pop": {
+     "type": "card",
+     "text": "ზვავი?"
+    }
+   },
+   {
+    "say": "მაგრამ ბევრს ეს დღემდე *არ სჯერა*. შენ რას ფიქრობ? *დაწერე*!",
+    "tone": "serious",
+    "image": "ominous dark mountain pass under green northern lights",
+    "pop": {
+     "type": "emoji",
+     "value": "👇"
+    }
+   }
+  ],
+  "caption": "ამ საიდუმლოს 60 წელზე მეტია ვერავინ ხსნის 🏔️",
+  "hashtags": [
+   "#მისტიკა",
+   "#საიდუმლოებები",
+   "#დიატლოვი",
+   "#იცოდით",
+   "#fyp"
+  ]
+ },
+ {
+  "id": "M002",
+  "niche": "mystery",
+  "hook_type": "story",
+  "mood": "dark",
+  "title": "მერი სელესტი",
+  "hook_text": "გემი იპოვეს. ეკიპაჟი — ვერასდროს",
+  "beats": [
+   {
+    "say": "1872 წელს ოკეანეში იპოვეს გემი, რომელიც *თავისით* მიცურავდა.",
+    "tone": "mysterious",
+    "image": "old wooden sailing ship drifting alone on a foggy grey ocean",
+    "fx": [
+     "boom"
+    ],
+    "pop": {
+     "type": "number",
+     "value": 1872
+    }
+   },
+   {
+    "say": "გემზე *არავინ* იყო.",
+    "tone": "whispers",
+    "image": "empty ship deck with ropes and a wooden wheel, fog, no people",
+    "fx": [
+     "glitch"
+    ],
+    "pop": {
+     "type": "number",
+     "value": 0,
+     "suffix": " ადამიანი"
+    }
+   },
+   {
+    "say": "კაპიტანი, მისი ცოლი, ორი წლის გოგონა და შვიდი მეზღვაური *გაქრა*.",
+    "tone": "sad",
+    "image": "old family portrait of a sea captain with wife and little daughter, sepia, candlelight",
+    "pop": {
+     "type": "number",
+     "value": 10,
+     "suffix": " გაქრა"
+    }
+   },
+   {
+    "say": "მაგრამ *ექვსი თვის* საკვები და წყალი ხელუხლებელი დარჩა.",
+    "tone": "curious",
+    "image": "barrels and food supplies in a dark ship hold, lantern light",
+    "pop": {
+     "type": "card",
+     "text": "6 თვის მარაგი"
+    }
+   },
+   {
+    "say": "პირადი ნივთებიც *ადგილზე* იყო.",
+    "tone": "mysterious",
+    "image": "captain's cabin with personal belongings, open book and a pipe on a table, eerie light",
+    "fx": [
+     "heartbeat"
+    ],
+    "pop": {
+     "type": "check"
+    }
+   },
+   {
+    "say": "აკლდა მხოლოდ *ერთი* რამ...",
+    "tone": "whispers",
+    "image": "dark ship side with empty ropes hanging where a boat used to be, fog",
+    "fx": [
+     "riser"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "🤔"
+    }
+   },
+   {
+    "say": "*სამაშველო ნავი*!",
+    "tone": "dramatic",
+    "image": "small empty rowing boat lost in a stormy ocean at night",
+    "fx": [
+     "boom"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "🚣"
+    }
+   },
+   {
+    "say": "რატომ დატოვებდა ვინმე კარგ გემს? *დაწერე* შენი ვერსია!",
+    "tone": "serious",
+    "image": "ghost ship silhouette in moonlight on calm black sea",
+    "pop": {
+     "type": "emoji",
+     "value": "👇"
+    }
+   }
+  ],
+  "caption": "150 წელია ამ გემის საიდუმლოს ვერავინ ხსნის 🚢",
+  "hashtags": [
+   "#მისტიკა",
+   "#საიდუმლოებები",
+   "#ისტორია",
+   "#ოკეანე",
+   "#fyp"
+  ]
+ },
+ {
+  "id": "M003",
+  "niche": "mystery",
+  "hook_type": "shock",
+  "mood": "dark",
+  "title": "Wow! სიგნალი",
+  "hook_text": "კოსმოსიდან 72 წამიანი სიგნალი მოვიდა",
+  "beats": [
+   {
+    "say": "1977 წელს ტელესკოპმა კოსმოსიდან *უცნაური სიგნალი* დაიჭირა.",
+    "tone": "mysterious",
+    "image": "giant radio telescope under a starry night sky, milky way",
+    "fx": [
+     "boom"
+    ],
+    "pop": {
+     "type": "number",
+     "value": 1977
+    }
+   },
+   {
+    "say": "ის *72 წამს* გაგრძელდა.",
+    "tone": "serious",
+    "image": "old computer printout with columns of numbers and letters, dim desk lamp",
+    "fx": [
+     "glitch"
+    ],
+    "pop": {
+     "type": "number",
+     "value": 72,
+     "suffix": " წამი"
+    }
+   },
+   {
+    "say": "მეცნიერმა ქაღალდზე შემოხაზა და დაწერა: *Wow!*",
+    "tone": "excited",
+    "image": "hand circling numbers on an old printout with a red pen",
+    "pop": {
+     "type": "card",
+     "text": "Wow!"
+    }
+   },
+   {
+    "say": "სიგნალი იმდენად ძლიერი იყო, რომ *ბუნებრივს* არ ჰგავდა.",
+    "tone": "curious",
+    "image": "scientist staring at glowing monitor in a dark observatory at night",
+    "fx": [
+     "heartbeat"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "📡"
+    }
+   },
+   {
+    "say": "მას შემდეგ ის *არასდროს* განმეორებულა.",
+    "tone": "whispers",
+    "image": "empty silent observatory control room at night",
+    "pop": {
+     "type": "cross"
+    }
+   },
+   {
+    "say": "ზოგი ფიქრობს, რომ ეს *უცხოპლანეტელები* იყვნენ...",
+    "tone": "mysterious",
+    "image": "deep space nebula with a mysterious bright point of light",
+    "fx": [
+     "riser"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "👽"
+    }
+   },
+   {
+    "say": "ახალი ჰიპოთეზით კი, *წყალბადის ღრუბელი* აინთო.",
+    "tone": "dramatic",
+    "image": "glowing hydrogen gas cloud in deep space lit by a powerful flash",
+    "fx": [
+     "boom"
+    ],
+    "pop": {
+     "type": "card",
+     "text": "ღრუბელი? ან...?"
+    }
+   },
+   {
+    "say": "შენ რომელს იჯერებ? *დაწერე*!",
+    "tone": "excited",
+    "image": "person silhouette looking up at a sky full of stars",
+    "pop": {
+     "type": "emoji",
+     "value": "👇"
+    }
+   }
+  ],
+  "caption": "72 წამი, რომელსაც მეცნიერები 50 წელზე მეტია ვერ ხსნიან 👽",
+  "hashtags": [
+   "#მისტიკა",
+   "#კოსმოსი",
+   "#საიდუმლოებები",
+   "#იცოდით",
+   "#fyp"
+  ]
+ },
+ {
+  "id": "M004",
+  "niche": "mystery",
+  "hook_type": "story",
+  "mood": "dark",
+  "title": "ფლანანის შუქურა",
+  "hook_text": "3 მეშუქურე ერთ ღამეში გაქრა",
+  "beats": [
+   {
+    "say": "1900 წლის დეკემბერი. შოტლანდიის კუნძულზე შუქურა *ჩაქრა*.",
+    "tone": "mysterious",
+    "image": "dark lighthouse on a remote rocky island, stormy sky, light off",
+    "fx": [
+     "boom"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "🗼"
+    }
+   },
+   {
+    "say": "როცა გემი მივიდა, *არავინ* დახვდა.",
+    "tone": "whispers",
+    "image": "small boat approaching a lonely island in rough grey sea",
+    "pop": {
+     "type": "number",
+     "value": 0,
+     "suffix": " ადამიანი"
+    }
+   },
+   {
+    "say": "სამივე მეშუქურე *უკვალოდ* გამქრალიყო.",
+    "tone": "serious",
+    "image": "three empty chairs at a wooden table in a dim lighthouse room",
+    "fx": [
+     "glitch"
+    ],
+    "pop": {
+     "type": "number",
+     "value": 3,
+     "suffix": " გაქრა"
+    }
+   },
+   {
+    "say": "ოთახში მხოლოდ ერთი *საწვიმარი* ეკიდა.",
+    "tone": "curious",
+    "image": "single old yellow oilskin coat hanging on a hook in a dark room",
+    "fx": [
+     "heartbeat"
+    ],
+    "pop": {
+     "type": "card",
+     "text": "1 საწვიმარი, 3 კაცი"
+    }
+   },
+   {
+    "say": "ანუ ერთ-ერთი *საწვიმრის გარეშე* გავიდა ქარიშხალში.",
+    "tone": "whispers",
+    "image": "lighthouse door open to a violent storm, rain, night",
+    "fx": [
+     "riser"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "🌧️"
+    }
+   },
+   {
+    "say": "ვერსია: *უზარმაზარმა ტალღამ* წაიღო ისინი.",
+    "tone": "dramatic",
+    "image": "gigantic wave crashing over cliffs of a rocky island",
+    "fx": [
+     "boom"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "🌊"
+    }
+   },
+   {
+    "say": "მაგრამ რატომ გავიდა *სამივე* ერთად? *დაწერე*!",
+    "tone": "serious",
+    "image": "lighthouse beam cutting through dark fog over the ocean",
+    "pop": {
+     "type": "emoji",
+     "value": "👇"
+    }
+   }
+  ],
+  "caption": "125 წლის წინანდელი საიდუმლო, რომელიც დღემდე გაუხსნელია 🗼",
+  "hashtags": [
+   "#მისტიკა",
+   "#საიდუმლოებები",
+   "#ისტორია",
+   "#შუქურა",
+   "#fyp"
+  ]
+ },
+ {
+  "id": "M005",
+  "niche": "mystery",
+  "hook_type": "question",
+  "mood": "dark",
+  "title": "ვოინიჩის ხელნაწერი",
+  "hook_text": "ამ წიგნს ვერავინ კითხულობს",
+  "beats": [
+   {
+    "say": "არსებობს წიგნი, რომელსაც დედამიწაზე *ვერავინ* კითხულობს.",
+    "tone": "mysterious",
+    "image": "ancient manuscript with strange unknown script and drawings, candlelight",
+    "fx": [
+     "boom"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "📜"
+    }
+   },
+   {
+    "say": "ის *600 წელზე* მეტი ხნისაა.",
+    "tone": "serious",
+    "image": "old leather bound book on a wooden table in a dusty library",
+    "pop": {
+     "type": "number",
+     "value": 600,
+     "suffix": "+ წელი"
+    }
+   },
+   {
+    "say": "მისი ანბანი და ენა *არცერთ ცნობილ* ენას არ ჰგავს.",
+    "tone": "curious",
+    "image": "close-up of mysterious handwritten symbols in faded ink",
+    "fx": [
+     "glitch"
+    ],
+    "pop": {
+     "type": "cross"
+    }
+   },
+   {
+    "say": "შიგნით ისეთი *მცენარეებია* დახატული, რომლებიც არ არსებობს.",
+    "tone": "whispers",
+    "image": "strange fantasy plant illustrations drawn in an ancient manuscript",
+    "fx": [
+     "heartbeat"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "🌿"
+    }
+   },
+   {
+    "say": "მის გაშიფვრას *საუკეთესო კრიპტოგრაფებიც* ცდილობდნენ.",
+    "tone": "serious",
+    "image": "codebreakers in a dark room with papers and old typewriters",
+    "pop": {
+     "type": "emoji",
+     "value": "🕵️"
+    }
+   },
+   {
+    "say": "და იცი, რამდენმა შეძლო?",
+    "tone": "whispers",
+    "image": "magnifying glass over unknown ancient text, dark",
+    "fx": [
+     "riser"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "🤔"
+    }
+   },
+   {
+    "say": "*არცერთმა*!",
+    "tone": "dramatic",
+    "image": "ancient book closing in darkness with dust in the light",
+    "fx": [
+     "boom"
+    ],
+    "pop": {
+     "type": "number",
+     "value": 0
+    }
+   },
+   {
+    "say": "როგორ ფიქრობ, რა წერია მასში? *დაწერე*!",
+    "tone": "curious",
+    "image": "candle next to an open mysterious manuscript at night",
+    "pop": {
+     "type": "emoji",
+     "value": "👇"
+    }
+   }
+  ],
+  "caption": "მსოფლიოს ყველაზე იდუმალი წიგნი 📜",
+  "hashtags": [
+   "#მისტიკა",
+   "#საიდუმლოებები",
+   "#წიგნი",
+   "#იცოდით",
+   "#fyp"
+  ]
+ },
+ {
+  "id": "M006",
+  "niche": "mystery",
+  "hook_type": "story",
+  "mood": "dark",
+  "title": "სომერტონის კაცი",
+  "hook_text": "ჯიბეში ეწერა: „დასრულდა“",
+  "beats": [
+   {
+    "say": "1948 წელს ავსტრალიის პლაჟზე *უცნობი კაცი* იპოვეს.",
+    "tone": "mysterious",
+    "image": "lonely beach at dawn with a man in a suit lying against a sea wall, fog",
+    "fx": [
+     "boom"
+    ],
+    "pop": {
+     "type": "number",
+     "value": 1948
+    }
+   },
+   {
+    "say": "მის ტანსაცმელს ყველა *ეტიკეტი* მოჭრილი ჰქონდა.",
+    "tone": "whispers",
+    "image": "old suit jacket with the label cut out, scissors, dim light",
+    "fx": [
+     "glitch"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "✂️"
+    }
+   },
+   {
+    "say": "საიდუმლო ჯიბეში კი ქაღალდი იპოვეს, სიტყვით: *დასრულდა*.",
+    "tone": "mysterious",
+    "image": "tiny torn paper with printed words in a hidden pocket, macro photo",
+    "fx": [
+     "heartbeat"
+    ],
+    "pop": {
+     "type": "card",
+     "text": "Tamám Shud"
+    }
+   },
+   {
+    "say": "წიგნში, საიდანაც ეს ქაღალდი მოხიეს, *საიდუმლო კოდი* ეწერა.",
+    "tone": "curious",
+    "image": "old poetry book with pencil written code letters on the back page",
+    "pop": {
+     "type": "emoji",
+     "value": "🔐"
+    }
+   },
+   {
+    "say": "*70 წელზე* მეტი ხანი ვერავინ გაიგო, ვინ იყო ის.",
+    "tone": "serious",
+    "image": "detectives looking at old case files under a lamp",
+    "pop": {
+     "type": "number",
+     "value": 70,
+     "suffix": "+ წელი"
+    }
+   },
+   {
+    "say": "2022 წელს კი მკვლევარმა *დნმ-ით* დაადგინა მისი სახელი...",
+    "tone": "curious",
+    "image": "dna strands glowing in a dark laboratory",
+    "fx": [
+     "riser"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "🧬"
+    }
+   },
+   {
+    "say": "მაგრამ როგორ მოკვდა, *დღემდე* არავინ იცის.",
+    "tone": "dramatic",
+    "image": "foggy beach at night with waves and moonlight",
+    "fx": [
+     "boom"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "❓"
+    }
+   },
+   {
+    "say": "კოდის ამოხსნა გინდა? *დაწერე*!",
+    "tone": "excited",
+    "image": "handwritten mysterious code on yellowed paper, flashlight",
+    "pop": {
+     "type": "emoji",
+     "value": "👇"
+    }
+   }
+  ],
+  "caption": "ავსტრალიის ყველაზე იდუმალი საქმე 🕵️",
+  "hashtags": [
+   "#მისტიკა",
+   "#საიდუმლოებები",
+   "#დეტექტივი",
+   "#ისტორია",
+   "#fyp"
+  ]
+ },
+ {
+  "id": "M007",
+  "niche": "mystery",
+  "hook_type": "question",
+  "mood": "dark",
+  "title": "ბლუპი",
+  "hook_text": "ოკეანეში რაღაც ყვიროდა",
+  "beats": [
+   {
+    "say": "1997 წელს ოკეანის მიკროფონებმა *საშინელი ხმა* ჩაწერეს.",
+    "tone": "mysterious",
+    "image": "deep dark ocean abyss with faint light rays from above",
+    "fx": [
+     "boom"
+    ],
+    "pop": {
+     "type": "number",
+     "value": 1997
+    }
+   },
+   {
+    "say": "ის *5000 კილომეტრზე* მეტ მანძილზე გაისმა.",
+    "tone": "surprised",
+    "image": "underwater sound waves spreading through a dark ocean, visualization",
+    "pop": {
+     "type": "number",
+     "value": 5000,
+     "suffix": " კმ"
+    }
+   },
+   {
+    "say": "ამხელა ხმის გამოცემა *არცერთ ცნობილ ცხოველს* არ შეუძლია.",
+    "tone": "whispers",
+    "image": "blue whale silhouette in deep dark water",
+    "fx": [
+     "heartbeat"
+    ],
+    "pop": {
+     "type": "cross"
+    }
+   },
+   {
+    "say": "ხალხმა დაიწყო ლაპარაკი *გიგანტურ არსებაზე*...",
+    "tone": "scared",
+    "image": "giant shadow of a sea monster beneath a small boat at night",
+    "fx": [
+     "glitch"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "🐙"
+    }
+   },
+   {
+    "say": "ხმას დაარქვეს *ბლუპი*.",
+    "tone": "mysterious",
+    "image": "sonar screen glowing green in a dark submarine",
+    "pop": {
+     "type": "card",
+     "text": "BLOOP"
+    }
+   },
+   {
+    "say": "მაგრამ პასუხი სულ სხვა აღმოჩნდა...",
+    "tone": "whispers",
+    "image": "dark antarctic sea with fog",
+    "fx": [
+     "riser"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "🤫"
+    }
+   },
+   {
+    "say": "ეს *ყინულის მთები* იყო, რომლებიც ტყდებოდა!",
+    "tone": "dramatic",
+    "image": "huge iceberg cracking and collapsing into the sea",
+    "fx": [
+     "boom"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "🧊"
+    }
+   },
+   {
+    "say": "შენ რა გეგონა? *დაწერე*!",
+    "tone": "excited",
+    "image": "ocean surface at night under moonlight",
+    "pop": {
+     "type": "emoji",
+     "value": "👇"
+    }
+   }
+  ],
+  "caption": "ოკეანის ყველაზე ხმამაღალი საიდუმლო 🌊",
+  "hashtags": [
+   "#მისტიკა",
+   "#ოკეანე",
+   "#საიდუმლოებები",
+   "#იცოდით",
+   "#fyp"
+  ]
+ },
+ {
+  "id": "P001",
+  "niche": "psychology",
+  "hook_type": "mistake",
+  "mood": "dark",
+  "title": "პროჟექტორის ეფექტი",
+  "hook_text": "ყველა შენ არ გიყურებს",
+  "beats": [
+   {
+    "say": "გგონია, რომ შენს ყოველ შეცდომას *ყველა* ამჩნევს?",
+    "tone": "curious",
+    "image": "nervous young woman in a crowded room feeling watched, spotlight on her",
+    "fx": [
+     "boom"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "😰"
+    }
+   },
+   {
+    "say": "მეცნიერებმა სტუდენტებს *სასაცილო მაისური* ჩააცვეს.",
+    "tone": "excited",
+    "image": "student wearing an embarrassing funny t-shirt in a university hallway",
+    "pop": {
+     "type": "emoji",
+     "value": "👕"
+    }
+   },
+   {
+    "say": "მათ ეგონათ, რომ ოთახში *ნახევარი* შეამჩნევდა.",
+    "tone": "serious",
+    "image": "students in a classroom looking at their phones",
+    "pop": {
+     "type": "number",
+     "value": 50,
+     "suffix": "%"
+    }
+   },
+   {
+    "say": "სინამდვილეში?",
+    "tone": "whispers",
+    "image": "close-up of a surprised face in dim light",
+    "fx": [
+     "riser"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "🤔"
+    }
+   },
+   {
+    "say": "მხოლოდ *ოთხიდან ერთმა*!",
+    "tone": "dramatic",
+    "image": "crowd of people ignoring a single person, cinematic",
+    "fx": [
+     "boom"
+    ],
+    "pop": {
+     "type": "number",
+     "value": 25,
+     "suffix": "%"
+    }
+   },
+   {
+    "say": "ამას *პროჟექტორის ეფექტი* ჰქვია.",
+    "tone": "serious",
+    "image": "single theatre spotlight on an empty stage",
+    "pop": {
+     "type": "card",
+     "text": "პროჟექტორის ეფექტი"
+    }
+   },
+   {
+    "say": "ხალხი შენზე *ბევრად ნაკლებს* ფიქრობს, ვიდრე გგონია.",
+    "tone": "curious",
+    "image": "busy city street where everyone is focused on themselves",
+    "pop": {
+     "type": "check"
+    }
+   },
+   {
+    "say": "ასე რომ, იყავი *თამამი*. მონიშნე ის, ვისაც ეს სჭირდება!",
+    "tone": "excited",
+    "image": "confident woman walking in a city at sunset",
+    "pop": {
+     "type": "emoji",
+     "value": "👇"
+    }
+   }
+  ],
+  "caption": "ეს ცოდნა შენს თავდაჯერებულობას შეცვლის 🔦",
+  "hashtags": [
+   "#ფსიქოლოგია",
+   "#თავდაჯერებულობა",
+   "#ტვინი",
+   "#ფაქტები",
+   "#fyp"
+  ]
+ },
+ {
+  "id": "P002",
+  "niche": "psychology",
+  "hook_type": "question",
+  "mood": "dark",
+  "title": "კარის ეფექტი",
+  "hook_text": "რატომ გავიწყდება, რისთვის შედი ოთახში?",
+  "beats": [
+   {
+    "say": "შედიხარ ოთახში და *ავიწყდება*, რისთვის მოხვედი?",
+    "tone": "curious",
+    "image": "confused man standing in a doorway of a dark room",
+    "fx": [
+     "boom"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "🤯"
+    }
+   },
+   {
+    "say": "ეს შენი ბრალი *არ არის*.",
+    "tone": "serious",
+    "image": "close-up of an old wooden door slightly open, light behind it",
+    "pop": {
+     "type": "cross"
+    }
+   },
+   {
+    "say": "მეცნიერებმა აღმოაჩინეს, რომ *კარი* ტვინს მეხსიერებას უშლის.",
+    "tone": "mysterious",
+    "image": "brain neurons glowing, dark background",
+    "fx": [
+     "glitch"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "🧠"
+    }
+   },
+   {
+    "say": "როცა ზღურბლს გადადიხარ, ტვინი ფიქრობს: *ახალი სცენა დაიწყო*.",
+    "tone": "curious",
+    "image": "person stepping through a doorway into a bright room, cinematic",
+    "pop": {
+     "type": "card",
+     "text": "კარი = ახალი სცენა"
+    }
+   },
+   {
+    "say": "და ძველ ფიქრს *არქივში* აგზავნის.",
+    "tone": "whispers",
+    "image": "endless dark archive shelves full of files",
+    "pop": {
+     "type": "emoji",
+     "value": "🗄️"
+    }
+   },
+   {
+    "say": "ამას *კარის ეფექტი* ჰქვია.",
+    "tone": "serious",
+    "image": "row of doors in a long dark corridor",
+    "fx": [
+     "riser"
+    ],
+    "pop": {
+     "type": "card",
+     "text": "კარის ეფექტი"
+    }
+   },
+   {
+    "say": "გამოსავალი? *დაბრუნდი* იმ ოთახში და გაგახსენდება!",
+    "tone": "excited",
+    "image": "person walking back through a door with a smile",
+    "fx": [
+     "boom"
+    ],
+    "pop": {
+     "type": "check"
+    }
+   },
+   {
+    "say": "შენც ხშირად გემართება? *დაწერე*!",
+    "tone": "excited",
+    "image": "cozy home hallway with warm light",
+    "pop": {
+     "type": "emoji",
+     "value": "👇"
+    }
+   }
+  ],
+  "caption": "ახლა ბოლოს და ბოლოს იცი, რატომ ხდება ეს 🚪",
+  "hashtags": [
+   "#ფსიქოლოგია",
+   "#ტვინი",
+   "#მეხსიერება",
+   "#ფაქტები",
+   "#fyp"
+  ]
+ },
+ {
+  "id": "P003",
+  "niche": "psychology",
+  "hook_type": "shock",
+  "mood": "dark",
+  "title": "ბაადერ-მაინჰოფის ფენომენი",
+  "hook_text": "რატომ ხედავ მას ყველგან?",
+  "beats": [
+   {
+    "say": "ახალ სიტყვას გაიგებ და მერე უცებ *ყველგან* გესმის.",
+    "tone": "mysterious",
+    "image": "person noticing the same symbol everywhere on city signs at night",
+    "fx": [
+     "boom"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "👀"
+    }
+   },
+   {
+    "say": "ან ახალ მანქანას იყიდი და *ყველა ქუჩაზე* ის დგას.",
+    "tone": "curious",
+    "image": "many identical red cars parked on a street, cinematic",
+    "pop": {
+     "type": "emoji",
+     "value": "🚗"
+    }
+   },
+   {
+    "say": "სამყარო ხომ არ გეთამაშება?",
+    "tone": "whispers",
+    "image": "glitching city street like a simulation, surreal",
+    "fx": [
+     "glitch"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "🌀"
+    }
+   },
+   {
+    "say": "არა. ეს შენი *ტვინის ფილტრია*.",
+    "tone": "serious",
+    "image": "brain with a glowing filter net, abstract dark",
+    "fx": [
+     "riser"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "🧠"
+    }
+   },
+   {
+    "say": "როცა რამე *მნიშვნელოვანი* გახდება, ტვინი მას ყველგან პოულობს.",
+    "tone": "curious",
+    "image": "magnifying glass scanning a crowd, one person highlighted",
+    "fx": [
+     "boom"
+    ],
+    "pop": {
+     "type": "card",
+     "text": "მნიშვნელოვანი = შესამჩნევი"
+    }
+   },
+   {
+    "say": "ამას *სიხშირის ილუზია* ჰქვია.",
+    "tone": "serious",
+    "image": "repeating pattern of the same object in a dark hall of mirrors",
+    "pop": {
+     "type": "card",
+     "text": "სიხშირის ილუზია"
+    }
+   },
+   {
+    "say": "და ახლა, როცა ეს გაიგე, *ყველგან* შეამჩნევ. დაწერე, რას ხედავ ყველგან!",
+    "tone": "laughs",
+    "image": "person smiling while walking through a busy city",
+    "pop": {
+     "type": "emoji",
+     "value": "👇"
+    }
+   }
+  ],
+  "caption": "ეს ფენომენი ყველას დამართნია, მაგრამ ცოტამ იცის მისი სახელი 🌀",
+  "hashtags": [
+   "#ფსიქოლოგია",
+   "#ტვინი",
+   "#ფენომენი",
+   "#ფაქტები",
+   "#fyp"
+  ]
+ },
+ {
+  "id": "P004",
+  "niche": "psychology",
+  "hook_type": "mistake",
+  "mood": "dark",
+  "title": "ვარდისფერი სპილო",
+  "hook_text": "ნუ იფიქრებ ვარდისფერ სპილოზე",
+  "beats": [
+   {
+    "say": "ახლა *ნუ იფიქრებ* ვარდისფერ სპილოზე.",
+    "tone": "whispers",
+    "image": "pink elephant standing in a dark misty room, surreal cinematic",
+    "fx": [
+     "boom"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "🐘"
+    }
+   },
+   {
+    "say": "უკვე იფიქრე, *ხომ*?",
+    "tone": "laughs",
+    "image": "woman covering her face laughing, dramatic light",
+    "pop": {
+     "type": "emoji",
+     "value": "😏"
+    }
+   },
+   {
+    "say": "როცა ტვინს რამეზე ფიქრს *უკრძალავ*...",
+    "tone": "curious",
+    "image": "man trying to stop his thoughts, hands on head, dark room",
+    "fx": [
+     "glitch"
+    ],
+    "pop": {
+     "type": "cross"
+    }
+   },
+   {
+    "say": "ის იმ ფიქრს *უფრო ხშირად* უბრუნდება.",
+    "tone": "mysterious",
+    "image": "thoughts swirling around a person's head at night, surreal",
+    "fx": [
+     "heartbeat"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "🔁"
+    }
+   },
+   {
+    "say": "ამიტომ არ მუშაობს *ნუ ნერვიულობ*.",
+    "tone": "serious",
+    "image": "anxious person lying awake in bed at night",
+    "fx": [
+     "riser"
+    ],
+    "pop": {
+     "type": "card",
+     "text": "„ნუ ნერვიულობ“ ❌"
+    }
+   },
+   {
+    "say": "თქვი, *რა გააკეთო* ამის ნაცვლად.",
+    "tone": "dramatic",
+    "image": "calm person breathing deeply by a window at sunrise",
+    "fx": [
+     "boom"
+    ],
+    "pop": {
+     "type": "card",
+     "text": "„ღრმად ჩავისუნთქავ“ ✅"
+    }
+   },
+   {
+    "say": "კიდევ გინდა ტვინის ხრიკები? *გამოიწერე*!",
+    "tone": "excited",
+    "image": "glowing brain illustration in the dark",
+    "pop": {
+     "type": "emoji",
+     "value": "🔔"
+    }
+   }
+  ],
+  "caption": "შენი ტვინი ამ ხრიკს ვერ უძლებს 🐘",
+  "hashtags": [
+   "#ფსიქოლოგია",
+   "#ტვინი",
+   "#ხრიკები",
+   "#თვითგანვითარება",
+   "#fyp"
+  ]
+ },
+ {
+  "id": "P005",
+  "niche": "psychology",
+  "hook_type": "shock",
+  "mood": "dark",
+  "title": "უხილავი გორილა",
+  "hook_text": "ნახევარმა გორილა ვერ შეამჩნია",
+  "beats": [
+   {
+    "say": "ადამიანებს სთხოვეს, დაეთვალათ *ბურთის პასები*.",
+    "tone": "curious",
+    "image": "people passing a basketball in a dim gym, motion blur",
+    "fx": [
+     "boom"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "🏀"
+    }
+   },
+   {
+    "say": "ამ დროს მათ შორის *გორილა* გაიარა.",
+    "tone": "mysterious",
+    "image": "person in a gorilla costume walking through a group of players",
+    "fx": [
+     "glitch"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "🦍"
+    }
+   },
+   {
+    "say": "შუაში გაჩერდა და *მკერდზე* დაირტყა.",
+    "tone": "laughs",
+    "image": "gorilla costume beating its chest in a gym, dramatic light",
+    "pop": {
+     "type": "emoji",
+     "value": "😂"
+    }
+   },
+   {
+    "say": "და იცი, რამდენმა *ვერ* შეამჩნია?",
+    "tone": "whispers",
+    "image": "close-up of focused eyes in darkness",
+    "fx": [
+     "riser"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "🤫"
+    }
+   },
+   {
+    "say": "თითქმის *ნახევარმა*!",
+    "tone": "dramatic",
+    "image": "shocked faces of people watching a screen",
+    "fx": [
+     "boom"
+    ],
+    "pop": {
+     "type": "number",
+     "value": 50,
+     "suffix": "%"
+    }
+   },
+   {
+    "say": "როცა კონცენტრირებული ვართ, ტვინი დანარჩენს *უბრალოდ შლის*.",
+    "tone": "serious",
+    "image": "person in a crowd with everything around blurred out",
+    "pop": {
+     "type": "card",
+     "text": "ფოკუსი = სიბრმავე"
+    }
+   },
+   {
+    "say": "შენს ცხოვრებაში *რას ვერ ამჩნევ*? დაწერე!",
+    "tone": "curious",
+    "image": "person looking out a rainy window at night",
+    "pop": {
+     "type": "emoji",
+     "value": "👇"
+    }
+   }
+  ],
+  "caption": "შენც ვერ შეამჩნევდი, დარწმუნებული ვარ 🦍",
+  "hashtags": [
+   "#ფსიქოლოგია",
+   "#ექსპერიმენტი",
+   "#ტვინი",
+   "#ფაქტები",
+   "#fyp"
+  ]
+ },
+ {
+  "id": "P006",
+  "niche": "psychology",
+  "hook_type": "question",
+  "mood": "dark",
+  "title": "ფრანკლინის ეფექტი",
+  "hook_text": "გინდა მოეწონო? სთხოვე დახმარება",
+  "beats": [
+   {
+    "say": "გინდა ვინმეს *მოეწონო*?",
+    "tone": "curious",
+    "image": "two people talking in a cozy dark cafe, warm light",
+    "fx": [
+     "boom"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "😍"
+    }
+   },
+   {
+    "say": "მაშინ საჩუქარი კი არა, *დახმარება* სთხოვე.",
+    "tone": "mysterious",
+    "image": "hand asking for help reaching out, cinematic",
+    "pop": {
+     "type": "emoji",
+     "value": "🙏"
+    }
+   },
+   {
+    "say": "ბენჯამინ ფრანკლინს ერთი *მტერი* ჰყავდა.",
+    "tone": "serious",
+    "image": "18th century politician portrait in candlelight, stern face",
+    "fx": [
+     "glitch"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "😠"
+    }
+   },
+   {
+    "say": "ფრანკლინმა მას *იშვიათი წიგნი* ათხოვნინა.",
+    "tone": "curious",
+    "image": "hands passing an old rare book in a dark library",
+    "pop": {
+     "type": "emoji",
+     "value": "📖"
+    }
+   },
+   {
+    "say": "და რა მოხდა?",
+    "tone": "whispers",
+    "image": "old library at night with a single candle",
+    "fx": [
+     "riser"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "🤔"
+    }
+   },
+   {
+    "say": "ისინი *მეგობრები* გახდნენ!",
+    "tone": "excited",
+    "image": "two old gentlemen shaking hands warmly, candlelight",
+    "fx": [
+     "boom"
+    ],
+    "pop": {
+     "type": "card",
+     "text": "მტერი → მეგობარი"
+    }
+   },
+   {
+    "say": "ტვინი ფიქრობს: თუ ვეხმარები, ესე იგი *მომწონს*.",
+    "tone": "curious",
+    "image": "glowing brain with a heart shape, dark background",
+    "pop": {
+     "type": "emoji",
+     "value": "🧠"
+    }
+   },
+   {
+    "say": "სცადე და დაწერე *შედეგი*!",
+    "tone": "excited",
+    "image": "friends laughing together at night",
+    "pop": {
+     "type": "emoji",
+     "value": "👇"
+    }
+   }
+  ],
+  "caption": "ეს ფსიქოლოგიური ხრიკი 250 წელზე მეტია მუშაობს 🧠",
+  "hashtags": [
+   "#ფსიქოლოგია",
+   "#ურთიერთობები",
+   "#ხრიკები",
+   "#თვითგანვითარება",
+   "#fyp"
+  ]
+ },
+ {
+  "id": "P007",
+  "niche": "psychology",
+  "hook_type": "question",
+  "mood": "dark",
+  "title": "ნაცნობობის ეფექტი",
+  "hook_text": "რატომ მოგწონს სიმღერა მესამედ მოსმენაზე?",
+  "beats": [
+   {
+    "say": "ახალი სიმღერა *არ მოგეწონა*...",
+    "tone": "curious",
+    "image": "person with headphones frowning, dark room, neon light",
+    "fx": [
+     "boom"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "🎧"
+    }
+   },
+   {
+    "say": "მესამედ მოსმენისას კი *თავში გიტრიალებს*?",
+    "tone": "laughs",
+    "image": "person dancing alone in a dark room with neon lights",
+    "pop": {
+     "type": "emoji",
+     "value": "🔁"
+    }
+   },
+   {
+    "say": "ეს შემთხვევითობა *არ არის*.",
+    "tone": "serious",
+    "image": "close-up of a vinyl record spinning in darkness",
+    "fx": [
+     "glitch"
+    ],
+    "pop": {
+     "type": "cross"
+    }
+   },
+   {
+    "say": "რაც უფრო ხშირად ვხედავთ რამეს, მით *უფრო მოგვწონს*.",
+    "tone": "mysterious",
+    "image": "same face appearing on many screens in a dark room",
+    "pop": {
+     "type": "card",
+     "text": "ხშირად = მომწონს"
+    }
+   },
+   {
+    "say": "ამას *ნაცნობობის ეფექტი* ჰქვია.",
+    "tone": "serious",
+    "image": "billboards repeating the same advertisement in a city at night",
+    "fx": [
+     "riser"
+    ],
+    "pop": {
+     "type": "card",
+     "text": "ნაცნობობის ეფექტი"
+    }
+   },
+   {
+    "say": "სწორედ ამიტომ გაჩვენებენ ერთსა და იმავე *რეკლამას* ასჯერ!",
+    "tone": "dramatic",
+    "image": "tv screens all showing the same ad in a dark shop window",
+    "fx": [
+     "boom"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "📺"
+    }
+   },
+   {
+    "say": "შენ რომელი სიმღერა დაგემართა ასე? *დაწერე*!",
+    "tone": "excited",
+    "image": "friends singing in a car at night, city lights",
+    "pop": {
+     "type": "emoji",
+     "value": "👇"
+    }
+   }
+  ],
+  "caption": "შენი ტვინი ასე „ყიდულობს“ ყველაფერს 🎧",
+  "hashtags": [
+   "#ფსიქოლოგია",
+   "#ტვინი",
+   "#მარკეტინგი",
+   "#ფაქტები",
+   "#fyp"
+  ]
+ },
+ {
+  "id": "P008",
+  "niche": "psychology",
+  "hook_type": "question",
+  "mood": "dark",
+  "title": "წვეულების ეფექტი",
+  "hook_text": "ხმაურში რატომ გესმის შენი სახელი?",
+  "beats": [
+   {
+    "say": "ხმაურიან წვეულებაზე *არაფერი* გესმის.",
+    "tone": "curious",
+    "image": "crowded dark party with colorful lights and people talking",
+    "fx": [
+     "boom"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "🎉"
+    }
+   },
+   {
+    "say": "მაგრამ ვინმე შენს *სახელს* ჩურჩულით იტყვის...",
+    "tone": "whispers",
+    "image": "close-up of a person whispering in someone's ear, dark",
+    "fx": [
+     "heartbeat"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "👂"
+    }
+   },
+   {
+    "say": "და *მაშინვე* გესმის!",
+    "tone": "surprised",
+    "image": "woman turning her head suddenly at a party, dramatic light",
+    "fx": [
+     "boom"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "😳"
+    }
+   },
+   {
+    "say": "შენი ტვინი ხმებს *გამუდმებით* ფილტრავს.",
+    "tone": "mysterious",
+    "image": "sound waves flowing into a glowing brain, abstract dark",
+    "pop": {
+     "type": "emoji",
+     "value": "🧠"
+    }
+   },
+   {
+    "say": "მაშინაც კი, როცა *არ უსმენ*.",
+    "tone": "whispers",
+    "image": "person sleeping while sound waves float around",
+    "fx": [
+     "riser"
+    ],
+    "pop": {
+     "type": "emoji",
+     "value": "🤫"
+    }
+   },
+   {
+    "say": "და შენი სახელი ამ ფილტრს *ყოველთვის* გადის.",
+    "tone": "dramatic",
+    "image": "spotlight on a name tag in a dark crowd",
+    "fx": [
+     "boom"
+    ],
+    "pop": {
+     "type": "card",
+     "text": "წვეულების ეფექტი"
+    }
+   },
+   {
+    "say": "ამიტომ, თუ გინდა მოეწონო ვინმეს, *სახელით მიმართე*. გამოიწერე!",
+    "tone": "excited",
+    "image": "two people smiling and shaking hands at an evening event",
+    "pop": {
+     "type": "emoji",
+     "value": "🔔"
+    }
+   }
+  ],
+  "caption": "შენი ტვინი ყოველთვის გისმენს 👂",
+  "hashtags": [
+   "#ფსიქოლოგია",
+   "#ტვინი",
+   "#ურთიერთობები",
+   "#ფაქტები",
+   "#fyp"
+  ]
+ }
 ]

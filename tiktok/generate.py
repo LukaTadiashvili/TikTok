@@ -64,6 +64,10 @@ def pick_script(history, script_id=None, niche=None):
     fresh = [s for s in bank if s["id"] not in used and (not niche or s["niche"] == niche)]
     if not fresh:
         return None, bank
+    priority = os.getenv("PRIORITY_NICHE")
+    if priority and any(s["niche"] == priority for s in fresh):
+        fresh = [s for s in fresh if s["niche"] == priority]
+        return fresh[0], bank  # priority series goes in order
     count = {}
     for h in history:
         count[h["niche"]] = count.get(h["niche"], 0) + 1
