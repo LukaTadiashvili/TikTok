@@ -67,19 +67,31 @@ def narrate(text, path):
     if gkey:
         try:
             model = os.getenv("GEMINI_TTS_MODEL") or "gemini-2.5-flash-preview-tts"
-            prompt = ("You are the narrator of a dark Georgian psychological thriller series, like a movie trailer "
-                      "voice: deep, slow, calm and ominous, with dramatic pauses. Say in Georgian:\n" + plain)
-            r = requests.post(
-                f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
-                headers={"x-goog-api-key": gkey, "Content-Type": "application/json"},
-                json={"contents": [{"parts": [{"text": prompt}]}],
-                      "generationConfig": {"responseModalities": ["AUDIO"], "speechConfig": {
-                          "voiceConfig": {"prebuiltVoiceConfig": {"voiceName": NARRATOR_GEMINI}}}}},
-                timeout=180)
-            r.raise_for_status()
+            prompt = f"Say in a deep, slow, ominous thriller-trailer voice, in Georgian: {plain}"
+            part = None
+            for attempt in range(4):
+                r = requests.post(
+                    f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
+                    headers={"x-goog-api-key": gkey, "Content-Type": "application/json"},
+                    json={"contents": [{"parts": [{"text": prompt}]}],
+                          "generationConfig": {"responseModalities": ["AUDIO"], "speechConfig": {
+                              "voiceConfig": {"prebuiltVoiceConfig": {"voiceName": NARRATOR_GEMINI}}}}},
+                    timeout=180)
+                if r.status_code == 429:
+                    import time
+                    time.sleep(20)
+                    continue
+                r.raise_for_status()
+                cand = (r.json().get("candidates") or [{}])[0]
+                parts = (cand.get("content") or {}).get("parts") or []
+                part = next((p["inlineData"] for p in parts if "inlineData" in p), None)
+                if part:
+                    break
+                g.log(f"Gemini narrator empty answer (finishReason={cand.get('finishReason')}), retrying")
+            if not part:
+                raise RuntimeError("Gemini gave no audio")
             import base64
             import re
-            part = r.json()["candidates"][0]["content"]["parts"][0]["inlineData"]
             pcm = path.with_suffix(".pcm")
             pcm.write_bytes(base64.b64decode(part["data"]))
             rate = re.search(r"rate=(\d+)", part.get("mimeType", ""))
