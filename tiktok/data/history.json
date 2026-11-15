@@ -53,5 +53,33 @@
       "videoplasty"
     ],
     "sent": true
+  },
+  {
+    "id": "V003",
+    "date": "2026-11-15",
+    "script_id": "S023",
+    "niche": "motivation",
+    "hook_type": "question",
+    "voice": "ka-GE-EkaNeural",
+    "title": "2 წუთის წესი",
+    "seconds": 18.7,
+    "shots": 13,
+    "real_footage": 13,
+    "credits": [
+      "DEZYNE_3D",
+      "GradientARC",
+      "JM_Graphics_Pro",
+      "Jamick",
+      "NickiAnimations",
+      "Oliver_GR",
+      "SYG_Anime",
+      "TonyDias7",
+      "couponblaze",
+      "dbghale",
+      "olenchic",
+      "trilemedia",
+      "wodokolor"
+    ],
+    "sent": true
   }
 ]
