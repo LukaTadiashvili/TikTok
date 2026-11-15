@@ -1,1 +1,30 @@
-[]
+[
+  {
+    "id": "V001",
+    "date": "2026-11-15",
+    "script_id": "S014",
+    "niche": "psychology",
+    "hook_type": "question",
+    "voice": "ka-GE-GiorgiNeural",
+    "title": "ფრანკლინის ეფექტი",
+    "seconds": 20.8,
+    "shots": 14,
+    "real_footage": 14,
+    "credits": [
+      "JayShawflybydrones",
+      "NickyPe",
+      "Placidplace",
+      "Republica",
+      "Sang_Soi",
+      "StefWithAnF",
+      "Vimeo-Free-Videos",
+      "Visual_Laurence",
+      "geralt",
+      "julientromeur",
+      "krzys16",
+      "splongo",
+      "videoplasty"
+    ],
+    "sent": true
+  }
+]
