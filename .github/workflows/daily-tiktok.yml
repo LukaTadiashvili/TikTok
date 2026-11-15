@@ -50,7 +50,7 @@ jobs:
       - name: Generate and send video
         env:
           ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY || secrets.GEMINI_APP }}
           GEMINI_VOICE: ${{ vars.GEMINI_VOICE }}
           ELEVENLABS_VOICES: ${{ vars.ELEVENLABS_VOICES }}
           ELEVENLABS_MODEL: ${{ vars.ELEVENLABS_MODEL }}
