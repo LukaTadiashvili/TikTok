@@ -75,6 +75,6 @@ jobs:
         run: |
           git config user.name "tiktok-bot"
           git config user.email "tiktok-bot@users.noreply.github.com"
-          git add series/state.json
+          git add series/state.json series/*_cover.jpg
           git commit -m "Update series state" || exit 0
           git pull --rebase -q && git push

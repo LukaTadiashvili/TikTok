@@ -165,12 +165,13 @@ def make_cover(season, ep, clip_files, out):
     Text sits in the middle band so it also reads in TikTok's 3:4 profile grid crop."""
     from PIL import Image, ImageDraw, ImageFilter, ImageFont
     W, H = 1080, 1920
-    cov = ep.get("cover", {})
-    ci = min(cov.get("clip", len(clip_files) - 1), len(clip_files) - 1)
-    src = clip_files[ci]
-    at = cov.get("at", g.duration(src) * 0.8)
-    frame = out.with_suffix(".frame.jpg")
-    g.run(["ffmpeg", "-y", "-loglevel", "error", "-ss", f"{at:.2f}", "-i", src, "-frames:v", "1", "-q:v", "2", frame])
+    # one fixed background per series (series/<id>_cover.jpg) so all episodes look the same;
+    # if it doesn't exist yet, take a frame from this episode and keep it for the next ones
+    frame = ROOT / f"series/{season['id']}_cover.jpg"
+    if not frame.exists():
+        src = clip_files[-1]
+        g.run(["ffmpeg", "-y", "-loglevel", "error", "-ss", f"{g.duration(src) * 0.8:.2f}", "-i", src,
+               "-frames:v", "1", "-q:v", "2", frame])
     img = Image.open(frame).convert("RGB")
     sc = max(W / img.width, H / img.height)
     img = img.resize((round(img.width * sc), round(img.height * sc)), Image.LANCZOS)
@@ -206,8 +207,6 @@ def make_cover(season, ep, clip_files, out):
 
     centered(season["title"].upper(), 74, int(H * 0.47), (255, 255, 255, 235), spacing=10)
     centered(f"სერია {ep['n']}", 190, int(H * 0.53), (255, 255, 255, 255), glow=(255, 30, 50, 255))
-    if ep.get("title"):
-        centered(f"„{ep['title']}“", 54, int(H * 0.67), (255, 230, 0, 255))
     img.convert("RGB").save(out, quality=92)
     return out
 
