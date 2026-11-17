@@ -57,7 +57,7 @@ export type VideoProps = {
   captionTop?: number;
   overlayTop?: number;
   cinema?: boolean; // series mode: clean film subtitles, no progress bar, freeze-frame end card
-  subs?: {text: string; start: number; end: number}[];
+  subs?: {text: string; start: number; end: number; name?: string}[];
   cards?: {text: string; start: number; end: number}[];
 };
 
@@ -481,7 +481,7 @@ const Progress: React.FC = () => {
 };
 
 // Film-style subtitles: one clean white line at the bottom
-const Subs: React.FC<{subs: {text: string; start: number; end: number}[]}> = ({subs}) => {
+const Subs: React.FC<{subs: {text: string; start: number; end: number; name?: string}[]}> = ({subs}) => {
   const f = useCurrentFrame();
   const {fps} = useVideoConfig();
   const t = f / fps;
@@ -492,6 +492,10 @@ const Subs: React.FC<{subs: {text: string; start: number; end: number}[]}> = ({s
   const o = Math.min(1, k / 4, kOut / 4);
   return (
     <AbsoluteFill style={{justifyContent: 'flex-end', alignItems: 'center', paddingBottom: 300}}>
+      {cur.name ? (
+        <div style={{opacity: o, fontFamily: FONT, fontSize: 40, color: YELLOW, letterSpacing: 3, marginBottom: 10,
+          textShadow: '0 2px 10px rgba(0,0,0,0.95)'}}>{cur.name}</div>
+      ) : null}
       <div
         style={{
           opacity: o,

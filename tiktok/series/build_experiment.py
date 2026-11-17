@@ -12,7 +12,7 @@ C = {
     "SALOME": "a beautiful slim young Georgian woman with long glossy light-brown waves, natural glam makeup, gold hoops and a cream cropped knit cardigan",
     "DATO": "a fit, handsome Georgian man with a short faded haircut and defined jaw in a fitted black hoodie and silver watch",
     "LIZI": "a pretty petite Georgian woman with a sleek black bob and thin gold round glasses in an oversized olive blazer over a white top",
-    "GUGA": "a charming lean Georgian man with curly auburn hair and a warm smile in a mustard knit sweater",
+    "BEKA": "a charming lean Georgian man with curly auburn hair and a warm smile in a mustard knit sweater",
     "TEKLA": "a striking Georgian woman with sharp features and dark hair in a sleek tight bun in a fitted charcoal hoodie",
     "SPEAKER": "a calm, deep, slightly distorted male voice from the black wall speaker",
     "ANA": "a beautiful young Georgian woman with long straight dark hair and pale skin in a white turtleneck",
@@ -45,8 +45,8 @@ def fill(text):
 NARRATOR = "a deep, calm male narrator voice-over (not on screen)"
 
 
-def clip(shots, lines, light="cold blue tones", amb="wind, creaking wood", pops=None):
-    times = [(0, 4), (4, 8), (8, 11), (11, 15)] if len(shots) == 4 else [(0, 5), (5, 10), (10, 15)]
+def clip(shots, lines, light="cold blue tones", amb="wind, creaking wood", pops=None, times=None, cast=None):
+    times = times or ([(0, 4), (4, 8), (8, 11), (11, 15)] if len(shots) == 4 else [(0, 5), (5, 10), (10, 15)])
     # Veo speaks the narrator itself (in sync, same mix); put each line into the shot it belongs to
     shots, out = list(shots), []
     for line in lines:
@@ -61,15 +61,18 @@ def clip(shots, lines, light="cold blue tones", amb="wind, creaking wood", pops=
     lines = out
     body = "\n".join(f"Shot {i + 1} ({a}-{b}s): {fill(s)}" for i, ((a, b), s) in enumerate(zip(times, shots)))
     prompt = HEAD.format(light=light) + "\n" + body + "\n" + FOOT.format(amb=amb)
-    return {"prompt": prompt, "lines": lines, "pops": pops or []}
+    return {"prompt": prompt, "lines": lines, "pops": pops or [], "cast": cast or []}
 
 
 def N(at, text):
     return {"who": "narrator", "at": at, "text": text}
 
 
-def V(a, b, text):
-    return {"who": "veo", "from": a, "to": b, "text": text}
+def V(a, b, text, name=None):
+    line = {"who": "veo", "from": a, "to": b, "text": text}
+    if name:
+        line["name"] = name
+    return line
 
 
 def say(who, line, how=""):
@@ -79,21 +82,25 @@ def say(who, line, how=""):
 EP = []
 
 # 2 ------------------------------------------------------------------
+# Starts at the end (Beka at the red door), then "12 hours earlier".
 EP.append({"n": 2, "title": "პირველი კენჭისყრა", "next": "🔒 სერია 3 · ორ დღეში",
            "caption": "ბექა უდანაშაულო იყო... მაშ, ვინ? 👇", "clips": [
-    clip(["Morning in the cabin kitchen, the six eat breakfast in tense silence, suspicious side glances. No dialogue.",
-          f"{{DATO}} slams his mug on the table and points across it at a woman. " + say("DATO", "შენ საიდან იცოდი ჩემი სახელი?", "angrily"),
-          f"{{SALOME}} raises an eyebrow, calm and sarcastic. " + say("SALOME", "შენ ყველა გიცნობს, დათო."),
-          "Dim corridor: {TEKLA} leans close to {LIZI}, glancing toward the kitchen. The woman with the tight bun whispers in Georgian: \"ბექა ზედმეტად მშვიდია. არ მომწონს.\" The woman with glasses listens silently."],
-         [N(0.3, "პირველი დილა. და *პირველი ეჭვი*."), V(4.3, 7.8, "შენ საიდან იცოდი *ჩემი სახელი*?"),
-          V(8.2, 10.8, "შენ ყველა გიცნობს, დათო."), V(11.2, 14.7, "ბექა *ზედმეტად მშვიდია*. არ მომწონს.")]),
-    clip(["Evening, living room by candlelight: each of the six drops a folded paper vote into a glass bowl, close-ups of hands. No dialogue.",
-          f"The wall speaker crackles; everyone stares up. {{SPEAKER}} says in Georgian: \"ყველაზე მეტი ხმა — ბექა. ის მოღალატე არ იყო.\"",
-          f"{{GUGA}} stands up, forcing a smile, walks down a dark hallway into a door glowing deep red, looks back once; the red door shuts with a heavy thud. No dialogue.",
-          f"Night, a bedroom: {{NIKA}} lifts his pillow and finds a folded note, unfolds it, his face drains of color. No dialogue."],
-         [N(0.3, "საღამოს — *პირველი კენჭისყრა*."), V(4.3, 7.9, "ყველაზე მეტი ხმა — ბექა. ის *მოღალატე არ იყო*."),
-          N(11.2, "ბალიშის ქვეშ წერილი იდო: *შემდეგი შენ ხარ*.")],
-         amb="static crackle, heavy door thud, wind")]})
+    clip(["Night, a dark hallway glowing deep red: {BEKA} looks back in terror as a heavy red door slams shut in front of the camera. No dialogue.",
+          "Morning, the cabin kitchen in cold daylight, the six at breakfast in tense silence. No dialogue.",
+          f"{{DATO}} slams his mug down and points across the table. " + say("DATO", "საიდან იცი ჩემი სახელი?", "angrily"),
+          f"{{SALOME}} smiles coldly, unbothered. " + say("SALOME", "აქ ყველამ ყველაფერი იცის."),
+          "Dim corridor: {TEKLA} leans close to {LIZI}. The woman with the tight bun whispers in Georgian: \"ბექა რაღაცას მალავს.\""],
+         [N(0.2, "ის პირველი იყო, *ვინც წავიდა*."), N(3.2, "თორმეტი საათით ადრე..."),
+          V(6.2, 8.9, "საიდან იცი *ჩემი სახელი*?", "დათო"), V(9.2, 11.8, "აქ ყველამ *ყველაფერი* იცის.", "სალომე"),
+          V(12.1, 14.8, "ბექა რაღაცას *მალავს*.", "თეკლა")],
+         times=[(0, 3), (3, 6), (6, 9), (9, 12), (12, 15)], cast=["dato", "salome", "tekla"]),
+    clip(["Evening, living room by candlelight: hands drop folded paper votes into a glass bowl, close-ups. No dialogue.",
+          f"{{BEKA}} jumps up, shocked and pale. " + say("BEKA", "მე?! მე ხომ არაფერი გამიკეთებია!", "desperately"),
+          f"The wall speaker crackles; everyone freezes. {{SPEAKER}} says in Georgian: \"ბექა მოღალატე არ იყო.\" Close-up: {{TEKLA}} hides a faint smile.",
+          "Night, a bedroom: {NIKA} lifts his pillow, finds a folded note, unfolds it, his face drains of color. No dialogue."],
+         [N(0.3, "საღამოს თითქმის ყველამ *ერთი სახელი* დაწერა."), V(4.3, 7.9, "მე?! მე ხომ *არაფერი* გამიკეთებია!", "ბექა"),
+          V(8.2, 10.9, "ბექა *მოღალატე არ იყო*."), N(11.2, "იმ ღამით ნიკამ წერილი იპოვა: *შემდეგი შენ ხარ*.")],
+         amb="static crackle, heavy door thud, wind", cast=["beka", "tekla", "nika"])]})
 
 # 3 ------------------------------------------------------------------
 EP.append({"n": 3, "title": "სარკის უკან", "next": "🔒 სერია 4 · ორ დღეში",
@@ -276,8 +283,8 @@ EP.append({"n": 13, "title": "წითელი ოთახი", "next": "🔒
            "caption": "ისინი თავიდანვე ყველაფერს უყურებდნენ?! 👇", "clips": [
     clip([f"{{NIKA}} and {{TEKLA}} walk slowly down the red-lit hallway toward the open red door. No dialogue.",
           "They step through: a high-tech control room full of monitors showing every room of the cabin. No dialogue.",
-          f"In swivel chairs facing the screens sit {{GUGA}}, {{DATO}}, {{LIZI}} and {{SALOME}}, alive and calm, eating popcorn. No dialogue.",
-          f"{{GUGA}} turns around in his chair and waves with a grin. " + say("GUGA", "როგორც იქნა! ჩვენ ყველაფერს ვუყურებდით.")],
+          f"In swivel chairs facing the screens sit {{BEKA}}, {{DATO}}, {{LIZI}} and {{SALOME}}, alive and calm, eating popcorn. No dialogue.",
+          f"{{BEKA}} turns around in his chair and waves with a grin. " + say("BEKA", "როგორც იქნა! ჩვენ ყველაფერს ვუყურებდით.")],
          [N(0.3, "წითელი ოთახი *ციხე* არ იყო."), N(4.4, "ეს *სამეთვალყურეო ოთახი* იყო."),
           N(8.2, "და იქ ყველა იჯდა. *ცოცხლები*."), V(11.3, 14.6, "როგორც იქნა! ჩვენ *ყველაფერს* ვუყურებდით.")],
          light="red light, then cold blue monitor glow", amb="electronic hum, monitors beeping"),

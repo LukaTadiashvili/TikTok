@@ -220,6 +220,7 @@ def render_episode(season, ep, clip_files, final):
     g.CACHE.mkdir(parents=True, exist_ok=True)
 
     clips, subs, cards, sfx, duck, t0 = [], [], [], [], [], 0.0
+    named = set()
     for i, (spec, src) in enumerate(zip(ep["clips"], clip_files)):
         name = f"clips/c{i}{Path(src).suffix or '.mp4'}"
         shutil.copy(src, work / name)
@@ -245,7 +246,11 @@ def render_episode(season, ep, clip_files, final):
                 subs.append({"text": text, "start": round(a, 3), "end": round(a + d + 0.2, 3)})
             else:  # spoken inside the Veo clip
                 a, b = fit_window(spans, line["from"] * k, line["to"] * k)
-                subs.append({"text": text, "start": round(t0 + a, 3), "end": round(t0 + min(b, dur), 3)})
+                sub = {"text": text, "start": round(t0 + a, 3), "end": round(t0 + min(b, dur), 3)}
+                if line.get("name") and line["name"] not in named:  # name tag the first time someone speaks
+                    named.add(line["name"])
+                    sub["name"] = line["name"]
+                subs.append(sub)
         t0 += dur
     # long lines -> one sentence per subtitle, time split by length
     split = []
@@ -257,7 +262,7 @@ def render_episode(season, ep, clip_files, final):
         t, span = x["start"], x["end"] - x["start"]
         for p in parts:
             d = span * len(p) / sum(len(q) for q in parts)
-            split.append({"text": p, "start": round(t, 3), "end": round(t + d, 3)})
+            split.append({"text": p, "start": round(t, 3), "end": round(t + d, 3), **({"name": x["name"]} if "name" in x and p == parts[0] else {})})
             t += d
     subs = sorted(split, key=lambda x: x["start"])
     for n in range(len(subs) - 1):  # never overlap two subtitles
@@ -266,7 +271,12 @@ def render_episode(season, ep, clip_files, final):
 
     # last frame for the freeze-frame end card
     last = work / "clips" / f"c{len(clips) - 1}{Path(clip_files[-1]).suffix or '.mp4'}"
-    g.run(["ffmpeg", "-y", "-loglevel", "error", "-sseof", "-0.1", "-i", last, "-frames:v", "1", "-q:v", "2", work / "end.jpg"])
+    # last frame that isn't black (clips sometimes end on a cut to black)
+    for back in ("-0.1", "-0.8", "-1.5", "-2.5", "-3.5"):
+        g.run(["ffmpeg", "-y", "-loglevel", "error", "-sseof", back, "-i", last, "-frames:v", "1", "-q:v", "2", work / "end.jpg"])
+        from PIL import Image, ImageStat
+        if sum(ImageStat.Stat(Image.open(work / "end.jpg").convert("L")).mean) > 18:
+            break
 
     total = t0 + END_CARD
     props = {
@@ -316,6 +326,8 @@ def send_prompts(season, n, state):
               f"Flow-ში დააგენერირე {len(ep['clips'])} კლიპი (9:16) და გამომიგზავნე რიგით 👇")
     for i, c in enumerate(ep["clips"], 1):
         send_text(f"კლიპი {i}/{len(ep['clips'])}:\n\n{c['prompt']}")
+        if c.get("cast"):
+            send_text("🧩 Flow-ში Ingredients-ად დაამატე: " + ", ".join(c["cast"]) + " (series/experiment_cast)")
     state["prompts_sent_for"] = n
 
 

@@ -82,58 +82,84 @@
    "caption": "ბექა უდანაშაულო იყო... მაშ, ვინ? 👇",
    "clips": [
     {
-     "prompt": "15-second fast-paced cinematic sequence, vertical 9:16, realistic, 35mm film look, film grain, cold blue tones, quick cuts, no dead time. Setting: an isolated modern-rustic wooden cabin in a dark pine forest.\nShot 1 (0-4s): Morning in the cabin kitchen, the six eat breakfast in tense silence, suspicious side glances. A deep, calm male narrator voice-over (not on screen) says slowly in Georgian: \"პირველი დილა. და პირველი ეჭვი.\"\nShot 2 (4-8s): a fit, handsome Georgian man with a short faded haircut and defined jaw in a fitted black hoodie and silver watch slams his mug on the table and points across it at a woman. He says in Georgian angrily: \"შენ საიდან იცოდი ჩემი სახელი?\"\nShot 3 (8-11s): a beautiful slim young Georgian woman with long glossy light-brown waves, natural glam makeup, gold hoops and a cream cropped knit cardigan raises an eyebrow, calm and sarcastic. She says in Georgian: \"შენ ყველა გიცნობს, დათო.\"\nShot 4 (11-15s): Dim corridor: a striking Georgian woman with sharp features and dark hair in a sleek tight bun in a fitted charcoal hoodie leans close to a pretty petite Georgian woman with a sleek black bob and thin gold round glasses in an oversized olive blazer over a white top, glancing toward the kitchen. The woman with the tight bun whispers in Georgian: \"ბექა ზედმეტად მშვიდია. არ მომწონს.\" The woman with glasses listens silently.\nCharacters are fashionable and good-looking. Natural lip movement. Ambient: wind, creaking wood. No subtitles, no text on screen.",
+     "prompt": "15-second fast-paced cinematic sequence, vertical 9:16, realistic, 35mm film look, film grain, cold blue tones, quick cuts, no dead time. Setting: an isolated modern-rustic wooden cabin in a dark pine forest.\nShot 1 (0-3s): Night, a dark hallway glowing deep red: a charming lean Georgian man with curly auburn hair and a warm smile in a mustard knit sweater looks back in terror as a heavy red door slams shut in front of the camera. A deep, calm male narrator voice-over (not on screen) says slowly in Georgian: \"ის პირველი იყო, ვინც წავიდა.\"\nShot 2 (3-6s): Morning, the cabin kitchen in cold daylight, the six at breakfast in tense silence. A deep, calm male narrator voice-over (not on screen) says slowly in Georgian: \"თორმეტი საათით ადრე...\"\nShot 3 (6-9s): a fit, handsome Georgian man with a short faded haircut and defined jaw in a fitted black hoodie and silver watch slams his mug down and points across the table. He says in Georgian angrily: \"საიდან იცი ჩემი სახელი?\"\nShot 4 (9-12s): a beautiful slim young Georgian woman with long glossy light-brown waves, natural glam makeup, gold hoops and a cream cropped knit cardigan smiles coldly, unbothered. She says in Georgian: \"აქ ყველამ ყველაფერი იცის.\"\nShot 5 (12-15s): Dim corridor: a striking Georgian woman with sharp features and dark hair in a sleek tight bun in a fitted charcoal hoodie leans close to a pretty petite Georgian woman with a sleek black bob and thin gold round glasses in an oversized olive blazer over a white top. The woman with the tight bun whispers in Georgian: \"ბექა რაღაცას მალავს.\"\nCharacters are fashionable and good-looking. Natural lip movement. Ambient: wind, creaking wood. No subtitles, no text on screen.",
      "lines": [
       {
        "who": "veo",
        "from": 0.2,
-       "to": 3.9,
-       "text": "პირველი დილა. და *პირველი ეჭვი*."
+       "to": 2.9,
+       "text": "ის პირველი იყო, *ვინც წავიდა*."
       },
       {
        "who": "veo",
-       "from": 4.3,
-       "to": 7.8,
-       "text": "შენ საიდან იცოდი *ჩემი სახელი*?"
+       "from": 3.2,
+       "to": 5.9,
+       "text": "თორმეტი საათით ადრე..."
       },
       {
        "who": "veo",
-       "from": 8.2,
-       "to": 10.8,
-       "text": "შენ ყველა გიცნობს, დათო."
+       "from": 6.2,
+       "to": 8.9,
+       "text": "საიდან იცი *ჩემი სახელი*?",
+       "name": "დათო"
       },
       {
        "who": "veo",
-       "from": 11.2,
-       "to": 14.7,
-       "text": "ბექა *ზედმეტად მშვიდია*. არ მომწონს."
+       "from": 9.2,
+       "to": 11.8,
+       "text": "აქ ყველამ *ყველაფერი* იცის.",
+       "name": "სალომე"
+      },
+      {
+       "who": "veo",
+       "from": 12.1,
+       "to": 14.8,
+       "text": "ბექა რაღაცას *მალავს*.",
+       "name": "თეკლა"
       }
      ],
-     "pops": []
+     "pops": [],
+     "cast": [
+      "dato",
+      "salome",
+      "tekla"
+     ]
     },
     {
-     "prompt": "15-second fast-paced cinematic sequence, vertical 9:16, realistic, 35mm film look, film grain, cold blue tones, quick cuts, no dead time. Setting: an isolated modern-rustic wooden cabin in a dark pine forest.\nShot 1 (0-4s): Evening, living room by candlelight: each of the six drops a folded paper vote into a glass bowl, close-ups of hands. A deep, calm male narrator voice-over (not on screen) says slowly in Georgian: \"საღამოს — პირველი კენჭისყრა.\"\nShot 2 (4-8s): The wall speaker crackles; everyone stares up. a calm, deep, slightly distorted male voice from the black wall speaker says in Georgian: \"ყველაზე მეტი ხმა — ბექა. ის მოღალატე არ იყო.\"\nShot 3 (8-11s): a charming lean Georgian man with curly auburn hair and a warm smile in a mustard knit sweater stands up, forcing a smile, walks down a dark hallway into a door glowing deep red, looks back once; the red door shuts with a heavy thud. No dialogue.\nShot 4 (11-15s): Night, a bedroom: a handsome lean young Georgian man with styled dark wavy hair and light stubble in a fitted black leather jacket over a white crewneck lifts his pillow and finds a folded note, unfolds it, his face drains of color. A deep, calm male narrator voice-over (not on screen) says slowly in Georgian: \"ბალიშის ქვეშ წერილი იდო: შემდეგი შენ ხარ.\"\nCharacters are fashionable and good-looking. Natural lip movement. Ambient: static crackle, heavy door thud, wind. No subtitles, no text on screen.",
+     "prompt": "15-second fast-paced cinematic sequence, vertical 9:16, realistic, 35mm film look, film grain, cold blue tones, quick cuts, no dead time. Setting: an isolated modern-rustic wooden cabin in a dark pine forest.\nShot 1 (0-4s): Evening, living room by candlelight: hands drop folded paper votes into a glass bowl, close-ups. A deep, calm male narrator voice-over (not on screen) says slowly in Georgian: \"საღამოს თითქმის ყველამ ერთი სახელი დაწერა.\"\nShot 2 (4-8s): a charming lean Georgian man with curly auburn hair and a warm smile in a mustard knit sweater jumps up, shocked and pale. He says in Georgian desperately: \"მე?! მე ხომ არაფერი გამიკეთებია!\"\nShot 3 (8-11s): The wall speaker crackles; everyone freezes. a calm, deep, slightly distorted male voice from the black wall speaker says in Georgian: \"ბექა მოღალატე არ იყო.\" Close-up: a striking Georgian woman with sharp features and dark hair in a sleek tight bun in a fitted charcoal hoodie hides a faint smile.\nShot 4 (11-15s): Night, a bedroom: a handsome lean young Georgian man with styled dark wavy hair and light stubble in a fitted black leather jacket over a white crewneck lifts his pillow, finds a folded note, unfolds it, his face drains of color. A deep, calm male narrator voice-over (not on screen) says slowly in Georgian: \"იმ ღამით ნიკამ წერილი იპოვა: შემდეგი შენ ხარ.\"\nCharacters are fashionable and good-looking. Natural lip movement. Ambient: static crackle, heavy door thud, wind. No subtitles, no text on screen.",
      "lines": [
       {
        "who": "veo",
        "from": 0.2,
        "to": 3.9,
-       "text": "საღამოს — *პირველი კენჭისყრა*."
+       "text": "საღამოს თითქმის ყველამ *ერთი სახელი* დაწერა."
       },
       {
        "who": "veo",
        "from": 4.3,
        "to": 7.9,
-       "text": "ყველაზე მეტი ხმა — ბექა. ის *მოღალატე არ იყო*."
+       "text": "მე?! მე ხომ *არაფერი* გამიკეთებია!",
+       "name": "ბექა"
+      },
+      {
+       "who": "veo",
+       "from": 8.2,
+       "to": 10.9,
+       "text": "ბექა *მოღალატე არ იყო*."
       },
       {
        "who": "veo",
        "from": 11.2,
        "to": 14.9,
-       "text": "ბალიშის ქვეშ წერილი იდო: *შემდეგი შენ ხარ*."
+       "text": "იმ ღამით ნიკამ წერილი იპოვა: *შემდეგი შენ ხარ*."
       }
      ],
-     "pops": []
+     "pops": [],
+     "cast": [
+      "beka",
+      "tekla",
+      "nika"
+     ]
     }
    ],
    "hashtags": [
@@ -172,7 +198,8 @@
        "text": "დათო ოცდაათი ათასით *ვალშია*."
       }
      ],
-     "pops": []
+     "pops": [],
+     "cast": []
     },
     {
      "prompt": "15-second fast-paced cinematic sequence, vertical 9:16, realistic, 35mm film look, film grain, cold blue tones, quick cuts, no dead time. Setting: an isolated modern-rustic wooden cabin in a dark pine forest.\nShot 1 (0-4s): a fit, handsome Georgian man with a short faded haircut and defined jaw in a fitted black hoodie and silver watch grabs a beautiful slim young Georgian woman with long glossy light-brown waves, natural glam makeup, gold hoops and a cream cropped knit cardigan by the wrist, furious, close faces. He says in Georgian through his teeth: \"ვინ მოგცა ეს?!\"\nShot 2 (4-8s): a beautiful slim young Georgian woman with long glossy light-brown waves, natural glam makeup, gold hoops and a cream cropped knit cardigan pulls her arm free, unafraid. She says in Georgian: \"ჩემს ოთახში დამხვდა. კარის ქვეშ.\"\nShot 3 (8-11s): Close-up of a striking Georgian woman with sharp features and dark hair in a sleek tight bun in a fitted charcoal hoodie in the background, the faintest smile. A deep, calm male narrator voice-over (not on screen) says slowly in Georgian: \"ვიღაც მათ ერთმანეთზე აქეზებს.\"\nShot 4 (11-15s): The wall speaker crackles. a calm, deep, slightly distorted male voice from the black wall speaker says in Georgian: \"ამაღამ კენჭისყრაა.\" Everyone looks at a fit, handsome Georgian man with a short faded haircut and defined jaw in a fitted black hoodie and silver watch.\nCharacters are fashionable and good-looking. Natural lip movement. Ambient: tense silence, static crackle. No subtitles, no text on screen.",
@@ -202,7 +229,8 @@
        "text": "ამაღამ *კენჭისყრაა*."
       }
      ],
-     "pops": []
+     "pops": [],
+     "cast": []
     }
    ],
    "hashtags": [
@@ -247,7 +275,8 @@
        "text": "მე *არ ვარ*! გესმით?!"
       }
      ],
-     "pops": []
+     "pops": [],
+     "cast": []
     },
     {
      "prompt": "15-second fast-paced cinematic sequence, vertical 9:16, realistic, 35mm film look, film grain, red light then total darkness, quick cuts, no dead time. Setting: an isolated modern-rustic wooden cabin in a dark pine forest.\nShot 1 (0-4s): a fit, handsome Georgian man with a short faded haircut and defined jaw in a fitted black hoodie and silver watch walks into the red-lit hallway, looking back with anger, the red door closes. A deep, calm male narrator voice-over (not on screen) says slowly in Georgian: \"დათოც უდანაშაულო აღმოჩნდა.\"\nShot 2 (4-8s): The speaker crackles. a calm, deep, slightly distorted male voice from the black wall speaker says in Georgian: \"შეცდით. ისევ.\"\nShot 3 (8-11s): Sudden blackout: the lamps die, total darkness, only moonlight through windows; silhouettes freeze. A deep, calm male narrator voice-over (not on screen) says slowly in Georgian: \"და მერე... შუქი ჩაქრა.\"\nShot 4 (11-15s): From below the floor, a muffled woman's scream echoes; flashlights snap on, pointing at a basement door. No dialogue.\nCharacters are fashionable and good-looking. Natural lip movement. Ambient: door thud, electric buzz cutting out, distant scream. No subtitles, no text on screen.",
@@ -271,7 +300,8 @@
        "text": "და მერე... *შუქი ჩაქრა*."
       }
      ],
-     "pops": []
+     "pops": [],
+     "cast": []
     }
    ],
    "hashtags": [
@@ -310,7 +340,8 @@
        "text": "მონაწილე *ნომერი შვიდი*..."
       }
      ],
-     "pops": []
+     "pops": [],
+     "cast": []
     },
     {
      "prompt": "15-second fast-paced cinematic sequence, vertical 9:16, realistic, 35mm film look, film grain, flashlight beams in darkness, quick cuts, no dead time. Setting: an isolated modern-rustic wooden cabin in a dark pine forest.\nShot 1 (0-4s): Extreme close-up of a handsome lean young Georgian man with styled dark wavy hair and light stubble in a fitted black leather jacket over a white crewneck's eyes filling with tears. He says in Georgian barely audible: \"ეს ანას ქურთუკია.\"\nShot 2 (4-8s): a pretty petite Georgian woman with a sleek black bob and thin gold round glasses in an oversized olive blazer over a white top stares at him, confused. She says in Georgian: \"ვინ არის ანა?\"\nShot 3 (8-11s): a handsome lean young Georgian man with styled dark wavy hair and light stubble in a fitted black leather jacket over a white crewneck slowly looks up from the hoodie at her. He says in Georgian: \"ჩემი და. სამი წლის წინ აქ გაქრა.\"\nShot 4 (11-15s): At the top of the stairs, half in shadow, a beautiful slim young Georgian woman with long glossy light-brown waves, natural glam makeup, gold hoops and a cream cropped knit cardigan silently listens, then steps back out of sight. A deep, calm male narrator voice-over (not on screen) says slowly in Georgian: \"მაგრამ ამას სხვაც ისმენდა.\"\nCharacters are fashionable and good-looking. Natural lip movement. Ambient: dripping water, quiet breathing. No subtitles, no text on screen.",
@@ -340,7 +371,8 @@
        "text": "მაგრამ ამას *სხვაც* ისმენდა."
       }
      ],
-     "pops": []
+     "pops": [],
+     "cast": []
     }
    ],
    "hashtags": [
@@ -379,7 +411,8 @@
        "text": "არავის ენდო. განსაკუთრებით მას, *ვინც მშვიდია*."
       }
      ],
-     "pops": []
+     "pops": [],
+     "cast": []
     },
     {
      "prompt": "15-second fast-paced cinematic sequence, vertical 9:16, realistic, 35mm film look, film grain, cold blue tones, quick cuts, no dead time. Setting: an isolated modern-rustic wooden cabin in a dark pine forest.\nShot 1 (0-4s): a handsome lean young Georgian man with styled dark wavy hair and light stubble in a fitted black leather jacket over a white crewneck lowers the phone and slowly lifts his eyes. A deep, calm male narrator voice-over (not on screen) says slowly in Georgian: \"ვინ არის აქ ყველაზე მშვიდი?\"\nShot 2 (4-8s): Quick cuts of everyone upstairs: a beautiful slim young Georgian woman with long glossy light-brown waves, natural glam makeup, gold hoops and a cream cropped knit cardigan nervously biting her nail, a pretty petite Georgian woman with a sleek black bob and thin gold round glasses in an oversized olive blazer over a white top pacing, a striking Georgian woman with sharp features and dark hair in a sleek tight bun in a fitted charcoal hoodie reading a book completely calm. No dialogue.\nShot 3 (8-11s): Close-up: a striking Georgian woman with sharp features and dark hair in a sleek tight bun in a fitted charcoal hoodie turns a page and, without looking up, says in Georgian: \"რაღაც იპოვე, ნიკა?\"\nShot 4 (11-15s): a handsome lean young Georgian man with styled dark wavy hair and light stubble in a fitted black leather jacket over a white crewneck freezes at the bottom of the stairs, hiding the phone behind his back. A deep, calm male narrator voice-over (not on screen) says slowly in Georgian: \"ნიკამ პირველად იგრძნო შიში.\"\nCharacters are fashionable and good-looking. Natural lip movement. Ambient: clock ticking, page turning. No subtitles, no text on screen.",
@@ -403,7 +436,8 @@
        "text": "ნიკამ პირველად იგრძნო *შიში*."
       }
      ],
-     "pops": []
+     "pops": [],
+     "cast": []
     }
    ],
    "hashtags": [
@@ -448,7 +482,8 @@
        "text": "თორემ ყველა გაიგებს, რომ შენ აქ *შემთხვევით არ ხარ*."
       }
      ],
-     "pops": []
+     "pops": [],
+     "cast": []
     },
     {
      "prompt": "15-second fast-paced cinematic sequence, vertical 9:16, realistic, 35mm film look, film grain, cold blue tones, quick cuts, no dead time. Setting: an isolated modern-rustic wooden cabin in a dark pine forest.\nShot 1 (0-4s): a handsome lean young Georgian man with styled dark wavy hair and light stubble in a fitted black leather jacket over a white crewneck looks away, jaw clenched, then gives a small nod. A deep, calm male narrator voice-over (not on screen) says slowly in Georgian: \"ნიკა დათანხმდა.\"\nShot 2 (4-8s): Living room, the remaining four sit facing each other: a handsome lean young Georgian man with styled dark wavy hair and light stubble in a fitted black leather jacket over a white crewneck, a beautiful slim young Georgian woman with long glossy light-brown waves, natural glam makeup, gold hoops and a cream cropped knit cardigan, a pretty petite Georgian woman with a sleek black bob and thin gold round glasses in an oversized olive blazer over a white top, a striking Georgian woman with sharp features and dark hair in a sleek tight bun in a fitted charcoal hoodie. A deep, calm male narrator voice-over (not on screen) says slowly in Georgian: \"დარჩა ოთხი.\"\nShot 3 (8-11s): The speaker crackles. a calm, deep, slightly distorted male voice from the black wall speaker says in Georgian: \"ახალი წესი. ამაღამ ხმას მოღალატეც აძლევს.\"\nShot 4 (11-15s): Slow push-in on a striking Georgian woman with sharp features and dark hair in a sleek tight bun in a fitted charcoal hoodie's calm face, the corner of her mouth lifting. No dialogue.\nCharacters are fashionable and good-looking. Natural lip movement. Ambient: static crackle, fire crackling. No subtitles, no text on screen.",
@@ -472,7 +507,8 @@
        "text": "ახალი წესი. ამაღამ ხმას *მოღალატეც* აძლევს."
       }
      ],
-     "pops": []
+     "pops": [],
+     "cast": []
     }
    ],
    "hashtags": [
@@ -517,7 +553,8 @@
        "text": "ნიკამ ვერაფერი *უპასუხა*."
       }
      ],
-     "pops": []
+     "pops": [],
+     "cast": []
     },
     {
      "prompt": "15-second fast-paced cinematic sequence, vertical 9:16, realistic, 35mm film look, film grain, red light, then dark bedroom, quick cuts, no dead time. Setting: an isolated modern-rustic wooden cabin in a dark pine forest.\nShot 1 (0-4s): At the red door, a pretty petite Georgian woman with a sleek black bob and thin gold round glasses in an oversized olive blazer over a white top suddenly hugs a handsome lean young Georgian man with styled dark wavy hair and light stubble in a fitted black leather jacket over a white crewneck and whispers into his ear. She says in Georgian urgently whispering: \"თეკლას ოთახში კამერა ჩართული იყო.\"\nShot 2 (4-8s): a pretty petite Georgian woman with a sleek black bob and thin gold round glasses in an oversized olive blazer over a white top steps through the red door; it closes. a handsome lean young Georgian man with styled dark wavy hair and light stubble in a fitted black leather jacket over a white crewneck stays staring at it. A deep, calm male narrator voice-over (not on screen) says slowly in Georgian: \"ლიზიც უდანაშაულო იყო.\"\nShot 3 (8-11s): Night, a handsome lean young Georgian man with styled dark wavy hair and light stubble in a fitted black leather jacket over a white crewneck quietly pushes open the door to a striking Georgian woman with sharp features and dark hair in a sleek tight bun in a fitted charcoal hoodie's dark empty bedroom. No dialogue.\nShot 4 (11-15s): A close-up of a laptop under the bed, its screen glowing with a live grid of camera feeds of every room. A deep, calm male narrator voice-over (not on screen) says slowly in Georgian: \"ეკრანზე მთელი სახლი ჩანდა.\"\nCharacters are fashionable and good-looking. Natural lip movement. Ambient: heavy door thud, laptop fan hum. No subtitles, no text on screen.",
@@ -541,7 +578,8 @@
        "text": "ეკრანზე *მთელი სახლი* ჩანდა."
       }
      ],
-     "pops": []
+     "pops": [],
+     "cast": []
     }
    ],
    "hashtags": [
@@ -586,7 +624,8 @@
        "text": "რამე *დაკარგე*, ნიკა?"
       }
      ],
-     "pops": []
+     "pops": [],
+     "cast": []
     },
     {
      "prompt": "15-second fast-paced cinematic sequence, vertical 9:16, realistic, 35mm film look, film grain, cold blue tones, quick cuts, no dead time. Setting: an isolated modern-rustic wooden cabin in a dark pine forest.\nShot 1 (0-4s): a handsome lean young Georgian man with styled dark wavy hair and light stubble in a fitted black leather jacket over a white crewneck slowly stands, hiding the earpiece in his fist. He says in Georgian tense: \"სწორედ შენ გეძებდი.\"\nShot 2 (4-8s): a striking Georgian woman with sharp features and dark hair in a sleek tight bun in a fitted charcoal hoodie steps closer, unblinking. She says in Georgian: \"ზოგი რამის ცოდნა საშიშია.\"\nShot 3 (8-11s): She walks past him, closes the laptop with one finger and leaves. No dialogue.\nShot 4 (11-15s): Close-up of a handsome lean young Georgian man with styled dark wavy hair and light stubble in a fitted black leather jacket over a white crewneck's open hand: the earpiece in his palm crackles and a tiny distorted male voice says in Georgian: \"თეკლა, მიჰყევი გეგმას.\"\nCharacters are fashionable and good-looking. Natural lip movement. Ambient: heartbeat, faint radio crackle. No subtitles, no text on screen.",
@@ -610,7 +649,8 @@
        "text": "თეკლა, *მიჰყევი გეგმას*."
       }
      ],
-     "pops": []
+     "pops": [],
+     "cast": []
     }
    ],
    "hashtags": [
@@ -655,7 +695,8 @@
        "text": "მისმინე. მოღალატე *თეკლაა*."
       }
      ],
-     "pops": []
+     "pops": [],
+     "cast": []
     },
     {
      "prompt": "15-second fast-paced cinematic sequence, vertical 9:16, realistic, 35mm film look, film grain, cold blue tones, quick cuts, no dead time. Setting: an isolated modern-rustic wooden cabin in a dark pine forest.\nShot 1 (0-4s): a striking Georgian woman with sharp features and dark hair in a sleek tight bun in a fitted charcoal hoodie laughs softly, looking at a beautiful slim young Georgian woman with long glossy light-brown waves, natural glam makeup, gold hoops and a cream cropped knit cardigan. She says in Georgian: \"მას ახლა ყველაფერს ეტყვის.\"\nShot 2 (4-8s): a beautiful slim young Georgian woman with long glossy light-brown waves, natural glam makeup, gold hoops and a cream cropped knit cardigan looks back and forth between them, torn, breathing fast. A deep, calm male narrator voice-over (not on screen) says slowly in Georgian: \"სალომე ორს შორის დარჩა.\"\nShot 3 (8-11s): a beautiful slim young Georgian woman with long glossy light-brown waves, natural glam makeup, gold hoops and a cream cropped knit cardigan steps away from a handsome lean young Georgian man with styled dark wavy hair and light stubble in a fitted black leather jacket over a white crewneck. She says in Georgian coldly: \"ამაღამ შენ გაძლევ ხმას, ნიკა.\"\nShot 4 (11-15s): Close-up of a handsome lean young Georgian man with styled dark wavy hair and light stubble in a fitted black leather jacket over a white crewneck's hand slipping into his pocket and touching the earpiece. A deep, calm male narrator voice-over (not on screen) says slowly in Georgian: \"მაგრამ ნიკას მტკიცებულება ჰქონდა.\"\nCharacters are fashionable and good-looking. Natural lip movement. Ambient: clock ticking, heartbeat. No subtitles, no text on screen.",
@@ -685,7 +726,8 @@
        "text": "მაგრამ ნიკას *მტკიცებულება* ჰქონდა."
       }
      ],
-     "pops": []
+     "pops": [],
+     "cast": []
     }
    ],
    "hashtags": [
@@ -730,7 +772,8 @@
        "text": "შენ..."
       }
      ],
-     "pops": []
+     "pops": [],
+     "cast": []
     },
     {
      "prompt": "15-second fast-paced cinematic sequence, vertical 9:16, realistic, 35mm film look, film grain, total darkness, then flickering warm lamps, quick cuts, no dead time. Setting: an isolated modern-rustic wooden cabin in a dark pine forest.\nShot 1 (0-4s): All the lights die at once; total darkness, a single gasp. A deep, calm male narrator voice-over (not on screen) says slowly in Georgian: \"და მერე... სიბნელე.\"\nShot 2 (4-8s): Five seconds later the lamps flicker back on. A deep, calm male narrator voice-over (not on screen) says slowly in Georgian: \"როცა შუქი აინთო...\"\nShot 3 (8-11s): a beautiful slim young Georgian woman with long glossy light-brown waves, natural glam makeup, gold hoops and a cream cropped knit cardigan's chair is empty, still rocking. Her gold hoop earring lies on the floor. A deep, calm male narrator voice-over (not on screen) says slowly in Georgian: \"სალომე აღარ იყო.\"\nShot 4 (11-15s): a handsome lean young Georgian man with styled dark wavy hair and light stubble in a fitted black leather jacket over a white crewneck and a striking Georgian woman with sharp features and dark hair in a sleek tight bun in a fitted charcoal hoodie are alone, staring at each other across the room. She says in Georgian softly: \"ახლა მხოლოდ ჩვენ დავრჩით.\"\nCharacters are fashionable and good-looking. Natural lip movement. Ambient: electric buzz, chair creaking. No subtitles, no text on screen.",
@@ -760,7 +803,8 @@
        "text": "ახლა *მხოლოდ ჩვენ* დავრჩით."
       }
      ],
-     "pops": []
+     "pops": [],
+     "cast": []
     }
    ],
    "hashtags": [
@@ -805,7 +849,8 @@
        "text": "მეც მონაწილე ვიყავი. *ანასთან ერთად*."
       }
      ],
-     "pops": []
+     "pops": [],
+     "cast": []
     },
     {
      "prompt": "15-second fast-paced cinematic sequence, vertical 9:16, realistic, 35mm film look, film grain, warm lamps with red light from the hallway, quick cuts, no dead time. Setting: an isolated modern-rustic wooden cabin in a dark pine forest.\nShot 1 (0-4s): a striking Georgian woman with sharp features and dark hair in a sleek tight bun in a fitted charcoal hoodie sits down slowly. She says in Georgian: \"ვინც დარჩა, მათთვის იწყებს მუშაობას.\"\nShot 2 (4-8s): a handsome lean young Georgian man with styled dark wavy hair and light stubble in a fitted black leather jacket over a white crewneck grabs her shoulders. He says in Georgian desperate: \"ანა სად არის?!\"\nShot 3 (8-11s): a striking Georgian woman with sharp features and dark hair in a sleek tight bun in a fitted charcoal hoodie looks him in the eyes. She says in Georgian: \"შენი და ცოცხალია, ნიკა.\"\nShot 4 (11-15s): Behind them, deep in the hallway, the red door slowly opens by itself, red light spilling out. A deep, calm male narrator voice-over (not on screen) says slowly in Georgian: \"და წითელი კარი თავისით გაიღო.\"\nCharacters are fashionable and good-looking. Natural lip movement. Ambient: heartbeat, door creaking open. No subtitles, no text on screen.",
@@ -835,7 +880,8 @@
        "text": "და წითელი კარი *თავისით გაიღო*."
       }
      ],
-     "pops": []
+     "pops": [],
+     "cast": []
     }
    ],
    "hashtags": [
@@ -880,7 +926,8 @@
        "text": "როგორც იქნა! ჩვენ *ყველაფერს* ვუყურებდით."
       }
      ],
-     "pops": []
+     "pops": [],
+     "cast": []
     },
     {
      "prompt": "15-second fast-paced cinematic sequence, vertical 9:16, realistic, 35mm film look, film grain, cold blue monitor glow, quick cuts, no dead time. Setting: an isolated modern-rustic wooden cabin in a dark pine forest.\nShot 1 (0-4s): a handsome lean young Georgian man with styled dark wavy hair and light stubble in a fitted black leather jacket over a white crewneck stares at them in disbelief. He says in Georgian angry and confused: \"ეს რა არის? თამაშია?\"\nShot 2 (4-8s): a pretty petite Georgian woman with a sleek black bob and thin gold round glasses in an oversized olive blazer over a white top answers gently. She says in Georgian: \"ექსპერიმენტი ჩვენ არ ვიყავით, ნიკა.\"\nShot 3 (8-11s): a pretty petite Georgian woman with a sleek black bob and thin gold round glasses in an oversized olive blazer over a white top points at the central screen: a live feed of a handsome lean young Georgian man with styled dark wavy hair and light stubble in a fitted black leather jacket over a white crewneck himself, labeled with a red dot. A deep, calm male narrator voice-over (not on screen) says slowly in Georgian: \"ცენტრალურ ეკრანზე ნიკა ჩანდა.\"\nShot 4 (11-15s): a beautiful slim young Georgian woman with long glossy light-brown waves, natural glam makeup, gold hoops and a cream cropped knit cardigan adds quietly. She says in Georgian: \"ექსპერიმენტი შენ ხარ.\"\nCharacters are fashionable and good-looking. Natural lip movement. Ambient: electronic hum, heartbeat. No subtitles, no text on screen.",
@@ -910,7 +957,8 @@
        "text": "ექსპერიმენტი *შენ ხარ*."
       }
      ],
-     "pops": []
+     "pops": [],
+     "cast": []
     }
    ],
    "hashtags": [
@@ -949,7 +997,8 @@
        "text": "„დოქტორი“ *გამოჩნდა*."
       }
      ],
-     "pops": []
+     "pops": [],
+     "cast": []
     },
     {
      "prompt": "15-second fast-paced cinematic sequence, vertical 9:16, realistic, 35mm film look, film grain, bright white light in the control room, quick cuts, no dead time. Setting: an isolated modern-rustic wooden cabin in a dark pine forest.\nShot 1 (0-4s): a handsome lean young Georgian man with styled dark wavy hair and light stubble in a fitted black leather jacket over a white crewneck freezes, tears in his eyes. He says in Georgian barely breathing: \"ანა?..\"\nShot 2 (4-8s): a beautiful young Georgian woman with long straight dark hair and pale skin in a white turtleneck smiles softly with a strange calm. She says in Georgian: \"გამარჯობა, ძმაო. მე ვარ დოქტორი.\"\nShot 3 (8-11s): Close-up of a handsome lean young Georgian man with styled dark wavy hair and light stubble in a fitted black leather jacket over a white crewneck's face, shock turning into anger. A deep, calm male narrator voice-over (not on screen) says slowly in Georgian: \"სამი წელი ის აქ იყო.\"\nShot 4 (11-15s): a beautiful young Georgian woman with long straight dark hair and pale skin in a white turtleneck steps closer. She says in Georgian: \"მინდოდა მენახა, ვის ენდობი.\"\nCharacters are fashionable and good-looking. Natural lip movement. Ambient: heartbeat, electronic hum. No subtitles, no text on screen.",
@@ -979,7 +1028,8 @@
        "text": "მინდოდა მენახა, *ვის ენდობი*."
       }
      ],
-     "pops": []
+     "pops": [],
+     "cast": []
     }
    ],
    "hashtags": [
@@ -1024,7 +1074,8 @@
        "text": "ნიკას *არჩევანი* უნდა გაეკეთებინა."
       }
      ],
-     "pops": []
+     "pops": [],
+     "cast": []
     },
     {
      "prompt": "15-second fast-paced cinematic sequence, vertical 9:16, realistic, 35mm film look, film grain, warm dawn light, then cold interior, quick cuts, no dead time. Setting: an isolated modern-rustic wooden cabin in a dark pine forest.\nShot 1 (0-4s): a handsome lean young Georgian man with styled dark wavy hair and light stubble in a fitted black leather jacket over a white crewneck slowly takes the envelope, his face unreadable. A deep, calm male narrator voice-over (not on screen) says slowly in Georgian: \"ნიკამ კონვერტი აიღო.\"\nShot 2 (4-8s): Dawn: a handsome lean young Georgian man with styled dark wavy hair and light stubble in a fitted black leather jacket over a white crewneck walks out of the cabin into the foggy pine forest; a black minivan waits. A deep, calm male narrator voice-over (not on screen) says slowly in Georgian: \"ექსპერიმენტი არ დასრულებულა.\"\nShot 3 (8-11s): Inside a new empty cabin room: six fresh name tags lie on a table; one hand places the last one down. No dialogue.\nShot 4 (11-15s): Close-up: a handsome lean young Georgian man with styled dark wavy hair and light stubble in a fitted black leather jacket over a white crewneck turns and looks straight into the camera. He says in Georgian quietly, with a cold smile: \"ახლა შენი ჯერია.\"\nCharacters are fashionable and good-looking. Natural lip movement. Ambient: birds, wind, car engine idling. No subtitles, no text on screen.",
@@ -1048,7 +1099,8 @@
        "text": "ახლა *შენი ჯერია*."
       }
      ],
-     "pops": []
+     "pops": [],
+     "cast": []
     }
    ],
    "hashtags": [
