@@ -81,18 +81,18 @@ EP = []
 # 2 ------------------------------------------------------------------
 EP.append({"n": 2, "title": "პირველი კენჭისყრა", "next": "🔒 სერია 3 · ორ დღეში",
            "caption": "გუგა უდანაშაულო იყო... მაშ, ვინ? 👇", "clips": [
-    clip(["Morning in the cabin kitchen, the six eat breakfast in tense silence, side glances. No dialogue.",
-          f"{{DATO}} slams his mug on the table and points across it. " + say("DATO", "შენ საიდან იცოდი ჩემი სახელი?", "angrily"),
+    clip(["Morning in the cabin kitchen, the six eat breakfast in tense silence, suspicious side glances. No dialogue.",
+          f"{{DATO}} slams his mug on the table and points across it at a woman. " + say("DATO", "შენ საიდან იცოდი ჩემი სახელი?", "angrily"),
           f"{{SALOME}} raises an eyebrow, calm and sarcastic. " + say("SALOME", "შენ ყველა გიცნობს, დათო."),
-          "Evening, living room, six small wooden boxes on the table; each person drops a folded paper vote into a glass bowl, close-ups of hands. No dialogue."],
+          f"Dim corridor: {{TEKLA}} leans close to {{LIZI}} and whispers, glancing toward the kitchen. " + say("TEKLA", "გუგა ზედმეტად მშვიდია. არ მომწონს.", "in a quiet whisper")],
          [N(0.3, "პირველი დილა. და *პირველი ეჭვი*."), V(4.3, 7.8, "შენ საიდან იცოდი *ჩემი სახელი*?"),
-          V(8.2, 10.8, "შენ ყველა გიცნობს, დათო."), N(11.2, "საღამოს — *პირველი კენჭისყრა*.")]),
-    clip([f"The wall speaker crackles; everyone stares up. {{SPEAKER}} says in Georgian: \"გუგა. თქვენ შეცდით.\"",
-          f"{{GUGA}} stands up, forcing a smile, and walks down a dark hallway toward a door glowing deep red. He looks back once.",
-          "The red door shuts with a heavy thud. The others flinch. No dialogue.",
+          V(8.2, 10.8, "შენ ყველა გიცნობს, დათო."), V(11.2, 14.7, "გუგა *ზედმეტად მშვიდია*. არ მომწონს.")]),
+    clip(["Evening, living room by candlelight: each of the six drops a folded paper vote into a glass bowl, close-ups of hands. No dialogue.",
+          f"The wall speaker crackles; everyone stares up. {{SPEAKER}} says in Georgian: \"ყველაზე მეტი ხმა — გუგა. ის მოღალატე არ იყო.\"",
+          f"{{GUGA}} stands up, forcing a smile, walks down a dark hallway into a door glowing deep red, looks back once; the red door shuts with a heavy thud. No dialogue.",
           f"Night, a bedroom: {{NIKA}} lifts his pillow and finds a folded note, unfolds it, his face drains of color. No dialogue."],
-         [V(0.4, 3.8, "გუგა. თქვენ *შეცდით*."), N(4.4, "გუგა წავიდა. *უფულოდ*."),
-          N(11.3, "ბალიშის ქვეშ წერილი იდო: *შემდეგი შენ ხარ, ნიკა*.")],
+         [N(0.3, "საღამოს — *პირველი კენჭისყრა*."), V(4.3, 7.9, "ყველაზე მეტი ხმა — გუგა. ის *მოღალატე არ იყო*."),
+          N(11.2, "ბალიშის ქვეშ წერილი იდო: *შემდეგი შენ ხარ*.")],
          amb="static crackle, heavy door thud, wind")]})
 
 # 3 ------------------------------------------------------------------
