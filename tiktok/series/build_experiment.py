@@ -80,18 +80,18 @@ EP = []
 
 # 2 ------------------------------------------------------------------
 EP.append({"n": 2, "title": "პირველი კენჭისყრა", "next": "🔒 სერია 3 · ორ დღეში",
-           "caption": "გუგა უდანაშაულო იყო... მაშ, ვინ? 👇", "clips": [
+           "caption": "ბექა უდანაშაულო იყო... მაშ, ვინ? 👇", "clips": [
     clip(["Morning in the cabin kitchen, the six eat breakfast in tense silence, suspicious side glances. No dialogue.",
           f"{{DATO}} slams his mug on the table and points across it at a woman. " + say("DATO", "შენ საიდან იცოდი ჩემი სახელი?", "angrily"),
           f"{{SALOME}} raises an eyebrow, calm and sarcastic. " + say("SALOME", "შენ ყველა გიცნობს, დათო."),
-          "Dim corridor: {TEKLA} leans close to {LIZI}, glancing toward the kitchen. The woman with the tight bun whispers in Georgian: \"გუგა ზედმეტად მშვიდია. არ მომწონს.\" The woman with glasses listens silently."],
+          "Dim corridor: {TEKLA} leans close to {LIZI}, glancing toward the kitchen. The woman with the tight bun whispers in Georgian: \"ბექა ზედმეტად მშვიდია. არ მომწონს.\" The woman with glasses listens silently."],
          [N(0.3, "პირველი დილა. და *პირველი ეჭვი*."), V(4.3, 7.8, "შენ საიდან იცოდი *ჩემი სახელი*?"),
-          V(8.2, 10.8, "შენ ყველა გიცნობს, დათო."), V(11.2, 14.7, "გუგა *ზედმეტად მშვიდია*. არ მომწონს.")]),
+          V(8.2, 10.8, "შენ ყველა გიცნობს, დათო."), V(11.2, 14.7, "ბექა *ზედმეტად მშვიდია*. არ მომწონს.")]),
     clip(["Evening, living room by candlelight: each of the six drops a folded paper vote into a glass bowl, close-ups of hands. No dialogue.",
-          f"The wall speaker crackles; everyone stares up. {{SPEAKER}} says in Georgian: \"ყველაზე მეტი ხმა — გუგა. ის მოღალატე არ იყო.\"",
+          f"The wall speaker crackles; everyone stares up. {{SPEAKER}} says in Georgian: \"ყველაზე მეტი ხმა — ბექა. ის მოღალატე არ იყო.\"",
           f"{{GUGA}} stands up, forcing a smile, walks down a dark hallway into a door glowing deep red, looks back once; the red door shuts with a heavy thud. No dialogue.",
           f"Night, a bedroom: {{NIKA}} lifts his pillow and finds a folded note, unfolds it, his face drains of color. No dialogue."],
-         [N(0.3, "საღამოს — *პირველი კენჭისყრა*."), V(4.3, 7.9, "ყველაზე მეტი ხმა — გუგა. ის *მოღალატე არ იყო*."),
+         [N(0.3, "საღამოს — *პირველი კენჭისყრა*."), V(4.3, 7.9, "ყველაზე მეტი ხმა — ბექა. ის *მოღალატე არ იყო*."),
           N(11.2, "ბალიშის ქვეშ წერილი იდო: *შემდეგი შენ ხარ*.")],
          amb="static crackle, heavy door thud, wind")]})
 

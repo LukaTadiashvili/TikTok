@@ -79,10 +79,10 @@
    "n": 2,
    "title": "პირველი კენჭისყრა",
    "next": "🔒 სერია 3 · ორ დღეში",
-   "caption": "გუგა უდანაშაულო იყო... მაშ, ვინ? 👇",
+   "caption": "ბექა უდანაშაულო იყო... მაშ, ვინ? 👇",
    "clips": [
     {
-     "prompt": "15-second fast-paced cinematic sequence, vertical 9:16, realistic, 35mm film look, film grain, cold blue tones, quick cuts, no dead time. Setting: an isolated modern-rustic wooden cabin in a dark pine forest.\nShot 1 (0-4s): Morning in the cabin kitchen, the six eat breakfast in tense silence, suspicious side glances. A deep, calm male narrator voice-over (not on screen) says slowly in Georgian: \"პირველი დილა. და პირველი ეჭვი.\"\nShot 2 (4-8s): a fit, handsome Georgian man with a short faded haircut and defined jaw in a fitted black hoodie and silver watch slams his mug on the table and points across it at a woman. He says in Georgian angrily: \"შენ საიდან იცოდი ჩემი სახელი?\"\nShot 3 (8-11s): a beautiful slim young Georgian woman with long glossy light-brown waves, natural glam makeup, gold hoops and a cream cropped knit cardigan raises an eyebrow, calm and sarcastic. She says in Georgian: \"შენ ყველა გიცნობს, დათო.\"\nShot 4 (11-15s): Dim corridor: a striking Georgian woman with sharp features and dark hair in a sleek tight bun in a fitted charcoal hoodie leans close to a pretty petite Georgian woman with a sleek black bob and thin gold round glasses in an oversized olive blazer over a white top, glancing toward the kitchen. The woman with the tight bun whispers in Georgian: \"გუგა ზედმეტად მშვიდია. არ მომწონს.\" The woman with glasses listens silently.\nCharacters are fashionable and good-looking. Natural lip movement. Ambient: wind, creaking wood. No subtitles, no text on screen.",
+     "prompt": "15-second fast-paced cinematic sequence, vertical 9:16, realistic, 35mm film look, film grain, cold blue tones, quick cuts, no dead time. Setting: an isolated modern-rustic wooden cabin in a dark pine forest.\nShot 1 (0-4s): Morning in the cabin kitchen, the six eat breakfast in tense silence, suspicious side glances. A deep, calm male narrator voice-over (not on screen) says slowly in Georgian: \"პირველი დილა. და პირველი ეჭვი.\"\nShot 2 (4-8s): a fit, handsome Georgian man with a short faded haircut and defined jaw in a fitted black hoodie and silver watch slams his mug on the table and points across it at a woman. He says in Georgian angrily: \"შენ საიდან იცოდი ჩემი სახელი?\"\nShot 3 (8-11s): a beautiful slim young Georgian woman with long glossy light-brown waves, natural glam makeup, gold hoops and a cream cropped knit cardigan raises an eyebrow, calm and sarcastic. She says in Georgian: \"შენ ყველა გიცნობს, დათო.\"\nShot 4 (11-15s): Dim corridor: a striking Georgian woman with sharp features and dark hair in a sleek tight bun in a fitted charcoal hoodie leans close to a pretty petite Georgian woman with a sleek black bob and thin gold round glasses in an oversized olive blazer over a white top, glancing toward the kitchen. The woman with the tight bun whispers in Georgian: \"ბექა ზედმეტად მშვიდია. არ მომწონს.\" The woman with glasses listens silently.\nCharacters are fashionable and good-looking. Natural lip movement. Ambient: wind, creaking wood. No subtitles, no text on screen.",
      "lines": [
       {
        "who": "veo",
@@ -106,13 +106,13 @@
        "who": "veo",
        "from": 11.2,
        "to": 14.7,
-       "text": "გუგა *ზედმეტად მშვიდია*. არ მომწონს."
+       "text": "ბექა *ზედმეტად მშვიდია*. არ მომწონს."
       }
      ],
      "pops": []
     },
     {
-     "prompt": "15-second fast-paced cinematic sequence, vertical 9:16, realistic, 35mm film look, film grain, cold blue tones, quick cuts, no dead time. Setting: an isolated modern-rustic wooden cabin in a dark pine forest.\nShot 1 (0-4s): Evening, living room by candlelight: each of the six drops a folded paper vote into a glass bowl, close-ups of hands. A deep, calm male narrator voice-over (not on screen) says slowly in Georgian: \"საღამოს — პირველი კენჭისყრა.\"\nShot 2 (4-8s): The wall speaker crackles; everyone stares up. a calm, deep, slightly distorted male voice from the black wall speaker says in Georgian: \"ყველაზე მეტი ხმა — გუგა. ის მოღალატე არ იყო.\"\nShot 3 (8-11s): a charming lean Georgian man with curly auburn hair and a warm smile in a mustard knit sweater stands up, forcing a smile, walks down a dark hallway into a door glowing deep red, looks back once; the red door shuts with a heavy thud. No dialogue.\nShot 4 (11-15s): Night, a bedroom: a handsome lean young Georgian man with styled dark wavy hair and light stubble in a fitted black leather jacket over a white crewneck lifts his pillow and finds a folded note, unfolds it, his face drains of color. A deep, calm male narrator voice-over (not on screen) says slowly in Georgian: \"ბალიშის ქვეშ წერილი იდო: შემდეგი შენ ხარ.\"\nCharacters are fashionable and good-looking. Natural lip movement. Ambient: static crackle, heavy door thud, wind. No subtitles, no text on screen.",
+     "prompt": "15-second fast-paced cinematic sequence, vertical 9:16, realistic, 35mm film look, film grain, cold blue tones, quick cuts, no dead time. Setting: an isolated modern-rustic wooden cabin in a dark pine forest.\nShot 1 (0-4s): Evening, living room by candlelight: each of the six drops a folded paper vote into a glass bowl, close-ups of hands. A deep, calm male narrator voice-over (not on screen) says slowly in Georgian: \"საღამოს — პირველი კენჭისყრა.\"\nShot 2 (4-8s): The wall speaker crackles; everyone stares up. a calm, deep, slightly distorted male voice from the black wall speaker says in Georgian: \"ყველაზე მეტი ხმა — ბექა. ის მოღალატე არ იყო.\"\nShot 3 (8-11s): a charming lean Georgian man with curly auburn hair and a warm smile in a mustard knit sweater stands up, forcing a smile, walks down a dark hallway into a door glowing deep red, looks back once; the red door shuts with a heavy thud. No dialogue.\nShot 4 (11-15s): Night, a bedroom: a handsome lean young Georgian man with styled dark wavy hair and light stubble in a fitted black leather jacket over a white crewneck lifts his pillow and finds a folded note, unfolds it, his face drains of color. A deep, calm male narrator voice-over (not on screen) says slowly in Georgian: \"ბალიშის ქვეშ წერილი იდო: შემდეგი შენ ხარ.\"\nCharacters are fashionable and good-looking. Natural lip movement. Ambient: static crackle, heavy door thud, wind. No subtitles, no text on screen.",
      "lines": [
       {
        "who": "veo",
@@ -124,7 +124,7 @@
        "who": "veo",
        "from": 4.3,
        "to": 7.9,
-       "text": "ყველაზე მეტი ხმა — გუგა. ის *მოღალატე არ იყო*."
+       "text": "ყველაზე მეტი ხმა — ბექა. ის *მოღალატე არ იყო*."
       },
       {
        "who": "veo",
