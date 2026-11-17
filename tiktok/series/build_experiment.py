@@ -10,9 +10,9 @@ P = Path(__file__).parent / "experiment.json"
 C = {
     "NIKA": "a handsome lean young Georgian man with styled dark wavy hair and light stubble in a fitted black leather jacket over a white crewneck",
     "SALOME": "a beautiful slim young Georgian woman with long glossy light-brown waves, natural glam makeup, gold hoops and a cream cropped knit cardigan",
-    "DATO": "a fit, handsome Georgian man with a short faded haircut and defined jaw in a fitted black hoodie and silver watch",
-    "LIZI": "a pretty petite Georgian woman with a sleek black bob and thin gold round glasses in an oversized olive blazer over a white top",
-    "BEKA": "a charming lean Georgian man with curly auburn hair and a warm smile in a mustard knit sweater",
+    "DATO": "a fit, handsome Georgian man with short dark hair and a full dark beard in a fitted black sweater",
+    "LIZI": "a pretty petite Georgian woman with a sleek black bob and thin gold round glasses in an olive coat",
+    "BEKA": "a lean, handsome Georgian man with messy dark curly hair and stubble in a dark jacket",
     "TEKLA": "a striking Georgian woman with sharp features and dark hair in a sleek tight bun in a fitted charcoal hoodie",
     "SPEAKER": "a calm, deep, slightly distorted male voice from the black wall speaker",
     "ANA": "a beautiful young Georgian woman with long straight dark hair and pale skin in a white turtleneck",
